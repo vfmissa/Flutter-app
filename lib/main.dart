@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
 
-    //_Bancoapp(); //abrir bd
+
 
 
     return Scaffold(

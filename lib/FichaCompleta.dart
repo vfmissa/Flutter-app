@@ -2,7 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -25,49 +24,63 @@ class _FichaCompletaState extends State<FichaCompleta> {
   TextEditingController idadecontroller = TextEditingController();
   TextEditingController sexocontroller = TextEditingController();
   TextEditingController caracteristicacontroller = TextEditingController();
+  TextEditingController procuracontroller = TextEditingController();
 
-   _Bancoapp() async {
+  String nome = "nameplaceholder";
+  String idade = "idadeplaceholder";
+  String sexo = "sexplaceholder";
+  String caracteristica = "nameplaceholder";
+
+  _Bancoapp() async {
     final patchDB = await getDatabasesPath();
-    final localpatchDB = join(patchDB,"Foodtest.db");
+    final localpatchDB = join(patchDB, "Foodtest.db");
 
-    var Bancoapp= await openDatabase(
-        localpatchDB,
-        version: 1,
-        onCreate: (db,dbversao){
+    var Bancoapp = await openDatabase(
+      localpatchDB,
+      version: 1,
+      /* onCreate: (db,dbversao){
           String sql ="CREATE TABLE teste(id INTEGER PRIMARY KEY AUTOINCREMENT, julgador VARCHAR, idade VARCHAR, sexo VARCHAR, caracteristica VARCHAR)";
           db.execute(sql);
 
-        }
+        }*/
     );
     return Bancoapp;
     //print("aberto"+ Bancoapp.isOpen.toString());
   }
 
   _recuperardobd() async {
-     Database bd = await _Bancoapp();
-     String sql = "SELECT * FROM teste";
-     List testes = await bd.rawQuery(sql);
+    Database bd = await _Bancoapp();
 
+    // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
+    var idnumber = procuracontroller.text;
 
-     for( var testes in testes ){
-       print(
-           "teste id: " + testes['id'].toString() +
-               " nome: " + testes['julgador'] +
-               " idade: " + testes['idade'].toString()+
-                " sexo: " +testes['sexo'].toString()+
-                " caracteristica: "+testes['caracteristica']);
-     }
+    String sql = "SELECT * FROM teste WHERE id LIKE $idnumber";
+    List testes = await bd.rawQuery(sql);
 
+    for (var testes in testes) {
+      print("teste id: " +
+          testes['id'].toString() +
+          " nome: " +
+          testes['julgador'] +
+          " idade: " +
+          testes['idade'].toString() +
+          " sexo: " +
+          testes['sexo'].toString() +
+          " caracteristica: " +
+          testes['caracteristica']);
+
+      nome = testes['julgador'];
+      idade = testes['idade'].toString();
+      sexo = testes['sexo'];
+      caracteristica = testes['caracteristica'];
+    }
   }
-
-
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
-     return Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text("Relatorio"),
           backgroundColor: Colors.blue,
@@ -86,27 +99,37 @@ class _FichaCompletaState extends State<FichaCompleta> {
                   Padding(
                     padding: const EdgeInsets.all(6),
                     child: SizedBox(
-                        width: double.maxFinite,
-                        height: 50,
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          textCapitalization: TextCapitalization.sentences,
-                          controller: julgadorcontroller,
-                          validator: (value) {
-                            if (value == null || value.trim().length == 0) {
-                              return "Prencher Nome Julgador";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
+                      width: double.maxFinite,
+                      height: 50,
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: procuracontroller,
+                        decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.blue,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(3),
                             ),
-                            hintText: "Julgador:",
-                            hintStyle:
-                                TextStyle(color: Colors.black, fontSize: 10),
+                            hintText: "Procurar:"),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(6),
+                    child: SizedBox(
+                        width: double.maxFinite,
+                        height: 50,
+                        child: TextFormField(
+                          controller: julgadorcontroller,
+                          textCapitalization: TextCapitalization.sentences,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.blue,
+                            labelText: "Julgador",
+                            labelStyle: const TextStyle(color: Colors.black),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
                           ),
                         )),
                   ),
@@ -119,21 +142,17 @@ class _FichaCompletaState extends State<FichaCompleta> {
                           keyboardType: TextInputType.text,
                           textCapitalization: TextCapitalization.sentences,
                           controller: idadecontroller,
-                          validator: (value) {
-                            if (value == null || value.trim().length == 0) {
-                              return "Prencher Idade";
-                            }
-                            return null;
-                          },
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.blue,
+                            labelText: "Idade",
+                            labelStyle: const TextStyle(color: Colors.black),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(3),
                             ),
-                            hintText: "idade:",
+                            /*hintText: "idade:",
                             hintStyle:
-                                TextStyle(color: Colors.black, fontSize: 10),
+                                TextStyle(color: Colors.black, fontSize: 10),*/
                           ),
                         )),
                   ),
@@ -146,21 +165,14 @@ class _FichaCompletaState extends State<FichaCompleta> {
                           keyboardType: TextInputType.text,
                           textCapitalization: TextCapitalization.sentences,
                           controller: sexocontroller,
-                          validator: (value) {
-                            if (value == null || value.trim().length == 0) {
-                              return "Prencher Sexo";
-                            }
-                            return null;
-                          },
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.blue,
+                            labelText: "Sexo",
+                            labelStyle: const TextStyle(color: Colors.black),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(3),
                             ),
-                            hintText: "Sexo:",
-                            hintStyle:
-                                TextStyle(color: Colors.black, fontSize: 10),
                           ),
                         )),
                   ),
@@ -173,15 +185,11 @@ class _FichaCompletaState extends State<FichaCompleta> {
                           keyboardType: TextInputType.text,
                           textCapitalization: TextCapitalization.sentences,
                           controller: amostracontroller,
-                          validator: (value) {
-                            if (value == null || value.trim().length == 0) {
-                              return "Prencher Amostra";
-                            }
-                            return null;
-                          },
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.blue,
+                            labelText: "Amostra",
+                            labelStyle: const TextStyle(color: Colors.black),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(3),
                             ),
@@ -200,21 +208,14 @@ class _FichaCompletaState extends State<FichaCompleta> {
                           keyboardType: TextInputType.text,
                           textCapitalization: TextCapitalization.sentences,
                           controller: caracteristicacontroller,
-                          validator: (value) {
-                            if (value == null || value.trim().length == 0) {
-                              return "Prencher Caracteristica";
-                            }
-                            return null;
-                          },
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.blue,
+                            labelText: "Caracteristica",
+                            labelStyle: const TextStyle(color: Colors.black),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(3),
                             ),
-                            hintText: "Caracteristica:",
-                            hintStyle:
-                                TextStyle(color: Colors.black, fontSize: 10),
                           ),
                         )),
                   )
@@ -230,13 +231,19 @@ class _FichaCompletaState extends State<FichaCompleta> {
               padding: const EdgeInsets.all(6),
               child: ElevatedButton(
                 onPressed: () {
-                  _recuperardobd();
+                  //_recuperardobd();
                 },
                 child: Text("Submeter", style: TextStyle(color: Colors.black)),
               ),
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await _recuperardobd();
+                  julgadorcontroller.text = nome;
+                  idadecontroller.text = idade;
+                  sexocontroller.text = sexo;
+                  caracteristicacontroller.text = caracteristica;
+                },
                 child: Text("recuperar", style: TextStyle(color: Colors.black)))
           ],
         )));
