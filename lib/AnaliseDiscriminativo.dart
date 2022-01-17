@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'FichaOrdenacao.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 
 class AnaliseDiscriminativo extends StatefulWidget {
   String amostra;
@@ -19,14 +21,74 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
   String julgador = "julgador";
   String caracteristica = "VAR_caracteristica";
 
+  _Bancoapp() async {
+    final patchDB = await getDatabasesPath();
+    final localpatchDB = join(patchDB, "Foodtest.db");
+
+    var Bancoapp = await openDatabase(
+      localpatchDB,
+      version: 1,
+      /* onCreate: (db,dbversao){
+
+          String sql2 ="CREATE TABLE discriminatorio(discri_id PRIMARY KEY AUTOINCREMENT,menos VARCHAR,medio VARCHAR,mais VARCHAR,coment VARCHAR)";
+          db.execute(sql);
+
+        }*/
+    );
+    return Bancoapp;
+    //print("aberto"+ Bancoapp.isOpen.toString());
+  }
+
+  _Salvar() async {
+    Database bd = await _Bancoapp();
+    Map<String, dynamic> dadostabela = {
+      "menos": sample1Menos.text,
+      "medio": sample2Meio.text,
+      "mais": sample3Mais.text,
+      "coment": comentario.text
+    };
+    /*Map<String, dynamic>dadostabela ={
+      "julgador": "julgador1",
+      "idade": "idade1",
+      "sexo": "sexo1",
+      "caracteristica": "caracteristica1"};*/
+
+    int id = await bd.insert("discriminatorio", dadostabela);
+    print("salvo: $id");
+  }
+
+  _recuperardobd() async {
+    Database bd = await _Bancoapp();
+
+    // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
+
+    String sql = "SELECT * FROM discriminatorio";
+    List testes = await bd.rawQuery(sql);
+
+    for (var testes in testes) {
+      print("id: " +
+          testes['discri_id'].toString() +
+          "menos: " +
+          testes['menos'] +
+          "medio : " +
+          testes['medio'].toString() +
+          "mais : " +
+          testes['mais'].toString()+ "comentario "+testes['coment'].toString());
+
+     /* nome = testes['julgador'];
+      idade = testes['idade'].toString();
+      sexo = testes['sexo'];
+      caracteristica = testes['caracteristica'];*/
+    }
+  }
+
   @override
   void initState() {
     amostra = widget.amostra;
     julgador = widget.julgador;
-    caracteristica= widget.caracteristica;
+    caracteristica = widget.caracteristica;
     super.initState();
   }
-
 
   TextEditingController sample1Menos = TextEditingController();
   TextEditingController sample2Meio = TextEditingController();
@@ -166,7 +228,8 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     // ignore: prefer_const_constructors
                     child: TextFormField(
-                      keyboardType: TextInputType.text,maxLines:3,
+                      keyboardType: TextInputType.text,
+                      maxLines: 3,
                       controller: comentario,
                       decoration: const InputDecoration(
                         filled: true,
@@ -178,11 +241,9 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                     )),
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(sample1Menos.text);
-                  print(sample2Meio.text);
-                  print(sample3Mais.text);
-                  print(comentario.text);
+                onPressed: () async {
+                  //await _Salvar();
+                  await _recuperardobd();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

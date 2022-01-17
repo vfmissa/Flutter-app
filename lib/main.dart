@@ -35,7 +35,9 @@ class _HomeState extends State<Home> {
         version: 1,
         onCreate: (db, dbversao) {
           String sql = "CREATE TABLE teste(id INTEGER PRIMARY KEY AUTOINCREMENT, julgador VARCHAR, idade VARCHAR, sexo VARCHAR, caracteristica VARCHAR)";
+          String sql2 ="CREATE TABLE discriminatorio(discri_id INTEGER PRIMARY KEY AUTOINCREMENT,menos CHAR,medio CHAR,mais CHAR,coment VARCHAR)";
           db.execute(sql);
+          db.execute(sql2);
         }
     );
     return Bancoapp;
