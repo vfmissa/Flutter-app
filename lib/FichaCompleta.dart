@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:food_test_app/DrawerWidget.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -81,6 +81,7 @@ class _FichaCompletaState extends State<FichaCompleta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: drawer(),
         appBar: AppBar(
           title: Text("Relatorio"),
           backgroundColor: Colors.blue,
@@ -249,3 +250,5 @@ class _FichaCompletaState extends State<FichaCompleta> {
         )));
   }
 }
+
+

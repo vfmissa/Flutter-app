@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_test_app/DrawerWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_test_app/AnaliseDiscriminativo.dart';
@@ -79,6 +80,7 @@ class _HomeState extends State<Home> {
 
 
     return Scaffold(
+      drawer: drawer(),
         appBar: AppBar(
           title: Text("Home"),
           backgroundColor: Colors.blue,
