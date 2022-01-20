@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
 
 
     return Scaffold(
-      drawer: drawer(),
+      drawer: drawer(amostracontroller.text,julgadorcontroller.text),
         appBar: AppBar(
           title: Text("Home"),
           backgroundColor: Colors.blue,
@@ -257,7 +257,7 @@ class _HomeState extends State<Home> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        _Salvar();
+                        //_Salvar();   FUNÇÃO PARA SALVARNO BD, HABILITAR DEPOIS
                         Navigator.push(
                             context,
                             MaterialPageRoute(

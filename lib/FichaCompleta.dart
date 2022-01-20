@@ -81,7 +81,7 @@ class _FichaCompletaState extends State<FichaCompleta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: drawer(),
+        drawer: drawer(amostracontroller.text,julgadorcontroller.text),
         appBar: AppBar(
           title: Text("Relatorio"),
           backgroundColor: Colors.blue,
