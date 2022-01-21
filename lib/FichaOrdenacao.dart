@@ -1,9 +1,6 @@
 // ignore_for_file: file_names, prefer_const_constructors
-
-
 import 'package:flutter/material.dart';
-import 'package:food_test_app/ComparativoAmostra.dart';
-import 'package:food_test_app/FichaAvaliacao.dart';
+import 'main.dart';
 class FichaOrdenacao extends StatefulWidget {
   String amostra;
   String julgador;
@@ -178,7 +175,7 @@ class _FichaOrdenacaoState extends State<FichaOrdenacao> {
                   print(gosteiMeio.text);
                   print(gosteiMais.text);
                   print(comentarioFormPreferencia.text);
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => Comparativo(amostra,julgador)));
+                  Navigator.push(context,MaterialPageRoute(builder: (context) =>Home()));
                 },
                 child: Text("Submeter", style: TextStyle(color: Colors.black)),
               )

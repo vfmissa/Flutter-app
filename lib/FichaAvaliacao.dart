@@ -27,9 +27,13 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
   }
 
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-
+    return WillPopScope(
+      onWillPop: () async {
+        print("retorno desabilitado");
+        return false;
+      },
+      child: Container(
+        child: Scaffold(
           appBar: AppBar(
             title: Text("Ficha de Avaliação"),
             backgroundColor: Colors.blue,
@@ -41,177 +45,199 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
               decoration: BoxDecoration(
                   border: Border.all(width: 3, color: Colors.black54)),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    "Amostra:$amostra",
-                    textAlign: TextAlign.center,
-                    style:
-                    TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
-                  ),
-                  Text(
-                    "Julgador: ${widget.julgador}",
-                    textAlign: TextAlign.center,
-                    style:
-                    TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
-                  ),
-                  Text(
-                    "Data: ${now.day}/${now.month}/${now.year}",
-                    textAlign: TextAlign.center,
-                    style:
-                    TextStyle(fontSize:12, fontStyle: FontStyle.italic),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 475,
-                height: 30,
-                child: Text(
-                    "Você está recebendo uma amostra controle (C) e três amostras codificadas."),
-              ),
-              SizedBox(
-                width: 475,
-                height: 30,
-                child: Text("Compare cada uma com o Controle "
-                    "Quanto ao atributo (Especificar)"),
-              ),
-              SizedBox(
-                width: 475,
-                height: 30,
-                child: Text(
-                    "Expresse o valor da diferença utilizando a escala abaixo"),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(width: 80, height: 50, child: Text("1: Nenhuma")),
-                  SizedBox(width: 80, height: 50, child: Text("2: Ligeira")),
-                  SizedBox(width: 80, height: 50, child: Text("3: Moderada")),
-                  SizedBox(width: 80, height: 50, child: Text("4: Muita")),
-                  SizedBox(width: 80, height: 50, child: Text("5: Extrema")),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(width: 60, height: 20, child: Text("Amostra")),
-                  SizedBox(width: 50, height: 20, child: Text("Valor")),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Amostra:$amostra",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20, fontStyle: FontStyle.italic),
+                        ),
+                        Text(
+                          "Julgador: ${widget.julgador}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20, fontStyle: FontStyle.italic),
+                        ),
+                        Text(
+                          "Data: ${now.day}/${now.month}/${now.year}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 12, fontStyle: FontStyle.italic),
+                        ),
+                      ],
+                    ),
                     SizedBox(
-                    width: 120,
-                    height: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            filled: true, fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),)),
-                      ),
+                      width: 475,
+                      height: 30,
+                      child: Text(
+                          "Você está recebendo uma amostra controle (C) e três amostras codificadas."),
                     ),
-                  ),
-                  SizedBox(
-                    width: 60,
-                    height: 30,
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                            filled: true, fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),)),
-                      ),
+                    SizedBox(
+                      width: 475,
+                      height: 30,
+                      child: Text("Compare cada uma com o Controle "
+                          "Quanto ao atributo (Especificar)"),
                     ),
-                  ),
-                  ],
-            ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: 120,
-                        height: 30,
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                filled: true, fillColor: Colors.blue,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(3),)),
-                          ),
+                    SizedBox(
+                      width: 475,
+                      height: 30,
+                      child: Text(
+                          "Expresse o valor da diferença utilizando a escala abaixo"),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                            width: 80, height: 50, child: Text("1: Nenhuma")),
+                        SizedBox(
+                            width: 80, height: 50, child: Text("2: Ligeira")),
+                        SizedBox(
+                            width: 80, height: 50, child: Text("3: Moderada")),
+                        SizedBox(
+                            width: 80, height: 50, child: Text("4: Muita")),
+                        SizedBox(
+                            width: 80, height: 50, child: Text("5: Extrema")),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(width: 60, height: 20, child: Text("Amostra")),
+                        SizedBox(width: 50, height: 20, child: Text("Valor")),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              width: 120,
+                              height: 30,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.blue,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(3),
+                                      )),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 60,
+                              height: 30,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.blue,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(3),
+                                      )),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 60,
-                        height: 30,
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                filled: true, fillColor: Colors.blue,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(3),)),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              width: 120,
+                              height: 30,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.blue,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(3),
+                                      )),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 60,
+                              height: 30,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.blue,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(3),
+                                      )),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        width: 120,
-                        height: 30,
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                filled: true, fillColor: Colors.blue,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(3),)),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              width: 120,
+                              height: 30,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.blue,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(3),
+                                      )),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 60,
+                              height: 30,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.blue,
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(3),
+                                      )),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                        width: 60,
-                        height: 30,
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                filled: true, fillColor: Colors.blue,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(3),)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => Home()));
-                  },
-                  child: Text("Submeter", style: TextStyle(color: Colors.black)),)]),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
+                      },
+                      child: Text("Submeter",
+                          style: TextStyle(color: Colors.black)),
+                    )
+                  ]),
             ),
           ),
+        ),
       ),
     );
   }

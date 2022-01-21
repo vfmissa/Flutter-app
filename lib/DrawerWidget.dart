@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:food_test_app/AnaliseDiscriminativo.dart';
+import 'package:food_test_app/ComparativoNumAmostras.dart';
 import 'package:food_test_app/FichaCompleta.dart';
 import 'package:food_test_app/ComparativoAmostra.dart';
 import 'package:food_test_app/FichaAvaliacao.dart';
@@ -88,7 +89,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
       break;
     case 1:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Comparativo(amostra, julgador,),
+        builder: (context) => ComparativoNumAmostras(amostra, julgador,),
       ));
       break;
     case 3:
