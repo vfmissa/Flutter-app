@@ -3,7 +3,67 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/ComparativoAmostra.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 import 'main.dart';
+
+
+_Bancoapp() async {
+  final patchDB = await getDatabasesPath();
+  final localpatchDB = join(patchDB, "Foodtest.db");
+
+  var Bancoapp = await openDatabase(
+    localpatchDB,
+    version: 1,
+    /* onCreate: (db,dbversao){
+
+          String sql3 ="CREATE TABLE comparativo(amostra_controle INTEGER PRIMARY KEY,amostra_testada CHAR, nota INTEGER)";
+          db.execute(sql3);
+
+        }*/
+  );
+  return Bancoapp;
+  //print("aberto"+ Bancoapp.isOpen.toString());
+}
+
+_Salvar(String controle, String testada, String nota ) async {
+  Database bd = await _Bancoapp();
+  Map<String, dynamic> dadostabela = {
+    "amostra_controle": controle,
+    "amostra_testada": testada,
+    "nota": nota,
+
+  };
+
+  int id = await bd.insert("comparativo", dadostabela);
+  print("salvo: $id");
+}
+
+
+_recuperardobd() async {
+  Database bd = await _Bancoapp();
+
+  // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
+
+  String sql = "SELECT * FROM comparativo";
+  List testes = await bd.rawQuery(sql);
+
+  for (var testes in testes) {
+    print("id: " +
+        testes['id'].toString() +
+        " controle: " +
+        testes['amostra_controle'].toString() +
+        " Amostra Teste : " +
+        testes['amostra_testada'].toString() +
+        " nota : " +
+        testes['nota'].toString());
+
+    /* nome = testes['julgador'];
+      idade = testes['idade'].toString();
+      sexo = testes['sexo'];
+      caracteristica = testes['caracteristica'];*/
+  }
+}
 
 class ComparativoVoto extends StatefulWidget {
   String amostra_a_comparar;
@@ -23,6 +83,7 @@ class _ComparativoVotoState extends State<ComparativoVoto> {
   String amostra_controle="controle";
   int num_amostras = 0;
   @override
+
   void initState() {
     //permite usar os parametros como variaveis
     amostra = widget.amostra_a_comparar;
@@ -185,11 +246,15 @@ class _ComparativoVotoState extends State<ComparativoVoto> {
                   if(num_amostras==0){
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Home()));
+                    _Salvar(amostra_controle,amostra,_valorpadrao);
+                    _recuperardobd();
                     print(_valorpadrao);
                   }
                   else{
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Comparativo(amostra_controle, julgador, num_amostras)));
+                    _Salvar(amostra_controle,amostra,_valorpadrao);
+
                     print(_valorpadrao);
                     print("faltam $num_amostras");
 

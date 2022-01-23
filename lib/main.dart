@@ -37,12 +37,15 @@ class _HomeState extends State<Home> {
         onCreate: (db, dbversao) {
           String sql = "CREATE TABLE teste(id INTEGER PRIMARY KEY AUTOINCREMENT, julgador VARCHAR, idade VARCHAR, sexo VARCHAR, caracteristica VARCHAR)";
           String sql2 ="CREATE TABLE discriminatorio(discri_id INTEGER PRIMARY KEY AUTOINCREMENT,menos CHAR,medio CHAR,mais CHAR,coment VARCHAR)";
+          String sql3 ="CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
           db.execute(sql);
           db.execute(sql2);
+          db.execute(sql3);
         }
     );
+    print("aberto "+ Bancoapp.isOpen.toString());
     return Bancoapp;
-    //print("aberto"+ Bancoapp.isOpen.toString());
+
   }
 
   _recuperar() async {
@@ -75,10 +78,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
-
+    _Bancoapp();
     return WillPopScope(
       onWillPop:()async {
         //print("retorno habilitado");
