@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/DrawerWidget.dart';
+import 'package:food_test_app/Helper_BD.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_test_app/AnaliseDiscriminativo.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 import 'package:food_test_app/FichaCompleta.dart';
+import 'package:food_test_app/Helper_BD.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -21,13 +22,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   TextEditingController amostracontroller = TextEditingController();
   TextEditingController julgadorcontroller = TextEditingController();
   TextEditingController idadecontroller = TextEditingController();
   TextEditingController sexocontroller = TextEditingController();
   TextEditingController caracteristicacontroller = TextEditingController();
 
-  _Bancoapp() async {
+ /* _Bancoapp() async {
     final patchDB = await getDatabasesPath();
     final localpatchDB = join(patchDB, "Foodtest.db");
 
@@ -43,10 +45,12 @@ class _HomeState extends State<Home> {
           db.execute(sql3);
         }
     );
-    print("aberto "+ Bancoapp.isOpen.toString());
+    //print("aberto "+ Bancoapp.isOpen.toString());
     return Bancoapp;
 
-  }
+  }*/
+
+
 
   _recuperar() async {
     final prefs = await SharedPreferences.getInstance();
@@ -57,28 +61,31 @@ class _HomeState extends State<Home> {
   }
 
   _Salvar() async {
-    Database bd =  await _Bancoapp();
+    var db= Helper_BD();
+    Database Banco_dados = db.inicializarDB();
     Map<String, dynamic>dadostabela = {
       "julgador": julgadorcontroller.text,
       "idade": idadecontroller.text,
       "sexo": sexocontroller.text,
       "caracteristica": caracteristicacontroller.text
     };
+
     /*Map<String, dynamic>dadostabela ={
       "julgador": "julgador1",
       "idade": "idade1",
       "sexo": "sexo1",
       "caracteristica": "caracteristica1"};*/
 
-    int id = await bd.insert("teste", dadostabela);
+    int id = await Banco_dados.insert("teste", dadostabela);
     print("salvo: $id");
   }
+
+
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    _Bancoapp();
     return WillPopScope(
       onWillPop:()async {
         //print("retorno habilitado");
@@ -263,6 +270,7 @@ class _HomeState extends State<Home> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           //_Salvar();   FUNÇÃO PARA SALVARNO BD, HABILITAR DEPOIS
+
                           Navigator.push(
                               context,
                               MaterialPageRoute(

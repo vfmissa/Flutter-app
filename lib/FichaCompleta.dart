@@ -2,10 +2,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_test_app/Helper_BD.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:food_test_app/DrawerWidget.dart';
-
+import 'package:food_test_app/Helper_BD.dart';
 void main() {
   runApp(MaterialApp(
     home: FichaCompleta(),
@@ -19,6 +20,7 @@ class FichaCompleta extends StatefulWidget {
 }
 
 class _FichaCompletaState extends State<FichaCompleta> {
+
   TextEditingController amostracontroller = TextEditingController();
   TextEditingController julgadorcontroller = TextEditingController();
   TextEditingController idadecontroller = TextEditingController();
@@ -30,6 +32,8 @@ class _FichaCompletaState extends State<FichaCompleta> {
   String idade = "idadeplaceholder";
   String sexo = "sexplaceholder";
   String caracteristica = "nameplaceholder";
+
+
 
   _Bancoapp() async {
     final patchDB = await getDatabasesPath();
@@ -48,10 +52,47 @@ class _FichaCompletaState extends State<FichaCompleta> {
     //print("aberto"+ Bancoapp.isOpen.toString());
   }
 
-  _recuperardobd() async {
+  _recuperardobd_comparativo(int id, String table) async {
+    Database banco = await Helper_BD().inicializarDB();
+    table = "comparativo";
     Database bd = await _Bancoapp();
 
     // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
+    //String sql = "SELECT * FROM $table";
+    //List testes = await bd.rawQuery(sql);
+    List usuarios = await banco.query("comparativo",
+        columns: ["id", "amostra_controle", "amostra_testada", "nota"],
+        where: "id=?",
+        whereArgs: [id]);
+
+    for (var Usuario in usuarios) {
+      print("id: " +
+          Usuario['id'].toString() +
+          " controle: " +
+          Usuario['amostra_controle'].toString() +
+          " Amostra Teste : " +
+          Usuario['amostra_testada'].toString() +
+          " nota : " +
+          Usuario['nota'].toString());
+
+      /* nome = testes['julgador'];
+      idade = testes['idade'].toString();
+      sexo = testes['sexo'];
+      caracteristica = testes['caracteristica'];*/
+    }
+  }
+
+  _excluir(int id, String table) async {
+    table = "comparativo";
+    Database bd = await _Bancoapp();
+
+    bd.delete("$table", where: "id=?", whereArgs: [id]);
+  }
+
+  _recuperardobd() async {
+    Database bd = await _Bancoapp();
+    //Database banco = await Helper_BD().inicializarDB();
+        // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
     var idnumber = procuracontroller.text;
 
     String sql = "SELECT * FROM teste WHERE id LIKE $idnumber";
@@ -81,7 +122,7 @@ class _FichaCompletaState extends State<FichaCompleta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: drawer(amostracontroller.text,julgadorcontroller.text),
+        drawer: drawer(amostracontroller.text, julgadorcontroller.text),
         appBar: AppBar(
           title: Text("Relatorio"),
           backgroundColor: Colors.blue,
@@ -105,6 +146,7 @@ class _FichaCompletaState extends State<FichaCompleta> {
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         controller: procuracontroller,
+                        autofocus: true,
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.blue,
@@ -239,7 +281,9 @@ class _FichaCompletaState extends State<FichaCompleta> {
             ),
             ElevatedButton(
                 onPressed: () async {
-                  await _recuperardobd();
+                  await _recuperardobd_comparativo(
+                      int.parse(procuracontroller.text),
+                      procuracontroller.text);
                   julgadorcontroller.text = nome;
                   idadecontroller.text = idade;
                   sexocontroller.text = sexo;
@@ -250,5 +294,3 @@ class _FichaCompletaState extends State<FichaCompleta> {
         )));
   }
 }
-
-

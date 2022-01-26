@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:food_test_app/ComparativoAmostra.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'Helper_BD.dart';
 import 'main.dart';
 
 
-_Bancoapp() async {
+
+
+/*_Bancoapp() async {
   final patchDB = await getDatabasesPath();
   final localpatchDB = join(patchDB, "Foodtest.db");
 
@@ -24,10 +27,11 @@ _Bancoapp() async {
   );
   return Bancoapp;
   //print("aberto"+ Bancoapp.isOpen.toString());
-}
+}*/
 
 _Salvar(String controle, String testada, String nota ) async {
-  Database bd = await _Bancoapp();
+  Database banco = await Helper_BD().inicializarDB();
+  //Database bd = await _Bancoapp();
   Map<String, dynamic> dadostabela = {
     "amostra_controle": controle,
     "amostra_testada": testada,
@@ -35,18 +39,19 @@ _Salvar(String controle, String testada, String nota ) async {
 
   };
 
-  int id = await bd.insert("comparativo", dadostabela);
+  int id = await banco.insert("comparativo", dadostabela);
   print("salvo: $id");
 }
 
 
 _recuperardobd() async {
-  Database bd = await _Bancoapp();
-
+   //Database bd = await _Bancoapp();
+   Database banco = await Helper_BD().inicializarDB();
   // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
 
   String sql = "SELECT * FROM comparativo";
-  List testes = await bd.rawQuery(sql);
+  List testes = await banco.rawQuery(sql);
+
 
   for (var testes in testes) {
     print("id: " +
