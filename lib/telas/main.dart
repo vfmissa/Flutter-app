@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:food_test_app/DrawerWidget.dart';
-import 'package:food_test_app/Helper_BD.dart';
+import 'DrawerWidget.dart';
+import '../Helper_BD/Helper_BD.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food_test_app/AnaliseDiscriminativo.dart';
+import 'AnaliseDiscriminativo.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:food_test_app/FichaCompleta.dart';
-import 'package:food_test_app/Helper_BD.dart';
+import 'ListagemDados.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -293,7 +292,7 @@ class _HomeState extends State<Home> {
                   ),
                   ElevatedButton(onPressed: () {
                     Navigator.push(
-                        context,MaterialPageRoute(builder: (context) =>FichaCompleta()));
+                        context,MaterialPageRoute(builder: (context) =>Lista()));
 
                   },
                       child: Text(

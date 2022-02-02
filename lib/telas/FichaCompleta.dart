@@ -2,11 +2,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food_test_app/Helper_BD.dart';
+import '../Helper_BD/Helper_BD.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:food_test_app/DrawerWidget.dart';
-import 'package:food_test_app/Helper_BD.dart';
+import 'DrawerWidget.dart';
+import '../Helper_BD/Helper_BD.dart';
 void main() {
   runApp(MaterialApp(
     home: FichaCompleta(),
@@ -61,9 +61,7 @@ class _FichaCompletaState extends State<FichaCompleta> {
     //String sql = "SELECT * FROM $table";
     //List testes = await bd.rawQuery(sql);
     List usuarios = await banco.query("comparativo",
-        columns: ["id", "amostra_controle", "amostra_testada", "nota"],
-        where: "id=?",
-        whereArgs: [id]);
+        columns: ["id", "amostra_controle", "amostra_testada", "nota"],);
 
     for (var Usuario in usuarios) {
       print("id: " +

@@ -2,10 +2,10 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:food_test_app/ComparativoAmostra.dart';
+import 'ComparativoAmostra.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'Helper_BD.dart';
+import '../Helper_BD/Helper_BD.dart';
 import 'main.dart';
 
 
@@ -28,7 +28,7 @@ import 'main.dart';
   return Bancoapp;
   //print("aberto"+ Bancoapp.isOpen.toString());
 }*/
-
+//salvar o test descriminativo
 _Salvar(String controle, String testada, String nota ) async {
   Database banco = await Helper_BD().inicializarDB();
   //Database bd = await _Bancoapp();

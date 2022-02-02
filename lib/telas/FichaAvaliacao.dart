@@ -29,8 +29,8 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        print("retorno desabilitado");
-        return false;
+        debugPrint("retorno habilitado");
+        return true;
       },
       child: Container(
         child: Scaffold(

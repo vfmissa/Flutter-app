@@ -3,7 +3,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:food_test_app/ComparativoVoto.dart';
+import 'ComparativoVoto.dart';
 import 'main.dart';
 
 class Comparativo extends StatefulWidget {

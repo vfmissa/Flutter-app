@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:food_test_app/AnaliseDiscriminativo.dart';
-import 'package:food_test_app/ComparativoNumAmostras.dart';
-import 'package:food_test_app/FichaCompleta.dart';
-import 'package:food_test_app/ComparativoAmostra.dart';
-import 'package:food_test_app/FichaAvaliacao.dart';
+import 'AnaliseDiscriminativo.dart';
+import 'ComparativoNumAmostras.dart';
+import 'FichaCompleta.dart';
+import 'ComparativoAmostra.dart';
+import 'FichaAvaliacao.dart';
 
 
 class drawer extends StatefulWidget {
