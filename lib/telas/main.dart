@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'AnaliseDiscriminativo.dart';
 import 'package:sqflite/sqflite.dart';
 import 'ListagemDados.dart';
+import 'Listagemdados2.0.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -292,7 +293,7 @@ class _HomeState extends State<Home> {
                   ),
                   ElevatedButton(onPressed: () {
                     Navigator.push(
-                        context,MaterialPageRoute(builder: (context) =>Lista()));
+                        context,MaterialPageRoute(builder: (context) =>Lista2()));
 
                   },
                       child: Text(

@@ -30,7 +30,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
       version: 1,
       /* onCreate: (db,dbversao){
 
-          String sql2 ="CREATE TABLE discriminatorio(discri_id PRIMARY KEY AUTOINCREMENT,menos VARCHAR,medio VARCHAR,mais VARCHAR,coment VARCHAR)";
+
           db.execute(sql);
 
         }*/
@@ -40,12 +40,14 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
   }
 
   _Salvar() async {
+
+    //"TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR ,INT intensidade ,comentario VARCHAR)";
     Database bd = await _Bancoapp();
     Map<String, dynamic> dadostabela = {
-      "menos": sample1Menos.text,
-      "medio": sample2Meio.text,
-      "mais": sample3Mais.text,
-      "coment": comentario.text
+      "amostra_controle": "teste_amostra2",
+      "amostra_testada": "testada2",
+      "intensidade": 3,
+      "comentario": "textão do facebook2"
     };
     /*Map<String, dynamic>dadostabela ={
       "julgador": "julgador1",
@@ -53,7 +55,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
       "sexo": "sexo1",
       "caracteristica": "caracteristica1"};*/
 
-    int id = await bd.insert("discriminatorio", dadostabela);
+    int id = await bd.insert("teste_discriminativo", dadostabela);
     print("salvo: $id");
   }
 
@@ -62,7 +64,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
 
     // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
 
-    String sql = "SELECT * FROM discriminatorio";
+    String sql = "SELECT * FROM teste_discriminativo";
     List testes = await bd.rawQuery(sql);
 
     for (var testes in testes) {
@@ -243,7 +245,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
               ElevatedButton(
                 onPressed: () async {
                   //await _Salvar();
-                  await _recuperardobd();
+                  //await _recuperardobd();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
