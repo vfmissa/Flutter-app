@@ -9,7 +9,9 @@ class ModeloComparativo{
   late String _amostra_testada;
   late String _nota;
 
-   ModeloComparativo(this._id,this._amostra_controle,this._amostra_testada,this._nota);
+   ModeloComparativo(this._amostra_controle,this._amostra_testada,this._nota);
+   ModeloComparativo.comId(this._id,this._amostra_controle,this._amostra_testada,this._nota);
+
 
   int get id =>_id;
   String get amostra_controle => _amostra_controle;

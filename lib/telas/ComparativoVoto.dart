@@ -32,6 +32,7 @@ import 'main.dart';
 _Salvar(String controle, String testada, String nota ) async {
   Database banco = await Helper_BD().inicializarDB();
   //Database bd = await _Bancoapp();
+
   Map<String, dynamic> dadostabela = {
     "amostra_controle": controle,
     "amostra_testada": testada,
@@ -51,6 +52,7 @@ _recuperardobd() async {
 
   String sql = "SELECT * FROM comparativo";
   List testes = await banco.rawQuery(sql);
+
 
 
   for (var testes in testes) {

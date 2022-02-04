@@ -12,11 +12,12 @@ class Helper_BD extends StatefulWidget {
   @override
   _Helper_BDState createState() => _Helper_BDState();
 
+
   _onCreateDB(Database db, int version) async {
     String sql =
         "CREATE TABLE teste(id INTEGER PRIMARY KEY AUTOINCREMENT, julgador VARCHAR, idade VARCHAR, sexo VARCHAR, caracteristica VARCHAR)";
     String sql2 =
-        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , intensidade INT ,comentario VARCHAR)";
+        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
     String sql3 =
         "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
 
@@ -62,16 +63,39 @@ class Helper_BD extends StatefulWidget {
     }
     return ListaTeste;
   }
+
+  SalvarComparativo(String controle, String testada, String nota ) async {
+    Database banco = await Helper_BD().inicializarDB();
+    //Database bd = await _Bancoapp();
+
+    Map<String, dynamic> dadostabela = {
+      "amostra_controle": controle,
+      "amostra_testada": testada,
+      "nota": nota,
+
+    };
+
+    int id = await banco.insert("comparativo", dadostabela);
+    print("salvo: $id");
+  }
+
+
+
+
+
+
+
+
 //Seção teste comparativo
 
 //TESTE DESCRIMINATIVO
-  //"TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR ,INT intensidade ,comentario VARCHAR)";
+  //""CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
   recuperardobd_descriminativo() async {
     Database banco = await Helper_BD().inicializarDB();
     var table = "comparativo";
 
     List EntradasBD = await banco.query("teste_discriminativo",
-      columns: ["id", "amostra_controle", "amostra_testada","intensidade","comentario"],);
+      columns: ["id", "amostra_controle", "amostra_testada","amostra2","amostra3","comentario"],);
 
     return EntradasBD;
 
@@ -89,6 +113,36 @@ class Helper_BD extends StatefulWidget {
     }
     return ListaTeste;
   }
+
+
+
+
+Future<int> insertDiscrimnativo( TesteDiscriminativo teste) async {
+    Database db = await Helper_BD().inicializarDB();
+    //inserção dando erro no id/autoincremente se tento passar o modelo de classe direto???
+    //var result = await db.insert("teste_discriminativo", teste.toMap());
+
+    //"CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
+
+    Map<String, dynamic> dadostabela = {
+      "amostra_controle":teste.amostra_controle,
+      "amostra_testada": teste.menoscaracteristica,
+      "amostra2": teste.mediacaracteristica,
+      "amostra3":teste.maiscaracteristica,
+      "comentario":teste.comentario,
+
+    };
+
+   var id = await db.insert("teste_discriminativo", dadostabela);
+
+   return id;
+    //return result;
+
+
+
+  }
+
+
 
 
 

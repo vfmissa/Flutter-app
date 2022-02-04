@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:food_test_app/Helper_BD/Helper_BD.dart';
+import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
+import 'package:food_test_app/telas/DatalhesTesteDiscriminativo.dart';
 import 'FichaOrdenacao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -39,29 +42,32 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
     //print("aberto"+ Bancoapp.isOpen.toString());
   }
 
-  _Salvar() async {
+  Salvar() async {
 
-    //"TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR ,INT intensidade ,comentario VARCHAR)";
-    Database bd = await _Bancoapp();
+    //teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
+    TesteDiscriminativo teste =  TesteDiscriminativo("amostra controle", "amostra_menos", 666, 777, "comentario longo ");
+      await Helper_BD().insertDiscrimnativo(teste);
+
+
+    /*Database bd = await _Bancoapp();
     Map<String, dynamic> dadostabela = {
       "amostra_controle": "teste_amostra2",
       "amostra_testada": "testada2",
-      "intensidade": 3,
+      "amostra2":666,
+      "amostra3": 3,
       "comentario": "textão do facebook2"
-    };
-    /*Map<String, dynamic>dadostabela ={
-      "julgador": "julgador1",
-      "idade": "idade1",
-      "sexo": "sexo1",
-      "caracteristica": "caracteristica1"};*/
+      int id = await bd.insert("teste_discriminativo", dadostabela);
+      print("salvo: $id");
+    };*/
 
-    int id = await bd.insert("teste_discriminativo", dadostabela);
-    print("salvo: $id");
+
+
   }
 
   _recuperardobd() async {
     Database bd = await _Bancoapp();
 
+    //DatalhesTesteDiscriminativo teste = Helper_BD().recuperardobd_descriminativo();
     // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
 
     String sql = "SELECT * FROM teste_discriminativo";
@@ -69,13 +75,13 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
 
     for (var testes in testes) {
       print("id: " +
-          testes['discri_id'].toString() +
-          "menos: " +
-          testes['menos'] +
-          "medio : " +
-          testes['medio'].toString() +
-          "mais : " +
-          testes['mais'].toString()+ "comentario "+testes['coment'].toString());
+          testes['id'].toString() +
+          " menos: " +
+          testes['amostra_testada'] +
+          " medio : " +
+          testes['amostra2'].toString() +
+          " mais : " +
+          testes['amostra3'].toString()+ " comentario "+testes['comentario'].toString());
 
      /* nome = testes['julgador'];
       idade = testes['idade'].toString();
@@ -244,8 +250,8 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
               ),
               ElevatedButton(
                 onPressed: () async {
-                  //await _Salvar();
-                  //await _recuperardobd();
+                  await Salvar();
+                  await _recuperardobd();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

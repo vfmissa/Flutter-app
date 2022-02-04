@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
 import 'AnaliseDiscriminativo.dart';
 import 'package:sqflite/sqflite.dart';
-import 'ListagemDados.dart';
 import 'Listagemdados2.0.dart';
 
 void main() {
