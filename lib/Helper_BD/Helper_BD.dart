@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
 
 import '../Modelo de Classes/ModeloComparativo.dart';
@@ -15,7 +16,7 @@ class Helper_BD extends StatefulWidget {
 
   _onCreateDB(Database db, int version) async {
     String sql =
-        "CREATE TABLE teste(id INTEGER PRIMARY KEY AUTOINCREMENT, julgador VARCHAR, idade VARCHAR, sexo VARCHAR, caracteristica VARCHAR)";
+        "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
     String sql2 =
         "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
     String sql3 =
@@ -148,6 +149,77 @@ Future<int> insertDiscrimnativo( TesteDiscriminativo teste) async {
 
 
 //TESTES DESCRIMINATIVOS
+
+
+//TESTES AVALIATIVOS
+
+  // "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
+
+  recuperardobd_Avaliativo() async {
+    Database banco = await Helper_BD().inicializarDB();
+    var table = "avaliativo";
+
+    List EntradasBD = await banco.query("avaliativo",
+      columns: ["id", "amostra_controle", "amostra_testada", "nota"],);
+
+    return EntradasBD;
+
+  }
+
+  Future<List<ModeloAvaliativo>> getTesteAvaliativo() async {
+
+    var noteMapList = await recuperardobd_Avaliativo(); // Get 'Map List' from database
+    int count = noteMapList.length;         // Count the number of map entries in db table
+
+    List<ModeloAvaliativo> ListaTeste = <ModeloAvaliativo>[];
+    // For loop to create a 'Note List' from a 'Map List'
+    for (int i = 0; i < count; i++) {
+      ListaTeste.add(ModeloAvaliativo.fromMapObject(noteMapList[i]));
+    }
+    return ListaTeste;
+  }
+
+  SalvarAvaliativo(String controle, String testada, String nota ) async {
+    Database banco = await Helper_BD().inicializarDB();
+    //Database bd = await _Bancoapp();
+
+    Map<String, dynamic> dadostabela = {
+      "amostra_controle": controle,
+      "amostra_testada": testada,
+      "nota": nota,
+
+    };
+
+    int id = await banco.insert("avaliativo", dadostabela);
+    print("salvo: $id");
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

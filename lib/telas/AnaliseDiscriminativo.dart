@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
-import 'package:food_test_app/telas/DatalhesTesteDiscriminativo.dart';
 import 'FichaOrdenacao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
