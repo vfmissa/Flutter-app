@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:food_test_app/telas/QuestinarioSliders.dart';
 import 'AnaliseDiscriminativo.dart';
 import 'ComparativoNumAmostras.dart';
 import 'FichaCompleta.dart';
@@ -52,6 +53,12 @@ class _drawerState extends State<drawer> {
             buildMenuItem(text: "Avaliativo",
                 icon: Icons.assignment_outlined,
                 onCliked: () => selectedItem(context, 3,amostra,julgador)),
+            const SizedBox(
+              height: 16,
+            ),
+            buildMenuItem(text: "AvaliativoSliders",
+                icon: Icons.view_headline_rounded,
+                onCliked: () => selectedItem(context, 4,amostra,julgador))
           ],
         ),)
       ,
@@ -95,6 +102,11 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
     case 3:
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => FichaAvaliacao(amostra, julgador,),
+      ));
+      break;
+    case 4:
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => QuestinarioSliders(amostra, julgador,),
       ));
       break;
   }

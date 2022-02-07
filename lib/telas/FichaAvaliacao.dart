@@ -7,6 +7,7 @@ import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'main.dart';
 
 class FichaAvaliacao extends StatefulWidget {
+
   String amostra;
   String julgador;
 
@@ -16,8 +17,8 @@ class FichaAvaliacao extends StatefulWidget {
 }
 
 class _FichaAvaliacaoState extends State<FichaAvaliacao> {
-  DateTime now = DateTime.now();
 
+  DateTime now = DateTime.now();
   String amostra = "text";
   String julgador = "julgador";
 
