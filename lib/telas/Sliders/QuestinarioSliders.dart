@@ -62,6 +62,25 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.fromLTRB(25, 16, 25, 0),
+              child: Row(mainAxisAlignment: MainAxisAlignment.start,//row de texto
+                  children: [
+                    Spacer(flex: 1,),
+                    Text(
+                      "Nº Amostra",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                    ),
+                    Spacer(flex: 4,),
+                    Text(
+                      "Percepção do Atributo",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                    ),
+                    Spacer(flex: 4,),
+                  ]),
+            ),
+            Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

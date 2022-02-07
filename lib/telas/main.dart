@@ -4,11 +4,16 @@ import 'DrawerWidget.dart';
 import '../Helper_BD/Helper_BD.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
-import 'AnaliseDiscriminativo.dart';
+import 'discriminativo/AnaliseDiscriminativo.dart';
 import 'package:sqflite/sqflite.dart';
 import 'Listagemdados2.0.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+  ]);
   runApp(MaterialApp(
     home: Home(),
     debugShowCheckedModeBanner: true,
@@ -27,59 +32,6 @@ class _HomeState extends State<Home> {
   TextEditingController idadecontroller = TextEditingController();
   TextEditingController sexocontroller = TextEditingController();
   TextEditingController caracteristicacontroller = TextEditingController();
-
- /* _Bancoapp() async {
-    final patchDB = await getDatabasesPath();
-    final localpatchDB = join(patchDB, "Foodtest.db");
-
-    var Bancoapp = await openDatabase(
-        localpatchDB,
-        version: 1,
-        onCreate: (db, dbversao) {
-          String sql = "CREATE TABLE teste(id INTEGER PRIMARY KEY AUTOINCREMENT, julgador VARCHAR, idade VARCHAR, sexo VARCHAR, caracteristica VARCHAR)";
-          String sql2 ="CREATE TABLE discriminatorio(discri_id INTEGER PRIMARY KEY AUTOINCREMENT,menos CHAR,medio CHAR,mais CHAR,coment VARCHAR)";
-          String sql3 ="CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
-          db.execute(sql);
-          db.execute(sql2);
-          db.execute(sql3);
-        }
-    );
-    //print("aberto "+ Bancoapp.isOpen.toString());
-    return Bancoapp;
-
-  }*/
-
-
-
-  _recuperar() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      amostracontroller =
-      prefs.getString("amostracontroller") as TextEditingController;
-    });
-  }
-
-  _Salvar() async {
-    var db= Helper_BD();
-    Database Banco_dados = db.inicializarDB();
-    Map<String, dynamic>dadostabela = {
-      "julgador": julgadorcontroller.text,
-      "idade": idadecontroller.text,
-      "sexo": sexocontroller.text,
-      "caracteristica": caracteristicacontroller.text
-    };
-
-    /*Map<String, dynamic>dadostabela ={
-      "julgador": "julgador1",
-      "idade": "idade1",
-      "sexo": "sexo1",
-      "caracteristica": "caracteristica1"};*/
-
-    int id = await Banco_dados.insert("teste", dadostabela);
-    print("salvo: $id");
-  }
-
-
 
   final _formKey = GlobalKey<FormState>();
 
@@ -302,21 +254,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-/*mainAxisAlignment: MainAxisAlignment.center, children: [
-Flexible(
-fit: FlexFit.loose,
-child: TextFormField(
-keyboardType: TextInputType.text,
-controller: amostracontroller,
-// ignore: prefer_const_constructors
-decoration: InputDecoration(
-filled: true,
-fillColor: Colors.blue,
-hintText: "Amostra do produto:",
-hintStyle:
-const TextStyle(color: Colors.black, fontSize: 10),
-//border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
-),
-),
-),*/

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'ComparativoAmostra.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import '../Helper_BD/Helper_BD.dart';
-import 'main.dart';
+import '../../Helper_BD/Helper_BD.dart';
+import '../main.dart';
 
 
 

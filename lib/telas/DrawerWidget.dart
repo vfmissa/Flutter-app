@@ -1,11 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:food_test_app/telas/QuestinarioSliders.dart';
-import 'AnaliseDiscriminativo.dart';
-import 'ComparativoNumAmostras.dart';
-import 'FichaCompleta.dart';
-import 'ComparativoAmostra.dart';
+import 'package:food_test_app/telas/Sliders/QuestinarioSliders.dart';
+import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
+import 'discriminativo/AnaliseDiscriminativo.dart';
+import 'comparativo/ComparativoNumAmostras.dart';
 import 'FichaAvaliacao.dart';
 
 
@@ -106,7 +105,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
       break;
     case 4:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => QuestinarioSliders(amostra, julgador,),
+        builder: (context) => SelecaoAtributos(amostra, julgador,),
       ));
       break;
   }
