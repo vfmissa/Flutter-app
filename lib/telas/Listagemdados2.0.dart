@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/widgets.dart';
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloAromatico.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
 import 'package:food_test_app/Telas_questinarios/TesteComparativoSalvo.dart';
@@ -35,9 +36,11 @@ class _ListaComparativoState extends State<ListaComparativo> {
   List<ModeloComparativo> listaentrevistas = <ModeloComparativo>[];
   List<TesteDiscriminativo> listartestediscriminativo = <TesteDiscriminativo>[];
   List<ModeloAvaliativo> listaravaliativo = <ModeloAvaliativo>[];
+  List<ModeloAromatico>listaaromas =<ModeloAromatico>[];
   int count = 0;
   int count2 = 0;
   int count3 = 0;
+  int count4 =0;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
 
     return MaterialApp(
       home: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
             appBar: AppBar(
               bottom: TabBar(
@@ -59,15 +62,19 @@ class _ListaComparativoState extends State<ListaComparativo> {
                   Tab(
                     icon: Icon(Icons.add_chart),
                   ),
+                  Tab(
+                    icon: Icon(Icons.line_weight),
+                  )
                 ],
               ),
               title: Text("Dados Salvos"),
             ),
             body: TabBarView(
               children: [
-                Container(height: 100, child: GetListview()),
-                Container(height: 100, child: GetListview2()),
-                Container(height: 100, child: GetListview3()),
+                Container(height: 100, child: GetListviewComparativo()),
+                Container(height: 100, child: GetListviewDiscriminativo()),
+                Container(height: 100, child: GetListviewAvaliativo()),
+                Container(height: 100, child: GetListviewAromatico()),
               ],
             ),
             floatingActionButton: FloatingActionButton(
@@ -75,13 +82,14 @@ class _ListaComparativoState extends State<ListaComparativo> {
                 updateListView();
                 updateListView2();
                 updateListView3();
+                updateListView4();
               },
             )),
       ),
     );
   }
 
-  ListView GetListview() {
+  ListView GetListviewComparativo() {
     TextStyle? titleStyle = Theme.of(context).textTheme.button;
 
     return ListView.builder(
@@ -114,7 +122,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
         });
   }
 
-  ListView GetListview2() {
+  ListView GetListviewDiscriminativo() {
     TextStyle? titleStyle = Theme.of(context).textTheme.button;
 
     return ListView.builder(
@@ -148,7 +156,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
         });
   }
 
-  ListView GetListview3() {
+  ListView GetListviewAvaliativo() {
     TextStyle? titleStyle = Theme.of(context).textTheme.button;
 
     return ListView.builder(
@@ -181,8 +189,44 @@ class _ListaComparativoState extends State<ListaComparativo> {
         });
   }
 
+  ListView GetListviewAromatico() {
+    TextStyle? titleStyle = Theme.of(context).textTheme.button;
+
+    return ListView.builder(
+        itemCount: count4,
+        itemBuilder: (BuildContext context, int position) {
+          return Card(
+            color: Colors.white,
+            elevation: 2.0,
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Icon(Icons.arrow_back),
+              ),
+              title: Text(
+                "Teste Amostra " +
+                    this.listaaromas[position].Numamostra,
+                style: titleStyle,
+              ),
+              subtitle: Text(
+                  this.listaaromas[position].id.toString()),
+              trailing: Icon(
+                Icons.delete,
+                color: Colors.blueGrey,
+              ),
+              onTap: () {
+                navigateTodetails3(this.listaravaliativo[position]);
+                debugPrint("cliquei");
+              },
+            ),
+          );
+        });
+  }
 
 
+
+
+  //Chama os cards para a tela
 
   void updateListView() {
     debugPrint('Buscando dados bd');
@@ -227,6 +271,22 @@ class _ListaComparativoState extends State<ListaComparativo> {
       });
     });
   }
+
+  void updateListView4() {
+    debugPrint('Buscando dados aroma');
+    var dbFuture = helper_bd.inicializarDB();
+    dbFuture.then((database) {
+      Future<List<ModeloAromatico>> AromaListFuture =
+      helper_bd.getModeloAromatico();
+      AromaListFuture.then((noteList) {
+        setState(() {
+          this.listaaromas = noteList;
+          this.count4 = noteList.length;
+        });
+      });
+    });
+  }
+
 
 
 

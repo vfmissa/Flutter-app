@@ -23,7 +23,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
   String julgador = "julgador";
   String caracteristica = "VAR_caracteristica";
 
-  _Bancoapp() async {
+ /* _Bancoapp() async {
     final patchDB = await getDatabasesPath();
     final localpatchDB = join(patchDB, "Foodtest.db");
 
@@ -39,12 +39,12 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
     );
     return Bancoapp;
     //print("aberto"+ Bancoapp.isOpen.toString());
-  }
+  }*/
 
   Salvar() async {
 
     //teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
-    TesteDiscriminativo teste =  TesteDiscriminativo("amostra controle", "amostra_menos", 666, 777, "comentario longo ");
+    TesteDiscriminativo teste =  TesteDiscriminativo("amostrasemid", "amostra_menos", 888, 999, "comentario longo ");
       await Helper_BD().insertDiscrimnativo(teste);
 
 
@@ -63,7 +63,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
 
   }
 
-  _recuperardobd() async {
+ /* _recuperardobd() async {
     Database bd = await _Bancoapp();
 
     //DatalhesTesteDiscriminativo teste = Helper_BD().recuperardobd_descriminativo();
@@ -87,7 +87,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
       sexo = testes['sexo'];
       caracteristica = testes['caracteristica'];*/
     }
-  }
+  }*/
 
   @override
   void initState() {
@@ -250,7 +250,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
               ElevatedButton(
                 onPressed: () async {
                   await Salvar();
-                  await _recuperardobd();
+                  //await _recuperardobd();
                   Navigator.push(
                       context,
                       MaterialPageRoute(

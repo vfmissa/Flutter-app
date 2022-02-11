@@ -17,8 +17,8 @@ class SelecaoAtributos extends StatefulWidget {
 }
 
 class _SelecaoAtributosState extends State<SelecaoAtributos> {
-  get julgador => widget.julgador;
 
+  get julgador => widget.julgador;
   String get amostracontrole =>widget.amostracontrole;
 
   @override

@@ -1,8 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:food_test_app/telas/Aromatico/AromaticoMain.dart';
+import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
 import 'package:food_test_app/telas/Sliders/QuestinarioSliders.dart';
 import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
+import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
 import 'discriminativo/AnaliseDiscriminativo.dart';
 import 'comparativo/ComparativoNumAmostras.dart';
 import 'FichaAvaliacao.dart';
@@ -36,6 +39,12 @@ class _drawerState extends State<drawer> {
             buildMenuItem(text: "Discriminativo",
                 icon: Icons.analytics_outlined,
                 onCliked: () => selectedItem(context, 0,amostra,julgador)),
+            const SizedBox(
+              height: 16,
+            ),
+            buildMenuItem(text: "Amostra igual",
+                icon: Icons.analytics_outlined,
+                onCliked: () => selectedItem(context, 6,amostra,julgador)),
 
             const SizedBox(
               height: 16,
@@ -57,7 +66,13 @@ class _drawerState extends State<drawer> {
             ),
             buildMenuItem(text: "AvaliativoSliders",
                 icon: Icons.view_headline_rounded,
-                onCliked: () => selectedItem(context, 4,amostra,julgador))
+                onCliked: () => selectedItem(context, 4,amostra,julgador)),
+            const SizedBox(
+              height: 16,
+            ),
+            buildMenuItem(text: "Aromatico",
+                icon: Icons.view_headline_rounded,
+                onCliked: () => selectedItem(context, 5,amostra,julgador))
           ],
         ),)
       ,
@@ -106,6 +121,16 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
     case 4:
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => SelecaoAtributos(amostra, julgador,),
+      ));
+      break;
+    case 5:
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => NumeroAromas(),
+      ));
+      break;
+    case 6:
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => DiferenteEigual(),
       ));
       break;
   }

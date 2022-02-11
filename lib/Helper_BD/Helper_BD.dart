@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloAromatico.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
 
@@ -15,17 +16,19 @@ class Helper_BD extends StatefulWidget {
 
 
   _onCreateDB(Database db, int version) async {
-    String sql =
+    String CreatAvaliativo =
         "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
-    String sql2 =
+    String CreatDiscriminativo =
         "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
-    String sql3 =
+    String CreateComparativo =
         "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
+    String CreateAroma=
+        "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,num_amostra CHAR, aroma CHAR, aroma2 CHAR)";
 
-    await db.execute(sql);
-    await db.execute(sql2);
-    await db.execute(sql3);
-
+    await db.execute(CreatAvaliativo);
+    await db.execute(CreatDiscriminativo);
+    await db.execute(CreateComparativo);
+    await db.execute(CreateAroma);
 
     return db;
   }
@@ -40,7 +43,8 @@ class Helper_BD extends StatefulWidget {
     return Bancoapp;
   }
 
-//Seção teste comparativo
+
+//SEÇÃO TESTE COMPARATIVO
   recuperardobd_comparativo() async {
     Database banco = await Helper_BD().inicializarDB();
     var table = "comparativo";
@@ -83,13 +87,8 @@ class Helper_BD extends StatefulWidget {
 
 
 
-
-
-
-
-//Seção teste comparativo
-
 //TESTE DESCRIMINATIVO
+
   //""CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
   recuperardobd_descriminativo() async {
     Database banco = await Helper_BD().inicializarDB();
@@ -102,6 +101,7 @@ class Helper_BD extends StatefulWidget {
 
   }
 
+  //função para recuperar do banco
   Future<List<TesteDiscriminativo>> getTestesDescriminativos() async {
 
     var noteMapList = await recuperardobd_descriminativo(); // Get 'Map List' from database
@@ -196,14 +196,52 @@ Future<int> insertDiscrimnativo( TesteDiscriminativo teste) async {
 
 
 
+// TESTES AROMATICOS
+
+  Future<int> insertAroma( ModeloAromatico teste) async {
+    Database db = await Helper_BD().inicializarDB();
+    //"CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,num_amostra CHAR, aroma CHAR, aroma2 CHAR)";
+
+    Map<String, dynamic> dadostabela = {
+      //"id":teste.id,
+      "num_amostra": teste.Numamostra,
+      "aroma": teste.aroma,
+      "aroma2":teste.aroma2,
+
+    };
+
+    var id = await db.insert("aroma", dadostabela);
+
+    return id;
+    //return result;
 
 
 
+  }
 
+  recuperardobd_Aroma() async {
+    Database banco = await Helper_BD().inicializarDB();
+    var table = "aroma";
 
+    List EntradasBD = await banco.query("aroma",
+      columns: ["id", "num_amostra","aroma","aroma2"]);
 
+    return EntradasBD;
 
+  }
 
+  Future<List<ModeloAromatico>> getModeloAromatico() async {
+
+    var noteMapList = await recuperardobd_Aroma(); // Get 'Map List' from database
+    int count = noteMapList.length;         // Count the number of map entries in db table
+
+    List<ModeloAromatico> ListaTeste = <ModeloAromatico>[];
+    // For loop to create a 'Note List' from a 'Map List'
+    for (int i = 0; i < count; i++) {
+      ListaTeste.add(ModeloAromatico.fromMapObject(noteMapList[i]));
+    }
+    return ListaTeste;
+  }
 
 
 

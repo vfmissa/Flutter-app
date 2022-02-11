@@ -48,7 +48,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                         fontSize: 20, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    "Julgador: ",
+                    "Julgador: "+teste.id.toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                   ),
