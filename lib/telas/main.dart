@@ -212,7 +212,7 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          bottomNavigationBar: BottomAppBar(
+          bottomNavigationBar: BottomAppBar(color:Colors.white30,
               child: Row(
                 children: [
                   Padding(
@@ -242,13 +242,17 @@ class _HomeState extends State<Home> {
                           "Submeter", style: TextStyle(color: Colors.black)),
                     ),
                   ),
-                  ElevatedButton(onPressed: () {
-                    Navigator.push(
-                        context,MaterialPageRoute(builder: (context) =>Lista2()));
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 25, 12),
+                    child: ElevatedButton(onPressed: () {
+                      Navigator.push(
+                          context,MaterialPageRoute(builder: (context) =>Lista2()));
 
-                  },
-                      child: Text(
-                          "recuperar", style: TextStyle(color: Colors.black)))
+                    },
+                        child: Text(
+                            "Recuperar Questinario", style: TextStyle(color: Colors.black))),
+                  )
                 ],
               ))),
     );

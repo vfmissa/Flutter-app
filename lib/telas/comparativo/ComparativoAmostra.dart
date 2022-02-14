@@ -22,6 +22,7 @@ class _ComparativoState extends State<Comparativo> {
   String julgador = "julgador";
    int num_amostras=0;
   @override
+
   void initState() {
     //permite usar os parametros como variaveis
     amostra_controle = widget.amostra_controle;

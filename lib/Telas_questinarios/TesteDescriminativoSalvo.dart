@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiscriminativo.dart';
 
 class TestDescriminativoSalvo extends StatefulWidget {
-  late final TesteDiscriminativo teste;
+  late final ModeloDiscriminativo teste;
 
   TestDescriminativoSalvo(this.teste);
 
@@ -14,7 +14,7 @@ class TestDescriminativoSalvo extends StatefulWidget {
 }
 
 class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
-  late TesteDiscriminativo teste;
+  late ModeloDiscriminativo teste;
 
   @override
   void initState() {
@@ -92,7 +92,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                       padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        initialValue: teste.menoscaracteristica,
+                        initialValue: teste.menoscaracteristica.toString(),
                         readOnly: true,
                         //controller: sample1Menos,
                         // ignore: prefer_const_constructors
@@ -226,7 +226,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                       padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        initialValue: teste.menoscaracteristica,
+                        initialValue: teste.menoscaracteristica.toString(),
                         readOnly: true,
                         //controller: sample1Menos,
                         // ignore: prefer_const_constructors

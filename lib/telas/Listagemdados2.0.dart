@@ -2,7 +2,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAromatico.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
-import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiscriminativo.dart';
 import 'package:food_test_app/Telas_questinarios/TesteComparativoSalvo.dart';
 import 'package:food_test_app/Telas_questinarios/TestesAvaliativosSalvo.dart';
 import '../Telas_questinarios/TesteDescriminativoSalvo.dart';
@@ -34,7 +34,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
   Helper_BD helper_bd = Helper_BD();
 
   List<ModeloComparativo> listaentrevistas = <ModeloComparativo>[];
-  List<TesteDiscriminativo> listartestediscriminativo = <TesteDiscriminativo>[];
+  List<ModeloDiscriminativo> listartestediscriminativo = <ModeloDiscriminativo>[];
   List<ModeloAvaliativo> listaravaliativo = <ModeloAvaliativo>[];
   List<ModeloAromatico>listaaromas =<ModeloAromatico>[];
   int count = 0;
@@ -78,9 +78,10 @@ class _ListaComparativoState extends State<ListaComparativo> {
               ],
             ),
             floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.refresh),
               onPressed: () {
                 updateListView();
-                updateListView2();
+                updateListViewDiscriminativo();
                 updateListView3();
                 updateListView4();
               },
@@ -109,9 +110,14 @@ class _ListaComparativoState extends State<ListaComparativo> {
                 style: titleStyle,
               ),
               subtitle: Text(this.listaentrevistas[position].amostra_testada),
-              trailing: Icon(
-                Icons.delete,
-                color: Colors.blueGrey,
+              trailing:GestureDetector(
+                  child:  Icon(
+                    Icons.delete,
+                    color: Colors.blueGrey,),
+                  onTap:() async {
+                    await _showDialog(context,listaentrevistas[position].id,"comparativo");
+                    updateListView();
+                  }
               ),
               onTap: () {
                 navigateTodetails(this.listaentrevistas[position]);
@@ -143,9 +149,14 @@ class _ListaComparativoState extends State<ListaComparativo> {
               ),
               subtitle: Text(
                   this.listartestediscriminativo[position].menoscaracteristica),
-              trailing: Icon(
-                Icons.delete,
-                color: Colors.blueGrey,
+              trailing:GestureDetector(
+                  child:  Icon(
+                    Icons.delete,
+                    color: Colors.blueGrey,),
+                  onTap:() async {
+                    await _showDialog(context,listartestediscriminativo[position].id,"teste_discriminativo");
+                    updateListViewDiscriminativo();
+                  }
               ),
               onTap: () {
                 navigateTodetails2(this.listartestediscriminativo[position]);
@@ -176,9 +187,14 @@ class _ListaComparativoState extends State<ListaComparativo> {
                 style: titleStyle,
               ),
               subtitle: Text(this.listaravaliativo[position].amostra_testada),
-              trailing: Icon(
-                Icons.delete,
-                color: Colors.blueGrey,
+              trailing:GestureDetector(
+                  child:  Icon(
+                    Icons.delete,
+                    color: Colors.blueGrey,),
+                  onTap:() async {
+                   // await _showDialog(context,listaravaliativo[position].id,"semtabelaainda");
+                    updateListView3();
+                  }
               ),
               onTap: () {
                 navigateTodetails3(this.listaravaliativo[position]);
@@ -210,9 +226,14 @@ class _ListaComparativoState extends State<ListaComparativo> {
               ),
               subtitle: Text(
                   this.listaaromas[position].id.toString()),
-              trailing: Icon(
+              trailing:GestureDetector(
+                child:  Icon(
                 Icons.delete,
-                color: Colors.blueGrey,
+                color: Colors.blueGrey,),
+                    onTap:() async {
+                    await _showDialog(context,listaaromas[position].id,"aroma");
+                    updateListView4();
+                    }
               ),
               onTap: () {
                 navigateTodetails3(this.listaravaliativo[position]);
@@ -243,12 +264,12 @@ class _ListaComparativoState extends State<ListaComparativo> {
     });
   }
 
-  void updateListView2() {
+  void updateListViewDiscriminativo() {
     debugPrint('Buscando dados bd2');
     var dbFuture = helper_bd.inicializarDB();
     dbFuture.then((database) {
-      Future<List<TesteDiscriminativo>> discriminativoListFuture =
-          helper_bd.getTestesDescriminativos();
+      Future<List<ModeloDiscriminativo>> discriminativoListFuture =
+          helper_bd.getModeloDecriminativo();
       discriminativoListFuture.then((noteList) {
         setState(() {
           this.listartestediscriminativo = noteList;
@@ -287,10 +308,6 @@ class _ListaComparativoState extends State<ListaComparativo> {
     });
   }
 
-
-
-
-
   //listview 1 chamar detalhes do questionario
   void navigateTodetails(ModeloComparativo teste) {
     Navigator.push(context, MaterialPageRoute(
@@ -301,7 +318,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
   }
 
   //listview 2 chamar detalhes do questionario
-  void navigateTodetails2(TesteDiscriminativo teste) {
+  void navigateTodetails2(ModeloDiscriminativo teste) {
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return TestDescriminativoSalvo(teste);
@@ -317,4 +334,33 @@ class _ListaComparativoState extends State<ListaComparativo> {
       },
     ));
   }
+}
+
+
+_showDialog(BuildContext context,int id,String tabela) async {
+  showDialog(
+    context: context,
+    builder:  (BuildContext context) {
+      return AlertDialog(
+        title: new Text("CUIDADO!"),
+        content: new Text("Deletar Questionario?"),
+        actions: <Widget>[
+          new TextButton(
+            child: new Text("SIM"),
+            onPressed: () async {
+            await Helper_BD().DeletarbyID(id,tabela);
+              Navigator.pop(context);
+            },
+          ),
+          new TextButton(
+            child: new Text("NÃO"),
+            onPressed: () {
+            Navigator.of(context).pop();
+
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

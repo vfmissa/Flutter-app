@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class FichaAvaliacao extends StatefulWidget {
 

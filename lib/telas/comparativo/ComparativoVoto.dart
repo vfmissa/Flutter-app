@@ -2,6 +2,7 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloComparativo.dart';
 import 'ComparativoAmostra.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -31,45 +32,17 @@ import '../main.dart';
 //salvar o test descriminativo
 _Salvar(String controle, String testada, String nota ) async {
   Database banco = await Helper_BD().inicializarDB();
-  //Database bd = await _Bancoapp();
 
-  Map<String, dynamic> dadostabela = {
+  ModeloComparativo teste = ModeloComparativo(controle,testada, nota);
+
+  /*Map<String, dynamic> dadostabela = {
     "amostra_controle": controle,
     "amostra_testada": testada,
     "nota": nota,
 
-  };
+  };*/
 
-  int id = await banco.insert("comparativo", dadostabela);
-  print("salvo: $id");
-}
-
-
-_recuperardobd() async {
-   //Database bd = await _Bancoapp();
-   Database banco = await Helper_BD().inicializarDB();
-  // "SELECT * FROM teste WHERE id LIKE '%${text}%' ;
-
-  String sql = "SELECT * FROM comparativo";
-  List testes = await banco.rawQuery(sql);
-
-
-
-  for (var testes in testes) {
-    print("id: " +
-        testes['id'].toString() +
-        " controle: " +
-        testes['amostra_controle'].toString() +
-        " Amostra Teste : " +
-        testes['amostra_testada'].toString() +
-        " nota : " +
-        testes['nota'].toString());
-
-    /* nome = testes['julgador'];
-      idade = testes['idade'].toString();
-      sexo = testes['sexo'];
-      caracteristica = testes['caracteristica'];*/
-  }
+  Helper_BD().InsertComparativo(teste);
 }
 
 class ComparativoVoto extends StatefulWidget {
@@ -254,7 +227,6 @@ class _ComparativoVotoState extends State<ComparativoVoto> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Home()));
                     _Salvar(amostra_controle,amostra,_valorpadrao);
-                    _recuperardobd();
                     print(_valorpadrao);
                   }
                   else{

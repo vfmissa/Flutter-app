@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAromatico.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
-import 'package:food_test_app/Modelo%20de%20Classes/TesteDiscriminativo.dart';
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiscriminativo.dart';
 
 import '../Modelo de Classes/ModeloComparativo.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,7 +19,7 @@ class Helper_BD extends StatefulWidget {
     String CreatAvaliativo =
         "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
     String CreatDiscriminativo =
-        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
+        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
     String CreateComparativo =
         "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
     String CreateAroma=
@@ -69,17 +69,16 @@ class Helper_BD extends StatefulWidget {
     return ListaTeste;
   }
 
-  SalvarComparativo(String controle, String testada, String nota ) async {
+  InsertComparativo(ModeloComparativo teste) async {
     Database banco = await Helper_BD().inicializarDB();
     //Database bd = await _Bancoapp();
 
     Map<String, dynamic> dadostabela = {
-      "amostra_controle": controle,
-      "amostra_testada": testada,
-      "nota": nota,
+      "amostra_controle": teste.amostra_controle,
+      "amostra_testada": teste.amostra_testada,
+      "nota": teste.nota,
 
     };
-
     int id = await banco.insert("comparativo", dadostabela);
     print("salvo: $id");
   }
@@ -89,28 +88,28 @@ class Helper_BD extends StatefulWidget {
 
 //TESTE DESCRIMINATIVO
 
-  //""CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
+  //""CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
   recuperardobd_descriminativo() async {
     Database banco = await Helper_BD().inicializarDB();
     var table = "comparativo";
 
     List EntradasBD = await banco.query("teste_discriminativo",
-      columns: ["id", "amostra_controle", "amostra_testada","amostra2","amostra3","comentario"],);
+      columns: ["id", "amostra_controle", "amostra_testada","amostra2","amostra3","comentario"]);
 
     return EntradasBD;
-
   }
 
   //função para recuperar do banco
-  Future<List<TesteDiscriminativo>> getTestesDescriminativos() async {
+
+  Future<List<ModeloDiscriminativo>> getModeloDecriminativo() async {
 
     var noteMapList = await recuperardobd_descriminativo(); // Get 'Map List' from database
     int count = noteMapList.length;         // Count the number of map entries in db table
 
-    List<TesteDiscriminativo> ListaTeste = <TesteDiscriminativo>[];
+    List<ModeloDiscriminativo> ListaTeste = <ModeloDiscriminativo>[];
     // For loop to create a 'Note List' from a 'Map List'
     for (int i = 0; i < count; i++) {
-      ListaTeste.add(TesteDiscriminativo.fromMapObject(noteMapList[i]));
+      ListaTeste.add(ModeloDiscriminativo.fromMapObject(noteMapList[i]));
     }
     return ListaTeste;
   }
@@ -118,7 +117,9 @@ class Helper_BD extends StatefulWidget {
 
 
 
-Future<int> insertDiscrimnativo( TesteDiscriminativo teste) async {
+
+
+Future<int> insertDiscrimnativo( ModeloDiscriminativo teste) async {
     Database db = await Helper_BD().inicializarDB();
     //inserção dando erro no id/autoincremente se tento passar o modelo de classe direto???
     //var result = await db.insert("teste_discriminativo", teste.toMap());
@@ -169,7 +170,8 @@ Future<int> insertDiscrimnativo( TesteDiscriminativo teste) async {
   Future<List<ModeloAvaliativo>> getTesteAvaliativo() async {
 
     var noteMapList = await recuperardobd_Avaliativo(); // Get 'Map List' from database
-    int count = noteMapList.length;         // Count the number of map entries in db table
+    int count = noteMapList.length;
+    // Count the number of map entries in db table
 
     List<ModeloAvaliativo> ListaTeste = <ModeloAvaliativo>[];
     // For loop to create a 'Note List' from a 'Map List'
@@ -242,6 +244,15 @@ Future<int> insertDiscrimnativo( TesteDiscriminativo teste) async {
     }
     return ListaTeste;
   }
+
+
+  Future<int>DeletarbyID(int id,String table) async{
+    Database db =await Helper_BD().inicializarDB();
+    int result = await db.rawDelete("DELETE FROM $table WHERE id = $id");
+    return result;
+    
+  }
+
 
 
 

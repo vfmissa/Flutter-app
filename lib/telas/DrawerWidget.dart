@@ -1,14 +1,12 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:food_test_app/telas/Aromatico/AromaticoMain.dart';
 import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
-import 'package:food_test_app/telas/Sliders/QuestinarioSliders.dart';
-import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
+import 'package:food_test_app/telas/ExibirDados/SelecaoAtributos.dart';
 import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
 import 'discriminativo/AnaliseDiscriminativo.dart';
 import 'comparativo/ComparativoNumAmostras.dart';
-import 'FichaAvaliacao.dart';
+import 'Avaliativo/FichaAvaliacao.dart';
 
 
 class drawer extends StatefulWidget {
@@ -125,7 +123,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
       break;
     case 5:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => NumeroAromas(),
+        builder: (context) => NumeroAromas(julgador),
       ));
       break;
     case 6:

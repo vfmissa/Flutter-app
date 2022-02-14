@@ -6,15 +6,23 @@ import 'package:flutter/services.dart';
 import 'AromaticoMain.dart';
 
 class NumeroAromas extends StatefulWidget {
+  String julgador;
   @override
   _NumeroAromasState createState() => _NumeroAromasState();
+  NumeroAromas(this.julgador);
 }
 
 class _NumeroAromasState extends State<NumeroAromas> {
   final _valueamostra = GlobalKey<FormState>();
   TextEditingController num_amostras = TextEditingController();
+  String julgador = "SemNOme";
 
   @override
+
+  void initState() {
+    julgador = widget.julgador;
+    super.initState();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -35,17 +43,17 @@ class _NumeroAromasState extends State<NumeroAromas> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Julgador: ",
+                      "Julgador: $julgador",
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                     ),
-                    Text(
+                   /* Text(
                       "Data: ",
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
-                    ),
+                    ),*/
                   ],
                 ),
                 /*SizedBox(
@@ -122,7 +130,7 @@ class _NumeroAromasState extends State<NumeroAromas> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  AromaticoMain(int.parse(num_amostras.text))));
+                                  AromaticoMain(int.parse(num_amostras.text),julgador)));
                     }
                   },
                   child:

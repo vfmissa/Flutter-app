@@ -25,32 +25,28 @@ Salvar(String numaAmostra,String Aroma1,String Aroma2) async {
 }
 
 
-
-
-
-
-
-
-
-
-
-
 class AromaticoMain extends StatefulWidget {
   @override
   _AromaticoMainState createState() => _AromaticoMainState();
   int numamostras;
+  String julgador;
 
-  AromaticoMain(this.numamostras);
+  AromaticoMain(this.numamostras,this.julgador);
+
 }
 
 class _AromaticoMainState extends State<AromaticoMain> {
   TextEditingController amostracontroller = TextEditingController();
   TextEditingController aromacontroller = TextEditingController();
   int numamostras = 0;
+  String julgador="semnome";
+
   final _formkey = GlobalKey<FormState>();
+  DateTime now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
+    julgador=widget.julgador;
     numamostras = widget.numamostras;
     return Scaffold(
       body: Container(
@@ -66,13 +62,13 @@ class _AromaticoMainState extends State<AromaticoMain> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "Julgador: ",
+                      "Julgador: $julgador",
                       textAlign: TextAlign.center,
                       style:
                           TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                     ),
                     Text(
-                      "Data: ",
+                      "Data: ${now.day}/${now.month}/${now.year}",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontSize: 20, fontStyle: FontStyle.italic),
@@ -97,64 +93,65 @@ class _AromaticoMainState extends State<AromaticoMain> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
-                          color: Colors.white60,
-                          width: 120,
-                          height: 50,
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            textCapitalization: TextCapitalization.sentences,
-                            controller: amostracontroller,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.blue,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
-                              ),
-                              //contentPadding: const EdgeInsets.all(600),
-                              labelText: "N° Amostra",
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              labelStyle: TextStyle(
-                                color: Colors.black,
+                      Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              textCapitalization: TextCapitalization.sentences,
+                              controller: amostracontroller,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Prencha o Campo";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                //contentPadding: const EdgeInsets.all(600),
+                                labelText: "N° Amostra",
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           )),
-                      Container(
-                          color: Colors.white60,
-                          width: 120,
-                          height: 50,
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            textCapitalization: TextCapitalization.sentences,
-                            controller: aromacontroller,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.blue,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
-                              ),
-                              //contentPadding: const EdgeInsets.all(600),
-                              labelText: "Aroma",
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              labelStyle: TextStyle(
-                                color: Colors.black,
+                      SizedBox(width: 120,),
+                      Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              textCapitalization: TextCapitalization.sentences,
+                              controller: aromacontroller,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Preencha o Campo";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                //contentPadding: const EdgeInsets.all(600),
+                                labelText: "Aroma",
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           )),
@@ -176,7 +173,7 @@ class _AromaticoMainState extends State<AromaticoMain> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      AromaticoMain(numamostras)));
+                                      AromaticoMain(numamostras,julgador)));
                           debugPrint("N= " + numamostras.toString());
                         }
                       } else {
