@@ -66,4 +66,27 @@ class ModeloDiscriminativo{
   }
 
 
+  //json
+  ModeloDiscriminativo.fromJson(Map<String,dynamic>json)
+    :_id = json['id'],
+        _amostra_controle = json['amostra Controle'],
+    _menoscaracteristica =json['amostra 1'],
+    _mediacaracteristica=json['amostra2'],
+    _maiscaracteristica=json['amostra3'],
+    _comentario=json['coment'];
+
+  Map<String,dynamic>toJson(){
+    return{
+      'amostra Controle':_amostra_controle,
+        'amostra 1':_menoscaracteristica,
+        'amostra2':_mediacaracteristica,
+       'amostra3':_maiscaracteristica,
+      'coment':_comentario
+    };
+
+  }
+
+
+
+
 }

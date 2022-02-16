@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'DrawerWidget.dart';
-import '../Helper_BD/Helper_BD.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/widgets.dart';
 import 'discriminativo/AnaliseDiscriminativo.dart';
-import 'package:sqflite/sqflite.dart';
 import 'Listagemdados2.0.dart';
 import 'package:flutter/services.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -246,12 +244,10 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 25, 12),
                     child: ElevatedButton(onPressed: () {
-                      Navigator.push(
-                          context,MaterialPageRoute(builder: (context) =>Lista2()));
+                      Navigator.push(context,MaterialPageRoute(builder: (context) =>Lista2()));
 
                     },
-                        child: Text(
-                            "Recuperar Questinario", style: TextStyle(color: Colors.black))),
+                        child: Text("Recuperar Questinario", style: TextStyle(color: Colors.black))),
                   )
                 ],
               ))),

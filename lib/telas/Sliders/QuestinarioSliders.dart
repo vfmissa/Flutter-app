@@ -1,9 +1,24 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
-import 'dart:ffi';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:food_test_app/Helper_BD/Helper_BD.dart';
+import 'package:food_test_app/Modelo%20de%20Classes/ModeloSlider.dart';
+
+
+// String CreateSliders="CREATE TABLE sliders
+// (id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,
+// amostra VARCHAR,valor_slider FLOAT,caracteristica VARCHAR,comentario VARCHAR)";
+Salvar(int data,String amostra,double valor,String caracteristica,String coment) async {
+  
+  ModeloSlider teste =  ModeloSlider(data, amostra, caracteristica, valor, coment);
+  var id = await Helper_BD().insertSlider(teste);
+
+  print("id="+id.toString());
+}
+
+
+
 
 class QuestinarioSliders extends StatefulWidget {
   String amostracontrole;
@@ -17,14 +32,17 @@ class QuestinarioSliders extends StatefulWidget {
 
 class _QuestinarioSlidersState extends State<QuestinarioSliders> {
   get amostra => widget.amostracontrole;
-
   get julgador => widget.julgador;
 
   double _SliderValueUm = 0;
   double _SliderValueDois = 0;
 
+  TextEditingController comentcontroller = TextEditingController();
+
   get caracteristica1 => "DOÇURA";
   get caracteristica2 => "COR";
+
+  var now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -191,6 +209,7 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                     child: TextFormField(
                       keyboardType: TextInputType.text,
+                      controller: comentcontroller,
                       maxLines: 3,
                       //controller: comentario,
                       decoration: const InputDecoration(
@@ -203,6 +222,13 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                     )),
               ),
             ),
+            ElevatedButton(onPressed: ( ){
+
+              debugPrint(_SliderValueDois.toString());
+              //Salvar(now.millisecondsSinceEpoch, amostra, _SliderValueUm, caracteristica1, comentcontroller.text);
+              Salvar(now.millisecondsSinceEpoch, "amostra1", 0.5, "caracteristica", "comentaarios");
+
+            }, child: Text("Recuperar Questinario", style: TextStyle(color: Colors.black))),
           ],
         ),
       ),

@@ -10,37 +10,11 @@ import '../../Helper_BD/Helper_BD.dart';
 import '../main.dart';
 
 
-
-
-/*_Bancoapp() async {
-  final patchDB = await getDatabasesPath();
-  final localpatchDB = join(patchDB, "Foodtest.db");
-
-  var Bancoapp = await openDatabase(
-    localpatchDB,
-    version: 1,
-    /* onCreate: (db,dbversao){
-
-          String sql3 ="CREATE TABLE comparativo(amostra_controle INTEGER PRIMARY KEY,amostra_testada CHAR, nota INTEGER)";
-          db.execute(sql3);
-
-        }*/
-  );
-  return Bancoapp;
-  //print("aberto"+ Bancoapp.isOpen.toString());
-}*/
 //salvar o test descriminativo
 _Salvar(String controle, String testada, String nota ) async {
   Database banco = await Helper_BD().inicializarDB();
 
   ModeloComparativo teste = ModeloComparativo(controle,testada, nota);
-
-  /*Map<String, dynamic> dadostabela = {
-    "amostra_controle": controle,
-    "amostra_testada": testada,
-    "nota": nota,
-
-  };*/
 
   Helper_BD().InsertComparativo(teste);
 }
