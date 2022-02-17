@@ -3,6 +3,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
+import 'package:food_test_app/telas/GridMain.dart';
 
 import '../main.dart';
 
@@ -362,7 +363,7 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                         Helper_BD().SalvarAvaliativo("Controle1","testada1", "nota1");
                         //print(Helper_BD().recuperardobd_Avaliativo());
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Home()));
+                            MaterialPageRoute(builder: (context) => GridMain()));
                       },
                       child: Text("Submeter",
                           style: TextStyle(color: Colors.black)),

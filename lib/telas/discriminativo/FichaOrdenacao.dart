@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:food_test_app/telas/GridMain.dart';
 import '../main.dart';
 class FichaOrdenacao extends StatefulWidget {
   String amostra;
@@ -175,7 +176,7 @@ class _FichaOrdenacaoState extends State<FichaOrdenacao> {
                   print(gosteiMeio.text);
                   print(gosteiMais.text);
                   print(comentarioFormPreferencia.text);
-                  Navigator.push(context,MaterialPageRoute(builder: (context) =>Home()));
+                  Navigator.push(context,MaterialPageRoute(builder: (context) =>GridMain()));
                 },
                 child: Text("Submeter", style: TextStyle(color: Colors.black)),
               )

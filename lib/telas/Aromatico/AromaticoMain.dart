@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAromatico.dart';
+import 'package:food_test_app/telas/GridMain.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 
@@ -165,7 +166,7 @@ class _AromaticoMainState extends State<AromaticoMain> {
                         if (numamostras == 0) {
                          await Salvar(amostracontroller.text,aromacontroller.text,"mais Aromas");
                           Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Home()));
+                              MaterialPageRoute(builder: (context) => GridMain()));
                           debugPrint("N= " + numamostras.toString());
                         } else {
                          await Salvar(amostracontroller.text,aromacontroller.text,"mais Aromas");

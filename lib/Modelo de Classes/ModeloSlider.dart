@@ -59,6 +59,7 @@ class ModeloSlider{
     this._data=map['data'];
     this._amostra=map['amostra'];
     this._caracteristica=map['caracteristica'];
+    this._valor_slider=map['valor_slider'];
     this._comentario=map['comentario'];
  }
 

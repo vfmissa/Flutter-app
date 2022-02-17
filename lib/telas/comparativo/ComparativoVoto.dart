@@ -3,6 +3,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloComparativo.dart';
+import 'package:food_test_app/telas/GridMain.dart';
 import 'ComparativoAmostra.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -199,7 +200,7 @@ class _ComparativoVotoState extends State<ComparativoVoto> {
                   num_amostras--;
                   if(num_amostras==0){
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                        MaterialPageRoute(builder: (context) => GridMain()));
                     _Salvar(amostra_controle,amostra,_valorpadrao);
                     print(_valorpadrao);
                   }

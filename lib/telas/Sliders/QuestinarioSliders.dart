@@ -9,7 +9,8 @@ import 'package:food_test_app/Modelo%20de%20Classes/ModeloSlider.dart';
 // String CreateSliders="CREATE TABLE sliders
 // (id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,
 // amostra VARCHAR,valor_slider FLOAT,caracteristica VARCHAR,comentario VARCHAR)";
-Salvar(int data,String amostra,double valor,String caracteristica,String coment) async {
+
+Salvar(int data,String amostra,String caracteristica,double valor,String coment) async {
   
   ModeloSlider teste =  ModeloSlider(data, amostra, caracteristica, valor, coment);
   var id = await Helper_BD().insertSlider(teste);
@@ -226,7 +227,7 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
 
               debugPrint(_SliderValueDois.toString());
               //Salvar(now.millisecondsSinceEpoch, amostra, _SliderValueUm, caracteristica1, comentcontroller.text);
-              Salvar(now.millisecondsSinceEpoch, "amostra1", 0.5, "caracteristica", "comentaarios");
+              Salvar(now.millisecondsSinceEpoch, "amostra1","caracteristica",_SliderValueUm, "comentaarios");
 
             }, child: Text("Recuperar Questinario", style: TextStyle(color: Colors.black))),
           ],

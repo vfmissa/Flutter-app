@@ -6,6 +6,7 @@ import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiscriminativo.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloSlider.dart';
 import 'package:food_test_app/Telas_questinarios/TesteComparativoSalvo.dart';
 import 'package:food_test_app/Telas_questinarios/TestesAvaliativosSalvo.dart';
+import 'package:food_test_app/Telas_questinarios/TestesSlidersSalvo.dart';
 import 'package:intl/intl.dart';
 import '../Telas_questinarios/TesteDescriminativoSalvo.dart';
 import '../Helper_BD/Helper_BD.dart';
@@ -60,22 +61,27 @@ class _ListaComparativoState extends State<ListaComparativo> {
                 tabs: [
                   Tab(
                     icon: Icon(Icons.assignment_outlined),
+                    child: Text("Comparativo"),
                   ),
                   Tab(
                     icon: Icon(Icons.assignment),
+                    child: Text("Discriminativo"),
                   ),
                   Tab(
                     icon: Icon(Icons.add_chart),
+                    child: Text("Avaliativo"),
                   ),
                   Tab(
                     icon: Icon(Icons.line_weight),
+                    child: Text("Aromatico"),
                   ),
                   Tab(
                     icon: Icon(Icons.height),
+                    child: Text("Slider"),
                   )
                 ],
               ),
-              title: Text("Dados Salvos"),
+              title: Text("Questionarios"),
             ),
             body: TabBarView(
               children: [
@@ -293,7 +299,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
                     updateListView5();
                   }),
               onTap: () {
-                //navigateTodetails(this.listaentrevistas[position]);
+                navigateTodetails5(this.listaslider[position]);
                 debugPrint("cliquei");
               },
             ),
@@ -403,7 +409,19 @@ class _ListaComparativoState extends State<ListaComparativo> {
       },
     ));
   }
+
+  //listview 5 chamar detalhes do questionario com Sliders
+  void navigateTodetails5(ModeloSlider teste) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return TesteSlidersSalvo(teste);
+      },
+    ));
+  }
 }
+
+
+
 
 _showDialog(BuildContext context, int id, String tabela) async {
   showDialog(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_test_app/telas/GridMain.dart';
 import 'DrawerWidget.dart';
 import 'package:flutter/widgets.dart';
 import 'discriminativo/AnaliseDiscriminativo.dart';
@@ -13,12 +14,13 @@ void main() {
     DeviceOrientation.landscapeLeft,
   ]);
   runApp(MaterialApp(
-    home: Home(),
+    home: GridMain(),
     debugShowCheckedModeBanner: true,
   ));
+
 }
 
-class Home extends StatefulWidget {
+/*class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
@@ -38,7 +40,7 @@ class _HomeState extends State<Home> {
     return WillPopScope(
       onWillPop:()async {
         //print("retorno habilitado");
-        return false;
+        return true;
       },
       child: Scaffold(
         drawer: drawer(amostracontroller.text,julgadorcontroller.text),
@@ -254,3 +256,4 @@ class _HomeState extends State<Home> {
     );
   }
 }
+*/
