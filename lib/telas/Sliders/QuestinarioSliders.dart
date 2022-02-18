@@ -5,21 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloSlider.dart';
 
-
 // String CreateSliders="CREATE TABLE sliders
 // (id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,
 // amostra VARCHAR,valor_slider FLOAT,caracteristica VARCHAR,comentario VARCHAR)";
 
-Salvar(int data,String amostra,String caracteristica,double valor,String coment) async {
-  
-  ModeloSlider teste =  ModeloSlider(data, amostra, caracteristica, valor, coment);
+Salvar(int data, String amostra, String caracteristica, double valor,
+    String coment) async {
+  ModeloSlider teste =
+      ModeloSlider(data, amostra, caracteristica, valor, coment);
   var id = await Helper_BD().insertSlider(teste);
 
-  print("id="+id.toString());
+  print("id=" + id.toString());
 }
-
-
-
 
 class QuestinarioSliders extends StatefulWidget {
   String amostracontrole;
@@ -33,6 +30,7 @@ class QuestinarioSliders extends StatefulWidget {
 
 class _QuestinarioSlidersState extends State<QuestinarioSliders> {
   get amostra => widget.amostracontrole;
+
   get julgador => widget.julgador;
 
   double _SliderValueUm = 0;
@@ -41,6 +39,7 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
   TextEditingController comentcontroller = TextEditingController();
 
   get caracteristica1 => "DOÇURA";
+
   get caracteristica2 => "COR";
 
   var now = DateTime.now();
@@ -65,14 +64,15 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
               Text(
                 "Data: ",
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                style:
+                    const TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
               ),
             ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
             Container(
               height: 60,
               width: 700,
-              decoration:
-                  BoxDecoration(border: Border.all(width: 3, color: Colors.blue)),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 3, color: Colors.blue)),
               child: AutoSizeText(
                 "Você recebera varias amostras para provar avalie posicionando o Slider na altura que representa oque você percebe do atributo em analise\n",
                 maxLines: 15,
@@ -82,21 +82,30 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(25, 16, 25, 0),
-              child: Row(mainAxisAlignment: MainAxisAlignment.start,//row de texto
-                  children: [
-                    Spacer(flex: 1,),
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.start, //row de texto
+                      children: [
+                    Spacer(
+                      flex: 1,
+                    ),
                     Text(
                       "Nº Amostra",
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                      style:
+                          TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                     ),
-                    Spacer(flex: 4,),
+                    Spacer(
+                      flex: 4,
+                    ),
                     Text(
                       "Percepção do Atributo",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                      style: const TextStyle(
+                          fontSize: 20, fontStyle: FontStyle.italic),
                     ),
-                    Spacer(flex: 4,),
+                    Spacer(
+                      flex: 4,
+                    ),
                   ]),
             ),
             Padding(
@@ -109,7 +118,8 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                       height: 25,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        initialValue: "$amostra",readOnly: true,
+                        initialValue: "$amostra",
+                        readOnly: true,
                         textCapitalization: TextCapitalization.sentences,
                         decoration: InputDecoration(
                           filled: true,
@@ -123,7 +133,8 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                       width: 120,
                       height: 25,
                       child: TextFormField(
-                        initialValue: "$caracteristica1",readOnly: true,
+                        initialValue: "$caracteristica1",
+                        readOnly: true,
                         textCapitalization: TextCapitalization.sentences,
                         decoration: InputDecoration(
                           filled: true,
@@ -133,7 +144,8 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                           ),
                         ),
                       )),
-                  SizedBox(width: 300,
+                  SizedBox(
+                    width: 300,
                     child: Slider(
                       value: _SliderValueUm,
                       max: 100,
@@ -159,7 +171,8 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                       height: 25,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        initialValue: "$amostra",readOnly: true,
+                        initialValue: "$amostra",
+                        readOnly: true,
                         textCapitalization: TextCapitalization.sentences,
                         decoration: InputDecoration(
                           filled: true,
@@ -184,7 +197,8 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                           ),
                         ),
                       )),
-                  SizedBox(width: 300,
+                  SizedBox(
+                    width: 300,
                     child: Slider(
                       value: _SliderValueDois,
                       max: 100,
@@ -223,13 +237,15 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                     )),
               ),
             ),
-            ElevatedButton(onPressed: ( ){
-
-              debugPrint(_SliderValueDois.toString());
-              //Salvar(now.millisecondsSinceEpoch, amostra, _SliderValueUm, caracteristica1, comentcontroller.text);
-              Salvar(now.millisecondsSinceEpoch, "amostra1","caracteristica",_SliderValueUm, "comentaarios");
-
-            }, child: Text("Recuperar Questinario", style: TextStyle(color: Colors.black))),
+            ElevatedButton(
+                onPressed: () {
+                  debugPrint(_SliderValueDois.toString());
+                  //Salvar(now.millisecondsSinceEpoch, amostra, _SliderValueUm, caracteristica1, comentcontroller.text);
+                  Salvar(now.millisecondsSinceEpoch, "amostra1",
+                      "caracteristica", _SliderValueUm, "comentaarios");
+                },
+                child: Text("Recuperar Questinario",
+                    style: TextStyle(color: Colors.black))),
           ],
         ),
       ),

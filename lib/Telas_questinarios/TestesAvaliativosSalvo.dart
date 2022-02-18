@@ -95,10 +95,10 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                     padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        SizedBox(width: 60, height: 20, child: Text("Amostra")),
-                        SizedBox(width: 1, height: 20, child: Text("")),
-                        SizedBox(width: 60, height: 20, child: Text("Valor")),
+                      children: [
+                        SizedBox(width: 200, height: 20, child: Text("Amostra Controle:"+teste.amostra_controle,maxLines: 1,)),
+                        SizedBox(width: 200, height: 20, child: AutoSizeText("Nota em relação a Caracteristica",maxLines: 1,)),
+
                       ],
                     ),
                   ),
@@ -114,6 +114,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
+                                initialValue: teste.amostra_testada,
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,
@@ -124,49 +125,13 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 60,
+                            width: 65,
                             height: 35,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.blue,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(3),
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: 120,
-                            height: 35,
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.blue,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(3),
-                                    )),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 60,
-                            height: 35,
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
+                                initialValue: teste.nota,style: TextStyle(fontSize:10),
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,
@@ -188,6 +153,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
+                                initialValue: teste.amostra_testada,
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,
@@ -198,49 +164,13 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 60,
+                            width: 65,
                             height: 35,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.blue,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(3),
-                                    )),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: 120,
-                            height: 35,
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.blue,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(3),
-                                    )),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 60,
-                            height: 35,
-                            child: Padding(
-                              padding: const EdgeInsets.all(5),
-                              child: TextFormField(
-                                keyboardType: TextInputType.text,
+                                initialValue: teste.nota,style: TextStyle(fontSize:10),
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,
@@ -262,6 +192,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
+                                initialValue: teste.amostra_testada,
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,
@@ -272,12 +203,13 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 60,
+                            width: 65,
                             height: 35,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
+                                initialValue: teste.nota,style: TextStyle(fontSize:10),
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,
@@ -299,6 +231,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
+                                initialValue: teste.amostra_testada,
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,
@@ -309,12 +242,52 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 60,
+                            width: 65,
                             height: 35,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
+                                initialValue: teste.nota,style: TextStyle(fontSize:10),
+                                decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.blue,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(3),
+                                    )),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 120,
+                            height: 35,
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: TextFormField(
+                                keyboardType: TextInputType.text,
+                                initialValue: teste.amostra_testada,
+                                decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.blue,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(3),
+                                    )),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 65,
+                            height: 35,
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: TextFormField(
+                                keyboardType: TextInputType.text,
+                                initialValue: teste.nota,style: TextStyle(fontSize:10),
                                 decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.blue,

@@ -13,16 +13,18 @@ class NumeroAromas extends StatefulWidget {
 }
 
 class _NumeroAromasState extends State<NumeroAromas> {
+
   final _valueamostra = GlobalKey<FormState>();
+
   TextEditingController num_amostras = TextEditingController();
   String julgador = "SemNOme";
 
   @override
-
   void initState() {
     julgador = widget.julgador;
     super.initState();
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
 import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
+import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
 import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
 import 'discriminativo/AnaliseDiscriminativo.dart';
 import 'comparativo/ComparativoNumAmostras.dart';
@@ -128,7 +129,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
       break;
     case 6:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => DiferenteEigual(),
+        builder: (context) => AmostrasDiferentigual(),
       ));
       break;
   }

@@ -3,6 +3,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
 import 'package:food_test_app/telas/Avaliativo/FichaAvaliacao.dart';
+import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
+import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
 import 'DrawerWidget.dart';
 import 'Sliders/QuestinarioSliders.dart';
 
@@ -40,7 +42,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                         child: Column(
                           children: [
                             AutoSizeText(
-                              "Questionario um",
+                              "Questionario Avaliativo",
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(
@@ -69,7 +71,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                         child: Column(
                           children: [
                             AutoSizeText(
-                              "Questionarios dois",
+                              "Questionarios Slider",
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(
@@ -98,11 +100,11 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                         child: Column(
                           children: [
                             AutoSizeText(
-                        "Questionarios três",
+                        "Questionarios Diferente/igual",
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(
-                              Icons.account_circle,
+                              Icons.add_road_rounded,
                               size: 100,
                               color: Colors.white,
                             ),
@@ -112,7 +114,8 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                     ],
                   )),
               onTap: () {
-                //selectedItem(context, 1, "temp", "temp");
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => AmostrasDiferentigual()));
               },
             ),
             GestureDetector(
@@ -155,11 +158,11 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                         child: Column(
                           children: const [
                             AutoSizeText(
-                              "Questionarios aromatico",
+                              "Questionarios Aromatico",
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(
-                              Icons.account_circle,
+                              Icons.smoking_rooms_outlined,
                               size: 100,
                               color: Colors.white,
                             ),
