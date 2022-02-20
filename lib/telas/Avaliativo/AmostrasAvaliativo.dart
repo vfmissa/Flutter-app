@@ -3,18 +3,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'AromaticoMain.dart';
+import 'package:food_test_app/telas/Avaliativo/FichaAvaliacao.dart';
 
-class NumeroAromas extends StatefulWidget {
-
+class AmostrasAvaliativo extends StatefulWidget {
   @override
-
-  _NumeroAromasState createState() => _NumeroAromasState();
-
+  _AmostrasAvaliativoState createState() => _AmostrasAvaliativoState();
 
 }
 
-class _NumeroAromasState extends State<NumeroAromas> {
+class _AmostrasAvaliativoState extends State<AmostrasAvaliativo> {
 
   final _valueamostra = GlobalKey<FormState>();
 
@@ -81,6 +78,44 @@ class _NumeroAromasState extends State<NumeroAromas> {
                       )
                     ],
                   ),
+                 /* Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Insira Nº de amostras",style: TextStyle(fontSize: 24),),
+                      SizedBox(width: 30,),
+                      SizedBox(
+                        width: 180,
+                        height: 60,
+                        child: TextFormField(
+                          style: TextStyle(fontSize: 16),
+                          keyboardType: TextInputType.text,
+                          maxLength: 50,
+                          maxLines: 1,
+                          controller: numerocontroller,
+                          validator: (value) {
+                            if (value!.trim().isEmpty) {
+                              return "insira provador";
+                            }
+                            return null;
+                          },
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.blue,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            hintText: " ",
+                            contentPadding: EdgeInsets.all(5),
+                            hintStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                          ),
+                        ),
+                      )
+                    ],
+                  ),*/
                   Container(
                     height: 60,
                     decoration: BoxDecoration(
@@ -146,11 +181,11 @@ class _NumeroAromasState extends State<NumeroAromas> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    AromaticoMain(int.parse(num_amostras.text),provadorcontroller.text)));
+                                    FichaAvaliacao(num_amostras.text,provadorcontroller.text,"amostra2","amostra3","amostra4")));
                       }
                     },
                     child:
-                        Text("Submeter", style: TextStyle(color: Colors.black)),
+                    Text("Submeter", style: TextStyle(color: Colors.black)),
                   )
                 ]),
           ),

@@ -5,13 +5,12 @@ import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiscriminativo.dart';
 import 'FichaOrdenacao.dart';
 
-
 class AnaliseDiscriminativo extends StatefulWidget {
   String amostra;
-  String julgador;
+  String provador;
   String caracteristica;
 
-  AnaliseDiscriminativo(this.amostra, this.julgador, this.caracteristica);
+  AnaliseDiscriminativo(this.amostra, this.provador, this.caracteristica);
 
   @override
   _AnaliseDiscriminativoState createState() => _AnaliseDiscriminativoState();
@@ -19,22 +18,22 @@ class AnaliseDiscriminativo extends StatefulWidget {
 
 class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
   String amostra = "text";
-  String julgador = "julgador";
+  String provador = "julgador";
   String caracteristica = "VAR_caracteristica";
 
+  Salvar(int data, String provador, String controle, String menos, String meio, String mais, String comentario) async {
 
-  Salvar(String controle, String menos,String meio, String mais,String comentario) async {
-    //teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
-    ModeloDiscriminativo teste = ModeloDiscriminativo(controle,menos,meio, mais, comentario);
-     var id= await Helper_BD().insertDiscrimnativo(teste);
+    ModeloDiscriminativo teste = ModeloDiscriminativo(data, provador, controle, menos, meio, mais, comentario);
 
-    print("id="+id.toString());
+    var id = await Helper_BD().insertDiscrimnativo(teste);
+
+    print("id=" + id.toString());
   }
 
   @override
   void initState() {
     amostra = widget.amostra;
-    julgador = widget.julgador;
+    provador = widget.provador;
     caracteristica = widget.caracteristica;
     super.initState();
   }
@@ -45,6 +44,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
   TextEditingController comentario = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  DateTime now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +54,13 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
       ),
       body: Form(
         key: _formKey,
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.all(12),
-            decoration: BoxDecoration(
-                border: Border.all(width: 3, color: Colors.black54),
-                color: Colors.white30),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.all(12),
+          decoration: BoxDecoration(
+              border: Border.all(width: 3, color: Colors.black54),
+              color: Colors.white30),
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -68,13 +68,13 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                 Row(//row de texto
                     children: [
                   Text(
-                    "Amostra: $amostra",
+                    "Julgador: $provador",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: 20, fontStyle: FontStyle.italic),
                   ),
                   Text(
-                    "Julgador: $julgador",
+                    "Data: ${now.day}/${now.month}/${now.year}",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                   ),
@@ -92,84 +92,104 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                       fontStyle: FontStyle.italic),
                 ),
                 const SizedBox(height: 15),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          controller: sample1Menos,
-                          maxLength: 3,
-                          validator: (value){
-                              if (value == null || value.trim().isEmpty) {
-                                return "Prencha os campos";
-                              }
-                              return null;
-                            },
-                          // ignore: prefer_const_constructors
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            hintText: "Menos $caracteristica:",
-                            hintStyle: const TextStyle(
-                              fontSize: 12,
-                              color: Colors.black,
-                            ),
-                            //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
-                          ),
-                        )),
-                  ),
-                  Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          controller: sample2Meio,
-                          maxLength: 3,
-                          validator: (value){
-                            if (value == null || value.trim().isEmpty) {
-                              return "Prencha os campos";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.blue,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
-                              )),
-                        )),
-                  ),
-                  Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          controller: sample3Mais,
-                          maxLength: 3,
-                          validator: (value){
-                            if (value == null || value.trim().isEmpty) {
-                              return "Prencha os campos";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.blue,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample1Menos,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              // ignore: prefer_const_constructors
+                              decoration: InputDecoration(
+                                labelText: "Amostra 1:",
+                                floatingLabelBehavior:
+                                FloatingLabelBehavior.always,
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
+                                filled: true,
+                                fillColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                hintText: "Menos $caracteristica:",
+                                hintStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                ),
+                                //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                               ),
-                              hintText: "Mais $caracteristica:",
-                              hintStyle: TextStyle(
-                                fontSize: 12,
-                                color: Colors.black,
-                              )),
-                        )),
-                  ),
-                ]),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample2Meio,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Amostra 2:",
+                                  floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                  )),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample3Mais,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Amostra 3:",
+                                  floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  hintText: "Mais $caracteristica:",
+                                  hintStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  )),
+                            )),
+                      ),
+                    ]),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -186,6 +206,219 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                     ),*/
+                  ],
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample1Menos,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              // ignore: prefer_const_constructors
+                              decoration: InputDecoration(
+                                labelText: "Amostra 4:",
+                                floatingLabelBehavior:
+                                FloatingLabelBehavior.always,
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
+                                filled: true,
+                                fillColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                hintText: "Menos $caracteristica:",
+                                hintStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                ),
+                                //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                              ),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample2Meio,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Amostra 5:",
+                                  floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                  )),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample3Mais,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Amostra 6:",
+                                  floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  hintText: "Mais $caracteristica:",
+                                  hintStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  )),
+                            )),
+                      ),
+                    ]),Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample1Menos,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              // ignore: prefer_const_constructors
+                              decoration: InputDecoration(
+                                labelText: "Amostra 7:",
+                                floatingLabelBehavior:
+                                FloatingLabelBehavior.always,
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
+                                filled: true,
+                                fillColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                                hintText: "Menos $caracteristica:",
+                                hintStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.black,
+                                ),
+                                //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                              ),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample2Meio,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Amostra 8:",
+                                  floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                  )),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.all(5),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: sample3Mais,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null || value.trim().isEmpty) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Amostra 9:",
+                                  floatingLabelBehavior:
+                                  FloatingLabelBehavior.always,
+                                  labelStyle: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                  filled: true,
+                                  fillColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  hintText: "Mais $caracteristica:",
+                                  hintStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                  )),
+                            )),
+                      ),
+                    ]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    /* Text(
+                    "MENOS",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                  ),*/
+                    SizedBox(
+                      width: 15,
+                    ),
+                    /* Text(
+                    "MAIS",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                  ),*/
                   ],
                 ),
                 // ignore: prefer_const_constructors
@@ -216,18 +449,17 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    await Salvar(amostra,sample1Menos.text,sample2Meio.text,sample3Mais.text,comentario.text);
-                    //await _recuperardobd();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                FichaOrdenacao(amostra, julgador)));
-                    }else{
-
-                    _showDialog(context);
-
+                    if (_formKey.currentState!.validate()) {
+                      await Salvar(now.millisecondsSinceEpoch,provador,amostra, sample1Menos.text, sample2Meio.text,
+                          sample3Mais.text, comentario.text);
+                      //await _recuperardobd();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  FichaOrdenacao(amostra, provador)));
+                    } else {
+                      _showDialog(context);
                     }
                   },
                   child: const Text("Submeter",
@@ -242,10 +474,12 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
   }
 }
 
-_showDialog(BuildContext context,) async {
+_showDialog(
+  BuildContext context,
+) async {
   showDialog(
     context: context,
-    builder:  (BuildContext context) {
+    builder: (BuildContext context) {
       return AlertDialog(
         title: new Text("Erro"),
         content: new Text("favor preencher o questionario"),

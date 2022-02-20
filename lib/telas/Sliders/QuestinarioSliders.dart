@@ -21,8 +21,9 @@ Salvar(int data, String amostra, String caracteristica, double valor,
 class QuestinarioSliders extends StatefulWidget {
   String amostracontrole;
   String julgador;
+  String caracteristica;
 
-  QuestinarioSliders(this.amostracontrole, this.julgador);
+  QuestinarioSliders(this.amostracontrole, this.julgador,this.caracteristica);
 
   @override
   _QuestinarioSlidersState createState() => _QuestinarioSlidersState();
@@ -33,14 +34,16 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
 
   get julgador => widget.julgador;
 
+  get caracteristica1 => widget.caracteristica;
+
   double _SliderValueUm = 0;
   double _SliderValueDois = 0;
 
   TextEditingController comentcontroller = TextEditingController();
 
-  get caracteristica1 => "DOÇURA";
 
-  get caracteristica2 => "COR";
+
+  //get caracteristica2 => "COR";
 
   var now = DateTime.now();
 
@@ -114,8 +117,8 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
-                      width: 90,
-                      height: 25,
+                      width: 60,
+                      height: 30,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         initialValue: "$amostra",
@@ -131,9 +134,9 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                       )),
                   SizedBox(
                       width: 120,
-                      height: 25,
+                      height: 30,
                       child: TextFormField(
-                        initialValue: "$caracteristica1",
+                        initialValue: caracteristica1,
                         readOnly: true,
                         textCapitalization: TextCapitalization.sentences,
                         decoration: InputDecoration(
@@ -159,7 +162,7 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                   )
                 ],
               ),
-            ),
+            ),/*
             //SEGUNDO ITEM
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -212,7 +215,7 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                   )
                 ],
               ),
-            ),
+            ),*/
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Container(

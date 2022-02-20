@@ -7,19 +7,16 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAromatico.dart';
 import 'package:food_test_app/telas/GridMain.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 
-import '../main.dart';
 
 
 
-
-Salvar(String numaAmostra,String Aroma1,String Aroma2) async {
+Salvar(int data,String provador,String numaAmostra,String Aroma1,String Aroma2) async {
 
 
   //teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
-  ModeloAromatico teste =  ModeloAromatico(numaAmostra,Aroma1,Aroma2);
+  ModeloAromatico teste =  ModeloAromatico(data,provador,numaAmostra,Aroma1,Aroma2);
    var id = await Helper_BD().insertAroma(teste);
 
  print("id="+id.toString());
@@ -164,12 +161,12 @@ class _AromaticoMainState extends State<AromaticoMain> {
                       if (_formkey.currentState!.validate()) {
                         numamostras--;
                         if (numamostras == 0) {
-                         await Salvar(amostracontroller.text,aromacontroller.text,"mais Aromas");
+                         await Salvar(now.millisecondsSinceEpoch,"nome provador",amostracontroller.text,aromacontroller.text,"mais Aromas");
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => GridMain()));
                           debugPrint("N= " + numamostras.toString());
                         } else {
-                         await Salvar(amostracontroller.text,aromacontroller.text,"mais Aromas");
+                         await Salvar(now.millisecondsSinceEpoch," nome provador",amostracontroller.text,aromacontroller.text,"mais Aromas");
                           Navigator.push(
                               context,
                               MaterialPageRoute(

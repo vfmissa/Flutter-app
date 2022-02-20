@@ -2,13 +2,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
-import 'package:food_test_app/telas/Avaliativo/FichaAvaliacao.dart';
+import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
 import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
-import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
+import 'package:food_test_app/telas/discriminativo/AnaliseDiscriminativo.dart';
+import 'package:food_test_app/telas/Avaliativo/AmostrasAvaliativo.dart';
 import 'DrawerWidget.dart';
-import 'Sliders/QuestinarioSliders.dart';
-
-
 
 class GridQuestionarios extends StatefulWidget {
   @override
@@ -57,7 +55,10 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                   )),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => FichaAvaliacao("temp1","temp2")));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            AmostrasAvaliativo()));
               },
             ),
             GestureDetector(
@@ -86,7 +87,10 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                   )),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => QuestinarioSliders("temp1","temp2")));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            SelecaoAtributos("temp1", "temp2")));
               },
             ),
             GestureDetector(
@@ -100,7 +104,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                         child: Column(
                           children: [
                             AutoSizeText(
-                        "Questionarios Diferente/igual",
+                              "Questionarios Diferente/igual",
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(
@@ -115,7 +119,9 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                   )),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => AmostrasDiferentigual()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AmostrasDiferentigual()));
               },
             ),
             GestureDetector(
@@ -129,7 +135,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                         child: Column(
                           children: [
                             AutoSizeText(
-                              "Questionarios 4",
+                              "Questionarios Discriminativo",
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(
@@ -144,7 +150,9 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                   )),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => QuestinarioSliders("temp1","temp2")));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>AnaliseDiscriminativo("temp1", "temp2","caracteristica")));
               },
             ),
             GestureDetector(
@@ -173,7 +181,9 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                   )),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => NumeroAromas("temp1")));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NumeroAromas()));
               },
             ),
           ],

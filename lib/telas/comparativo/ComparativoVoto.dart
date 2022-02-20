@@ -6,16 +6,15 @@ import 'package:food_test_app/Modelo%20de%20Classes/ModeloComparativo.dart';
 import 'package:food_test_app/telas/GridMain.dart';
 import 'ComparativoAmostra.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 import '../../Helper_BD/Helper_BD.dart';
 import '../main.dart';
 
 
 //salvar o test descriminativo
-_Salvar(String controle, String testada, String nota ) async {
+_Salvar(int data, String provador,String controle, String testada, String nota ) async {
   Database banco = await Helper_BD().inicializarDB();
 
-  ModeloComparativo teste = ModeloComparativo(controle,testada, nota);
+  ModeloComparativo teste = ModeloComparativo(data,provador,controle,testada, nota);
 
   Helper_BD().InsertComparativo(teste);
 }
@@ -25,6 +24,7 @@ class ComparativoVoto extends StatefulWidget {
   String julgador;
   String amostra_controle;
   int num_amostras;
+
   ComparativoVoto(this.amostra_a_comparar, this.julgador,this.amostra_controle,this.num_amostras);
 
   @override
@@ -71,7 +71,7 @@ class _ComparativoVotoState extends State<ComparativoVoto> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "Julgador: ${widget.julgador}",
+                    "Julgador:"+julgador,
                     textAlign: TextAlign.center,
                     style:
                         TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
@@ -201,13 +201,13 @@ class _ComparativoVotoState extends State<ComparativoVoto> {
                   if(num_amostras==0){
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => GridMain()));
-                    _Salvar(amostra_controle,amostra,_valorpadrao);
+                    _Salvar(now.millisecondsSinceEpoch,julgador,amostra_controle,amostra,_valorpadrao);
                     print(_valorpadrao);
                   }
                   else{
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Comparativo(amostra_controle, julgador, num_amostras)));
-                    _Salvar(amostra_controle,amostra,_valorpadrao);
+                    _Salvar(now.millisecondsSinceEpoch,julgador,amostra_controle,amostra,_valorpadrao);
 
                     print(_valorpadrao);
                     print("faltam $num_amostras");

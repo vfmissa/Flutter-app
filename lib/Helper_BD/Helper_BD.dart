@@ -17,18 +17,17 @@ class Helper_BD extends StatefulWidget {
 
   _onCreateDB(Database db, int version) async {
     String CreatAvaliativo =
-        "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR, nota VARCHAR)";
+        "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,amostra_testada VARCHAR, nota VARCHAR)";
     String CreatDiscriminativo =
-        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
+        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
     String CreateComparativo =
-        "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada CHAR, nota VARCHAR)";
+        "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada CHAR, nota VARCHAR)";
     String CreateAroma =
-        "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,num_amostra VARCHAR, aroma VARCHAR, aroma2 VARCHAR)";
+        "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,num_amostra VARCHAR, aroma VARCHAR, aroma2 VARCHAR)";
     String CreateSliders =
-        "CREATE TABLE sliders(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,amostra VARCHAR,valor_slider FLOAT,caracteristica VARCHAR,comentario VARCHAR)";
-
+        "CREATE TABLE sliders(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra VARCHAR,valor_slider FLOAT,caracteristica VARCHAR,comentario VARCHAR)";
     String Creatdifigual =
-        "CREATE TABLE diferent(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,julgador VARCHAR,amostra0 VARCHAR,amostra1 VARCHAR,amostra2 VARCHAR,amostradif INTEGER,coment VARCCHAR)";
+        "CREATE TABLE diferent(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra0 VARCHAR,amostra1 VARCHAR,amostra2 VARCHAR,amostradif INTEGER,coment VARCCHAR)";
 
     await db.execute(CreatAvaliativo);
     await db.execute(CreatDiscriminativo);
@@ -56,7 +55,7 @@ class Helper_BD extends StatefulWidget {
 
     List EntradasBD = await banco.query(
       "comparativo",
-      columns: ["id", "amostra_controle", "amostra_testada", "nota"],
+      columns: ["id","data","provador","amostra_controle", "amostra_testada", "nota"],
     );
 
     return EntradasBD;
@@ -81,6 +80,8 @@ class Helper_BD extends StatefulWidget {
     //Database bd = await _Bancoapp();
 
     Map<String, dynamic> dadostabela = {
+      "data":teste.data,
+      "provador":teste.provador,
       "amostra_controle": teste.amostra_controle,
       "amostra_testada": teste.amostra_testada,
       "nota": teste.nota,
@@ -98,6 +99,8 @@ class Helper_BD extends StatefulWidget {
 
     List EntradasBD = await banco.query("teste_discriminativo", columns: [
       "id",
+      "data",
+      "provador",
       "amostra_controle",
       "amostra_testada",
       "amostra2",
@@ -134,6 +137,8 @@ class Helper_BD extends StatefulWidget {
     //"CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
 
     Map<String, dynamic> dadostabela = {
+      "data":teste.data,
+      "provador":teste.provador,
       "amostra_controle": teste.amostra_controle,
       "amostra_testada": teste.menoscaracteristica,
       "amostra2": teste.mediacaracteristica,
@@ -159,7 +164,7 @@ class Helper_BD extends StatefulWidget {
 
     List EntradasBD = await banco.query(
       "avaliativo",
-      columns: ["id", "amostra_controle", "amostra_testada", "nota"],
+      columns: ["id","data","provador","amostra_controle", "amostra_testada", "nota"],
     );
 
     return EntradasBD;
@@ -195,12 +200,19 @@ class Helper_BD extends StatefulWidget {
 
 // TESTES AROMATICOS
 
+  //=
+  //   "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,
+  //   num_amostra VARCHAR, aroma VARCHAR, aroma2 VARCHAR)"
+
+
   Future<int> insertAroma(ModeloAromatico teste) async {
     Database db = await Helper_BD().inicializarDB();
-    //"CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,num_amostra CHAR, aroma CHAR, aroma2 CHAR)";
+
 
     Map<String, dynamic> dadostabela = {
       //"id":teste.id,
+      "data":teste.data,
+      "provador":teste.provador,
       "num_amostra": teste.Numamostra,
       "aroma": teste.aroma,
       "aroma2": teste.aroma2,
@@ -217,7 +229,8 @@ class Helper_BD extends StatefulWidget {
     //var table = "aroma";
 
     List EntradasBD = await banco
-        .query("aroma", columns: ["id", "num_amostra", "aroma", "aroma2"]);
+        .query("aroma", columns: ["id","data","provador","num_amostra", "aroma", "aroma2"]);
+
 
     return EntradasBD;
   }
@@ -233,6 +246,8 @@ class Helper_BD extends StatefulWidget {
     for (int i = 0; i < count; i++) {
       ListaTeste.add(ModeloAromatico.fromMapObject(noteMapList[i]));
     }
+    String json = jsonEncode(ListaTeste);
+    print(json+"/n");
     return ListaTeste;
   }
 
@@ -297,7 +312,7 @@ class Helper_BD extends StatefulWidget {
     List EntradasBD = await banco.query("diferent", columns: [
       "id",
       "data",
-      "julgador",
+      "provador",
       "amostra0",
       "amostra1",
       "amostra2",

@@ -9,10 +9,13 @@ import '../main.dart';
 
 class FichaAvaliacao extends StatefulWidget {
 
-  String amostra;
-  String julgador;
+  String num_amostra;
+  String provador;
+  String amostra2;
+  String amostra3;
+  String amostra4;
 
-  FichaAvaliacao(this.amostra, this.julgador);
+  FichaAvaliacao(this.num_amostra, this.provador,this.amostra2,this.amostra3,this.amostra4);
 
   _FichaAvaliacaoState createState() => _FichaAvaliacaoState();
 }
@@ -20,13 +23,13 @@ class FichaAvaliacao extends StatefulWidget {
 class _FichaAvaliacaoState extends State<FichaAvaliacao> {
 
   DateTime now = DateTime.now();
-  String amostra = "text";
-  String julgador = "julgador";
+  String num_amostra = "text";
+  String provador = "julgador";
 
   @override
   void initState() {
-    amostra = widget.amostra;
-    julgador = widget.julgador;
+    num_amostra = widget.num_amostra;
+    provador = widget.provador;
     super.initState();
   }
 
@@ -55,23 +58,23 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
+                        /*Text(
                           "Amostra:$amostra",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 20, fontStyle: FontStyle.italic),
-                        ),
+                        ),*/
                         Text(
-                          "Julgador: ${widget.julgador}",
+                          "Julgador: ${widget.provador}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20, fontStyle: FontStyle.italic),
+                              fontSize: 24, fontStyle: FontStyle.italic),
                         ),
                         Text(
                           "Data: ${now.day}/${now.month}/${now.year}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 12, fontStyle: FontStyle.italic),
+                              fontSize: 16, fontStyle: FontStyle.italic),
                         ),
                       ],
                     ),
@@ -80,7 +83,7 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                       decoration: BoxDecoration(
                           border: Border.all(width: 3, color: Colors.blue)),
                       child: AutoSizeText(
-                        "Você está recebendo uma amostra controle C e N* amostras codificadas.)\n"
+                        "Você está recebendo uma amostra controle C e $num_amostra amostras codificadas.)\n"
                             "Compare cada uma com o Controle quanto ao atributo (Especificar)\n"
                             "Expresse o valor da diferença utilizando a escala abaixo",
                         maxLines: 15,
@@ -88,38 +91,26 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
-                   /* SizedBox(
-                      width: 475,
-                      height: 30,
-                      child: Text(
-                          "Você está recebendo uma amostra controle (C) e N* amostras codificadas."),
-                    ),
-                    SizedBox(
-                      width: 475,
-                      height: 30,
-                      child: Text("Compare cada uma com o Controle "
-                          "Quanto ao atributo (Especificar)"),
-                    ),
-                    SizedBox(
-                      width: 475,
-                      height: 30,
-                      child: Text(
-                          "Expresse o valor da diferença utilizando a escala abaixo"),
-                    ),*/
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                            width: 90, height: 50, child: Text("1: Nenhuma",style: TextStyle(fontSize:16),)),
-                        SizedBox(
-                            width: 80, height: 50, child: Text("2: Ligeira",style: TextStyle(fontSize:16),)),
-                        SizedBox(
-                            width: 90, height: 50, child: Text("3: Moderada",style: TextStyle(fontSize:16),)),
-                        SizedBox(
-                            width: 80, height: 50, child: Text("4: Muita",style: TextStyle(fontSize:16),)),
-                        SizedBox(
-                            width: 80, height: 50, child: Text("5: Extrema",style: TextStyle(fontSize:16),)),
-                      ],
+                   SizedBox(height: 10,),
+                    Container(decoration: BoxDecoration(border: Border.all(color:Colors.blueAccent,width: 3),color: Colors.white60),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: const [
+                            SizedBox(
+                                width: 90, height: 30, child: Text("1: Nenhuma",style: TextStyle(fontSize:16),)),
+                            SizedBox(
+                                width: 80, height: 30, child: Text("2: Ligeira",style: TextStyle(fontSize:16),)),
+                            SizedBox(
+                                width: 90, height: 30, child: Text("3: Moderada",style: TextStyle(fontSize:16),)),
+                            SizedBox(
+                                width: 80, height: 30, child: Text("4: Muita",style: TextStyle(fontSize:16),)),
+                            SizedBox(
+                                width: 80, height: 30, child: Text("5: Extrema",style: TextStyle(fontSize:16),)),
+                          ],
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),

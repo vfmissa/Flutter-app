@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
+import 'package:food_test_app/telas/Avaliativo/AmostrasAvaliativo.dart';
 import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
 import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
 import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
@@ -114,7 +115,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
       break;
     case 3:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => FichaAvaliacao(amostra, julgador,),
+        builder: (context) => AmostrasAvaliativo(),
       ));
       break;
     case 4:
@@ -124,7 +125,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
       break;
     case 5:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => NumeroAromas(julgador),
+        builder: (context) => NumeroAromas(),
       ));
       break;
     case 6:
