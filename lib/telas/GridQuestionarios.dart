@@ -90,7 +90,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            SelecaoAtributos("temp1", "temp2")));
+                            SelecaoAtributos()));
               },
             ),
             GestureDetector(

@@ -120,7 +120,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
       break;
     case 4:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => SelecaoAtributos(amostra, julgador,),
+        builder: (context) => SelecaoAtributos(),
       ));
       break;
     case 5:

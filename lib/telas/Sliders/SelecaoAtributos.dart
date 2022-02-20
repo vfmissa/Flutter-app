@@ -4,13 +4,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'QuestinarioSliders.dart';
-import 'package:path/path.dart';
+
 
 class SelecaoAtributos extends StatefulWidget {
-  String amostracontrole;
-  String julgador;
 
-  SelecaoAtributos(this.amostracontrole, this.julgador);
 
   @override
   _SelecaoAtributosState createState() => _SelecaoAtributosState();
@@ -19,12 +16,9 @@ class SelecaoAtributos extends StatefulWidget {
 class _SelecaoAtributosState extends State<SelecaoAtributos> {
   TextEditingController amostracontroller1 = TextEditingController();
   TextEditingController caracteristicacontroller1 = TextEditingController();
-  TextEditingController caracteristicacontroller2 = TextEditingController();
+  TextEditingController provadorcontroller = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
-
-  get julgador => widget.julgador;
-
-  String get amostracontrole => widget.amostracontrole;
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +30,48 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(//row de texto
-                  children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 Text(
-                  "Julgador: $julgador",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
+                  "Insira o nome do Provador",
+                  style: TextStyle(fontSize: 24),
                 ),
-                Text(
-                  "Data: ",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 20, fontStyle: FontStyle.italic),
+                SizedBox(
+                  width: 30,
                 ),
-              ], mainAxisAlignment: MainAxisAlignment.spaceAround),
+                SizedBox(
+                  width: 180,
+                  height: 60,
+                  child: TextFormField(
+                    style: TextStyle(fontSize: 16),
+                    keyboardType: TextInputType.text,
+                    maxLength: 50,
+                    maxLines: 1,
+                    controller: provadorcontroller,
+                    validator: (value) {
+                      if (value!.trim().isEmpty) {
+                        return "insira provador";
+                      }
+                      return null;
+                    },
+                    // ignore: prefer_const_constructors
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.blue,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      hintText: " ",
+                      contentPadding: EdgeInsets.all(5),
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                    ),
+                  ),
+                )
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(25.0),
@@ -83,8 +103,7 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                           controller: caracteristicacontroller1,
                           maxLength: 20,
                           validator: (value) {
-                            if (value == null ||
-                                value.trim().isEmpty ) {
+                            if (value == null || value.trim().isEmpty) {
                               return "Prencha os campos";
                             }
                             return null;
@@ -133,52 +152,6 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                 ),
               ),
             ),
-
-            //SEGUNDO ITEM
-            /*Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                      width: 120,
-                      height: 50,
-                      child: TextFormField(
-                        keyboardType: TextInputType.text,
-                        controller: caracteristicacontroller2,
-                        textCapitalization: TextCapitalization.sentences,
-                        decoration: InputDecoration(
-                          helperText: "Atributo",
-                          helperStyle:
-                              TextStyle(color: Colors.black, fontSize: 10),
-                          filled: true,
-                          fillColor: Colors.blue,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                      )),
-                  SizedBox(
-                      width: 120,
-                      height: 50,
-                      child: TextFormField(
-                        readOnly: true,
-                        textCapitalization: TextCapitalization.sentences,
-                        decoration: InputDecoration(
-                          helperText: "Atributo",
-                          helperStyle:
-                              TextStyle(color: Colors.black, fontSize: 10),
-                          filled: true,
-                          fillColor: Colors.blue,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
-                      )),
-                ],
-              ),
-            ),*/
-
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -186,10 +159,10 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => QuestinarioSliders(
+                                provadorcontroller.text,
                                 amostracontroller1.text,
-                                julgador,
                                 caracteristicacontroller1.text)));
-                  }//if
+                  } //if
                 },
                 child: Text("Iniciar Questionario",
                     style: TextStyle(color: Colors.black)))

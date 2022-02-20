@@ -259,6 +259,7 @@ class Helper_BD extends StatefulWidget {
     List EntradasBD = await banco.query("sliders", columns: [
       "id",
       "data",
+      "provador",
       "amostra",
       "valor_slider",
       "caracteristica",
@@ -290,6 +291,7 @@ class Helper_BD extends StatefulWidget {
     Map<String, dynamic> dadostabela = {
       //"id":teste.id,
       "data": teste.data,
+      "provador":teste.provador,
       "amostra": teste.amostra,
       "valor_slider": teste.valor_slider,
       "caracteristica": teste.caracteristica,
@@ -367,6 +369,7 @@ class Helper_BD extends StatefulWidget {
     return result;
   }
 }
+
 
 class _Helper_BDState extends State<Helper_BD> {
   @override

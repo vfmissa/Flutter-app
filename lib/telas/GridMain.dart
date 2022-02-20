@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'DrawerWidget.dart';
 import 'GridQuestionarios.dart';
 import 'Listagemdados2.0.dart';
-import 'discriminativo/AnaliseDiscriminativo.dart';
+
 
 class GridMain extends StatefulWidget {
   @override

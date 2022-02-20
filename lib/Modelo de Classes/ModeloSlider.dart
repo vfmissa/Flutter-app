@@ -5,17 +5,19 @@ class ModeloSlider{
 
   late int _id;
   late int _data;
+  late String _provador;
   late String _amostra;
   late String _caracteristica;
   late double _valor_slider;
   late String _comentario;
 
 
-  ModeloSlider(this._data,this._amostra,this._caracteristica,this._valor_slider,this._comentario);
+  ModeloSlider(this._data,this._provador,this._amostra,this._caracteristica,this._valor_slider,this._comentario);
 
 
   int get id=>_id;
   int get data => _data;
+  String get provador =>_provador;
   String get amostra => _amostra;
   String get caracteristica => _caracteristica;
   double get valor_slider => _valor_slider;
@@ -23,6 +25,11 @@ class ModeloSlider{
 
   set data(int newdata){
     this.data = newdata;
+  }
+
+  set provador(String newprovador){
+    this.provador= newprovador;
+
   }
 
   set amostra(String newamostra){
@@ -47,6 +54,7 @@ class ModeloSlider{
       map["id"] =_id;
     }
     map['data']=_data;
+    map["provador"] =_provador;
     map['amostra']=_amostra;
     map['caracteristica']=_caracteristica;
     map['valor_slider']=_valor_slider;
@@ -57,6 +65,7 @@ class ModeloSlider{
  ModeloSlider.fromMapObject(Map<String,dynamic>map){
     this._id=map['id'];
     this._data=map['data'];
+    this._provador=map["provador"];
     this._amostra=map['amostra'];
     this._caracteristica=map['caracteristica'];
     this._valor_slider=map['valor_slider'];

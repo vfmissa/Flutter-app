@@ -8,20 +8,19 @@ import 'package:food_test_app/telas/GridMain.dart';
 import '../main.dart';
 
 class FichaAvaliacao extends StatefulWidget {
-
   String num_amostra;
   String provador;
   String amostra2;
   String amostra3;
   String amostra4;
 
-  FichaAvaliacao(this.num_amostra, this.provador,this.amostra2,this.amostra3,this.amostra4);
+  FichaAvaliacao(this.num_amostra, this.provador, this.amostra2, this.amostra3,
+      this.amostra4);
 
   _FichaAvaliacaoState createState() => _FichaAvaliacaoState();
 }
 
 class _FichaAvaliacaoState extends State<FichaAvaliacao> {
-
   DateTime now = DateTime.now();
   String num_amostra = "text";
   String provador = "julgador";
@@ -84,30 +83,61 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                           border: Border.all(width: 3, color: Colors.blue)),
                       child: AutoSizeText(
                         "Você está recebendo uma amostra controle C e $num_amostra amostras codificadas.)\n"
-                            "Compare cada uma com o Controle quanto ao atributo (Especificar)\n"
-                            "Expresse o valor da diferença utilizando a escala abaixo",
+                        "Compare cada uma com o Controle quanto ao atributo (Especificar)\n"
+                        "Expresse o valor da diferença utilizando a escala abaixo",
                         maxLines: 15,
                         textAlign: TextAlign.start,
                         style: TextStyle(fontSize: 30),
                       ),
                     ),
-                   SizedBox(height: 10,),
-                    Container(decoration: BoxDecoration(border: Border.all(color:Colors.blueAccent,width: 3),color: Colors.white60),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Colors.blueAccent, width: 3),
+                          color: Colors.white60),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: const [
                             SizedBox(
-                                width: 90, height: 30, child: Text("1: Nenhuma",style: TextStyle(fontSize:16),)),
+                                width: 90,
+                                height: 30,
+                                child: Text(
+                                  "1: Nenhuma",
+                                  style: TextStyle(fontSize: 16),
+                                )),
                             SizedBox(
-                                width: 80, height: 30, child: Text("2: Ligeira",style: TextStyle(fontSize:16),)),
+                                width: 80,
+                                height: 30,
+                                child: Text(
+                                  "2: Ligeira",
+                                  style: TextStyle(fontSize: 16),
+                                )),
                             SizedBox(
-                                width: 90, height: 30, child: Text("3: Moderada",style: TextStyle(fontSize:16),)),
+                                width: 90,
+                                height: 30,
+                                child: Text(
+                                  "3: Moderada",
+                                  style: TextStyle(fontSize: 16),
+                                )),
                             SizedBox(
-                                width: 80, height: 30, child: Text("4: Muita",style: TextStyle(fontSize:16),)),
+                                width: 80,
+                                height: 30,
+                                child: Text(
+                                  "4: Muita",
+                                  style: TextStyle(fontSize: 16),
+                                )),
                             SizedBox(
-                                width: 80, height: 30, child: Text("5: Extrema",style: TextStyle(fontSize:16),)),
+                                width: 80,
+                                height: 30,
+                                child: Text(
+                                  "5: Extrema",
+                                  style: TextStyle(fontSize: 16),
+                                )),
                           ],
                         ),
                       ),
@@ -117,7 +147,8 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          SizedBox(width: 60, height: 20, child: Text("Amostra")),
+                          SizedBox(
+                              width: 60, height: 20, child: Text("Amostra")),
                           SizedBox(width: 1, height: 20, child: Text("")),
                           SizedBox(width: 60, height: 20, child: Text("Valor")),
                         ],
@@ -351,10 +382,13 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Helper_BD().SalvarAvaliativo("Controle1","testada1", "nota1");
+                        Helper_BD()
+                            .SalvarAvaliativo("Controle1", "testada1", "nota1");
                         //print(Helper_BD().recuperardobd_Avaliativo());
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => GridMain()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => GridMain()));
                       },
                       child: Text("Submeter",
                           style: TextStyle(color: Colors.black)),

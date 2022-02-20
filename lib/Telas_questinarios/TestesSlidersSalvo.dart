@@ -43,7 +43,7 @@ class _TesteSlidersSalvoState extends State<TesteSlidersSalvo> {
               Row(//row de texto
                   children: [
                 Text(
-                  "Julgador: ",
+                  "Provador:"+teste.provador,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                 ),
