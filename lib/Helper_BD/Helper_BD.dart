@@ -17,7 +17,8 @@ class Helper_BD extends StatefulWidget {
 
   _onCreateDB(Database db, int version) async {
     String CreatAvaliativo =
-        "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,amostra_testada VARCHAR, nota VARCHAR)";
+        "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR)";
+
     String CreatDiscriminativo =
         "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
     String CreateComparativo =
@@ -156,7 +157,8 @@ class Helper_BD extends StatefulWidget {
 
 //TESTES AVALIATIVOS
 
-  // "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle CHAR,amostra_testada CHAR, nota CHAR)";
+  // "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,"
+  //         "amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR,)";
 
   recuperardobd_Avaliativo() async {
     Database banco = await Helper_BD().inicializarDB();
@@ -164,7 +166,7 @@ class Helper_BD extends StatefulWidget {
 
     List EntradasBD = await banco.query(
       "avaliativo",
-      columns: ["id","data","provador","amostra_controle", "amostra_testada", "nota"],
+      columns: ["id","data","provador","amostra_controle", "amostra1", "nota1","amostra2", "nota2","amostra3", "nota3","amostra4", "nota4"],
     );
 
     return EntradasBD;
@@ -184,19 +186,33 @@ class Helper_BD extends StatefulWidget {
     return ListaTeste;
   }
 
-  SalvarAvaliativo(String controle, String testada, String nota) async {
-    Database banco = await Helper_BD().inicializarDB();
-    //Database bd = await _Bancoapp();
+  Future<int> insertAvaliativo(ModeloAvaliativo teste) async {
+    Database db = await Helper_BD().inicializarDB();
+
+    // "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,"
+    // "amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR,)";
 
     Map<String, dynamic> dadostabela = {
-      "amostra_controle": controle,
-      "amostra_testada": testada,
-      "nota": nota,
+      //"id":teste.id,
+      "data":teste.data,
+      "provador":teste.provador,
+      "amostra_controle": teste.amostra_controle,
+      "amostra1": teste.amostra_1,
+      "nota1": teste.nota1,
+      "amostra2": teste.amostra_2,
+      "nota2": teste.nota2,
+      "amostra3": teste.amostra_3,
+      "nota3": teste.nota3,
+      "amostra4": teste.amostra_4,
+      "nota4": teste.nota4,
     };
 
-    int id = await banco.insert("avaliativo", dadostabela);
-    print("salvo: $id");
+    var id = await db.insert("avaliativo", dadostabela);
+
+    return id;
+    //return result;
   }
+
 
 // TESTES AROMATICOS
 

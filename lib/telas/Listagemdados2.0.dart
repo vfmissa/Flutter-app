@@ -216,14 +216,15 @@ class _ListaComparativoState extends State<ListaComparativo> {
                     this.listaravaliativo[position].amostra_controle,
                 style: titleStyle,
               ),
-              subtitle: Text(this.listaravaliativo[position].amostra_testada),
+              subtitle: Text("Provador: "+this.listaravaliativo[position].provador),
               trailing: GestureDetector(
                   child: Icon(
                     Icons.delete,
                     color: Colors.blueGrey,
                   ),
                   onTap: () async {
-                    // await _showDialog(context,listaravaliativo[position].id,"semtabelaainda");
+                    await _showDialog(
+                        context, listaravaliativo[position].id, "avaliativo");
                     updateListView3();
                   }),
               onTap: () {

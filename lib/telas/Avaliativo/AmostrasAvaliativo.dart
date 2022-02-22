@@ -181,7 +181,7 @@ class _AmostrasAvaliativoState extends State<AmostrasAvaliativo> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    FichaAvaliacao(num_amostras.text,provadorcontroller.text,"amostra2","amostra3","amostra4")));
+                                    FichaAvaliacao(int.parse(num_amostras.text),provadorcontroller.text,"amostra2","amostra3","amostra4")));
                       }
                     },
                     child:
