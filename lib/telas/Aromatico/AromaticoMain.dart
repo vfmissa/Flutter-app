@@ -12,11 +12,13 @@ import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 
 
 
-Salvar(int data,String provador,String numaAmostra,String Aroma1,String Aroma2) async {
+Salvar(int data,String provador,String numaAmostra,String Aroma,String numaAmostra2,String Aroma2,String numaAmostra3,String Aroma3,
+    String numaAmostra4,String Aroma4,String numaAmostra5,String Aroma5,String numaAmostra6,String Aroma6,
+    String numaAmostra7,String Aroma7,String numaAmostra8,String Aroma8,String numaAmostra9,String Aroma9,String numaAmostra10,String Aroma10) async {
 
 
-  //teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
-  ModeloAromatico teste =  ModeloAromatico(data,provador,numaAmostra,Aroma1,Aroma2);
+  ModeloAromatico teste =  ModeloAromatico(data, provador, numaAmostra, Aroma, numaAmostra2, Aroma2, numaAmostra3, Aroma3,numaAmostra4,Aroma4,
+  numaAmostra5,Aroma5,numaAmostra6,Aroma6,numaAmostra7,Aroma7,numaAmostra8,Aroma8,numaAmostra9,Aroma9,numaAmostra10,Aroma10);
    var id = await Helper_BD().insertAroma(teste);
 
  print("id="+id.toString());
@@ -27,25 +29,34 @@ class AromaticoMain extends StatefulWidget {
   @override
   _AromaticoMainState createState() => _AromaticoMainState();
   int numamostras;
-  String julgador;
+  String provador;
 
-  AromaticoMain(this.numamostras,this.julgador);
+  AromaticoMain(this.numamostras,this.provador);
 
 }
 
 class _AromaticoMainState extends State<AromaticoMain> {
   TextEditingController amostracontroller = TextEditingController();
   TextEditingController aromacontroller = TextEditingController();
+
+  List<String>amostras=<String>[];
+  List<String>aromas=<String>[];
+
   int numamostras = 0;
-  String julgador="semnome";
+  String provador="semnome";
 
   final _formkey = GlobalKey<FormState>();
   DateTime now = DateTime.now();
 
   @override
-  Widget build(BuildContext context) {
-    julgador=widget.julgador;
+  void initState() {
     numamostras = widget.numamostras;
+    provador = widget.provador;
+    super.initState();
+  }
+
+  Widget build(BuildContext context) {
+    int total = widget.numamostras;
     return Scaffold(appBar: AppBar(title: Text("Aromatico"),),
       body: Container(
         color: Colors.white60,
@@ -63,7 +74,7 @@ class _AromaticoMainState extends State<AromaticoMain> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "Julgador: $julgador",
+                          "Provador: $provador",
                           textAlign: TextAlign.center,
                           style:
                               TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
@@ -78,7 +89,8 @@ class _AromaticoMainState extends State<AromaticoMain> {
                     ),
                   ),
                   AutoSizeText(
-                    "Você está recebendo dez amostras com aromas diferentes, identifique cada aroma presente de acordo com o código.",
+                    "Você está recebendo dez amostras com aromas diferentes,"
+                        " identifique cada aroma presente de acordo com o código.",
                     maxLines: 15,
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 30),
@@ -93,7 +105,7 @@ class _AromaticoMainState extends State<AromaticoMain> {
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: TextFormField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 textCapitalization: TextCapitalization.sentences,
                                 controller: amostracontroller,
                                 inputFormatters: [
@@ -157,21 +169,27 @@ class _AromaticoMainState extends State<AromaticoMain> {
                   ElevatedButton(
                       onPressed: () async {
                         if (_formkey.currentState!.validate()) {
-                          numamostras--;
-                          if (numamostras == 0) {
-                           await Salvar(now.millisecondsSinceEpoch,"nome provador",amostracontroller.text,aromacontroller.text,"mais Aromas");
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => GridMain()));
-                            debugPrint("N= " + numamostras.toString());
-                          } else {
-                           await Salvar(now.millisecondsSinceEpoch," nome provador",amostracontroller.text,aromacontroller.text,"mais Aromas");
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AromaticoMain(numamostras,julgador)));
-                            debugPrint("N= " + numamostras.toString());
-                          }
+
+                          amostras.insert((total - numamostras), amostracontroller.text);
+                          aromas.insert((total - numamostras), aromacontroller.text);
+
+                                if (numamostras == 1) {
+                                  for (var i = total; 10 > i; i++) {
+                                    amostras.insert((i), "null");
+                                    aromas.insert((i), "null");
+                                    debugPrint(i.toString());
+                                  };
+
+                                  Salvar(now.millisecondsSinceEpoch, provador,amostras[9], aromas[9],amostras[8], aromas[8],
+                                    amostras[7], aromas[7],amostras[6], aromas[6],amostras[5], aromas[5],amostras[4], aromas[4],
+                                    amostras[3], aromas[3],amostras[2], aromas[2],amostras[1], aromas[1],amostras[0], aromas[0]);
+
+                                }
+                                numamostras--;
+                                amostracontroller.clear();
+                                aromacontroller.clear();
+
+
                         } else {
                           _showDialog(context);
                         }
@@ -194,7 +212,7 @@ void _showDialog(BuildContext context) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: new Text("Erro"),
-        content: new Text("Prencha apenas com os dados apresentados"),
+        content: new Text("Prencha o Formulario"),
         actions: <Widget>[
           new TextButton(
             child: new Text("OK"),

@@ -6,6 +6,7 @@ import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiferenteIgual.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiscriminativo.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloSlider.dart';
+import 'package:food_test_app/Telas_questinarios/TesteAromaticoSalvo.dart';
 import 'package:food_test_app/Telas_questinarios/TesteComparativoSalvo.dart';
 import 'package:food_test_app/Telas_questinarios/TestesAvaliativosSalvo.dart';
 import 'package:food_test_app/Telas_questinarios/TestesDif_igualSalvo.dart';
@@ -240,8 +241,13 @@ class _ListaComparativoState extends State<ListaComparativo> {
     TextStyle? titleStyle = Theme.of(context).textTheme.button;
 
     return ListView.builder(
+
         itemCount: count4,
         itemBuilder: (BuildContext context, int position) {
+
+          var data = DateTime.fromMillisecondsSinceEpoch(this.listaaromas[position].data);
+          DateTime dia = new DateTime(data.year, data.month, data.day);
+
           return Card(
             color: Colors.white,
             elevation: 2.0,
@@ -251,10 +257,10 @@ class _ListaComparativoState extends State<ListaComparativo> {
                 child: Icon(Icons.arrow_back),
               ),
               title: Text(
-                "Teste Amostra " + this.listaaromas[position].Numamostra,
+                "Teste de " + this.listaaromas[position].provador,
                 style: titleStyle,
               ),
-              subtitle: Text(this.listaaromas[position].id.toString()),
+              subtitle: Text("Data:${dia.day}/${dia.month}/${dia.year}"),
               trailing: GestureDetector(
                   child: Icon(
                     Icons.delete,
@@ -266,7 +272,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
                     updateListView4();
                   }),
               onTap: () {
-                navigateTodetails3(this.listaravaliativo[position]);
+                navigateToAroma(this.listaaromas[position]);
                 debugPrint("cliquei");
               },
             ),
@@ -276,16 +282,16 @@ class _ListaComparativoState extends State<ListaComparativo> {
 
   ListView GetListviewSlider() {
 
-    var format = new DateFormat("yMd");
-    var dateString = format.format;
 
     TextStyle? titleStyle = Theme.of(context).textTheme.button;
 
     return ListView.builder(
         itemCount: count5,
         itemBuilder: (BuildContext context, int position) {
+
          var data = DateTime.fromMillisecondsSinceEpoch(this.listaslider[position].data);
          DateTime dia = new DateTime(data.year, data.month, data.day);
+
           return Card(
             color: Colors.white,
             elevation: 2.0,
@@ -476,6 +482,14 @@ class _ListaComparativoState extends State<ListaComparativo> {
     Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return TestAvaliativoSalvo(teste);
+      },
+    ));
+  }
+
+  void navigateToAroma(ModeloAromatico teste) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return TesteAromaticoSalvo(teste);
       },
     ));
   }

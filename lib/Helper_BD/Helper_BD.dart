@@ -23,8 +23,12 @@ class Helper_BD extends StatefulWidget {
         "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
     String CreateComparativo =
         "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada CHAR, nota VARCHAR)";
+
     String CreateAroma =
-        "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,num_amostra VARCHAR, aroma VARCHAR, aroma2 VARCHAR)";
+        "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,num_amostra VARCHAR, aroma VARCHAR,num_amostra2 VARCHAR, aroma2 VARCHAR" +
+            ",num_amostra3 VARCHAR, aroma3 VARCHAR,num_amostra4 VARCHAR, aroma4 VARCHAR,num_amostra5 VARCHAR, aroma5 VARCHAR,num_amostra6 VARCHAR, aroma6 VARCHAR" +
+            ",num_amostra7 VARCHAR, aroma7 VARCHAR,num_amostra8 VARCHAR, aroma8 VARCHAR,num_amostra9 VARCHAR, aroma9 VARCHAR,num_amostra10 VARCHAR, aroma10 VARCHAR)";
+
     String CreateSliders =
         "CREATE TABLE sliders(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra VARCHAR,valor_slider FLOAT,caracteristica VARCHAR,comentario VARCHAR)";
     String Creatdifigual =
@@ -56,7 +60,14 @@ class Helper_BD extends StatefulWidget {
 
     List EntradasBD = await banco.query(
       "comparativo",
-      columns: ["id","data","provador","amostra_controle", "amostra_testada", "nota"],
+      columns: [
+        "id",
+        "data",
+        "provador",
+        "amostra_controle",
+        "amostra_testada",
+        "nota"
+      ],
     );
 
     return EntradasBD;
@@ -81,8 +92,8 @@ class Helper_BD extends StatefulWidget {
     //Database bd = await _Bancoapp();
 
     Map<String, dynamic> dadostabela = {
-      "data":teste.data,
-      "provador":teste.provador,
+      "data": teste.data,
+      "provador": teste.provador,
       "amostra_controle": teste.amostra_controle,
       "amostra_testada": teste.amostra_testada,
       "nota": teste.nota,
@@ -138,8 +149,8 @@ class Helper_BD extends StatefulWidget {
     //"CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
 
     Map<String, dynamic> dadostabela = {
-      "data":teste.data,
-      "provador":teste.provador,
+      "data": teste.data,
+      "provador": teste.provador,
       "amostra_controle": teste.amostra_controle,
       "amostra_testada": teste.menoscaracteristica,
       "amostra2": teste.mediacaracteristica,
@@ -166,7 +177,20 @@ class Helper_BD extends StatefulWidget {
 
     List EntradasBD = await banco.query(
       "avaliativo",
-      columns: ["id","data","provador","amostra_controle", "amostra1", "nota1","amostra2", "nota2","amostra3", "nota3","amostra4", "nota4"],
+      columns: [
+        "id",
+        "data",
+        "provador",
+        "amostra_controle",
+        "amostra1",
+        "nota1",
+        "amostra2",
+        "nota2",
+        "amostra3",
+        "nota3",
+        "amostra4",
+        "nota4"
+      ],
     );
 
     return EntradasBD;
@@ -194,8 +218,8 @@ class Helper_BD extends StatefulWidget {
 
     Map<String, dynamic> dadostabela = {
       //"id":teste.id,
-      "data":teste.data,
-      "provador":teste.provador,
+      "data": teste.data,
+      "provador": teste.provador,
       "amostra_controle": teste.amostra_controle,
       "amostra1": teste.amostra_1,
       "nota1": teste.nota1,
@@ -213,25 +237,39 @@ class Helper_BD extends StatefulWidget {
     //return result;
   }
 
-
 // TESTES AROMATICOS
 
   //=
   //   "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,
   //   num_amostra VARCHAR, aroma VARCHAR, aroma2 VARCHAR)"
 
-
   Future<int> insertAroma(ModeloAromatico teste) async {
     Database db = await Helper_BD().inicializarDB();
 
-
     Map<String, dynamic> dadostabela = {
       //"id":teste.id,
-      "data":teste.data,
-      "provador":teste.provador,
+      "data": teste.data,
+      "provador": teste.provador,
       "num_amostra": teste.Numamostra,
       "aroma": teste.aroma,
+      "num_amostra2": teste.Numamostra2,
       "aroma2": teste.aroma2,
+      "num_amostra3": teste.Numamostra3,
+      "aroma3": teste.aroma3,
+      "num_amostra4": teste.Numamostra4,
+      "aroma4": teste.aroma4,
+      "num_amostra5": teste.Numamostra5,
+      "aroma5": teste.aroma5,
+      "num_amostra6": teste.Numamostra6,
+      "aroma6": teste.aroma6,
+      "num_amostra7": teste.Numamostra7,
+      "aroma7": teste.aroma7,
+      "num_amostra8": teste.Numamostra8,
+      "aroma8": teste.aroma8,
+      "num_amostra9": teste.Numamostra9,
+      "aroma9": teste.aroma9,
+      "num_amostra10": teste.Numamostra10,
+      "aroma10": teste.aroma10,
     };
 
     var id = await db.insert("aroma", dadostabela);
@@ -244,9 +282,31 @@ class Helper_BD extends StatefulWidget {
     Database banco = await Helper_BD().inicializarDB();
     //var table = "aroma";
 
-    List EntradasBD = await banco
-        .query("aroma", columns: ["id","data","provador","num_amostra", "aroma", "aroma2"]);
-
+    List EntradasBD = await banco.query("aroma", columns: [
+      "id",
+      "data",
+      "provador",
+      "num_amostra",
+      "aroma",
+      "num_amostra2",
+      "aroma2",
+      "num_amostra3",
+      "aroma3",
+      "num_amostra4",
+      "aroma4",
+      "num_amostra5",
+      "aroma5",
+      "num_amostra6",
+      "aroma6",
+      "num_amostra7",
+      "aroma7",
+      "num_amostra8",
+      "aroma8",
+      "num_amostra9",
+      "aroma9",
+      "num_amostra10",
+      "aroma10"
+    ]);
 
     return EntradasBD;
   }
@@ -263,7 +323,7 @@ class Helper_BD extends StatefulWidget {
       ListaTeste.add(ModeloAromatico.fromMapObject(noteMapList[i]));
     }
     String json = jsonEncode(ListaTeste);
-    print(json+"/n");
+    print(json + "/n");
     return ListaTeste;
   }
 
@@ -307,7 +367,7 @@ class Helper_BD extends StatefulWidget {
     Map<String, dynamic> dadostabela = {
       //"id":teste.id,
       "data": teste.data,
-      "provador":teste.provador,
+      "provador": teste.provador,
       "amostra": teste.amostra,
       "valor_slider": teste.valor_slider,
       "caracteristica": teste.caracteristica,
@@ -385,7 +445,6 @@ class Helper_BD extends StatefulWidget {
     return result;
   }
 }
-
 
 class _Helper_BDState extends State<Helper_BD> {
   @override

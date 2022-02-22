@@ -43,7 +43,7 @@ _salvar(int data, String provador,String controle,
 class _FichaAvaliacaoState extends State<FichaAvaliacao> {
   DateTime now = DateTime.now();
   int num_amostra = 0;
-  String provador = "julgador";
+  String provador = "provador";
   int total=0;
 
   TextEditingController amostracontroller = TextEditingController();
@@ -300,10 +300,12 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                                 notas[0]);
 
 
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GridMain()));
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (context) => GridMain()),
+                                  (Route<dynamic> route) => false,
+                            );
+
                           } else {
                             num_amostra--;
                             //debugPrint(num_amostra.toString() + "faltam");
