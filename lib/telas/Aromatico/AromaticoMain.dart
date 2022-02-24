@@ -184,6 +184,13 @@ class _AromaticoMainState extends State<AromaticoMain> {
                                     amostras[7], aromas[7],amostras[6], aromas[6],amostras[5], aromas[5],amostras[4], aromas[4],
                                     amostras[3], aromas[3],amostras[2], aromas[2],amostras[1], aromas[1],amostras[0], aromas[0]);
 
+
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => GridMain()),
+                                        (Route<dynamic> route) => false,
+                                  );
+
                                 }
                                 numamostras--;
                                 amostracontroller.clear();

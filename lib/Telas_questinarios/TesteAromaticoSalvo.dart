@@ -112,7 +112,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -154,7 +154,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -196,7 +196,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -238,7 +238,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -280,7 +280,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -322,7 +322,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -364,7 +364,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -406,7 +406,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -448,7 +448,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),
@@ -490,7 +490,7 @@ class _TesteAromaticoSalvoState extends State<TesteAromaticoSalvo> {
                             ),
                           ),
                           SizedBox(
-                            width: 65,
+                            width: 120,
                             height: 40,
                             child: Padding(
                               padding: const EdgeInsets.all(5),

@@ -2,6 +2,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_test_app/Helper_BD/FileManager.dart';
 import 'DrawerWidget.dart';
 import 'GridQuestionarios.dart';
 import 'Listagemdados2.0.dart';
@@ -121,7 +122,8 @@ class _GridMainState extends State<GridMain> {
                       ],
                     )),
                 onTap: () {
-                  //selectedItem(context, 1, "temp", "temp");
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => FileManager()));
                 },
               ),
 

@@ -141,6 +141,23 @@ class Helper_BD extends StatefulWidget {
     return ListaTeste;
   }
 
+  Future<String> getModeloDecriminativoJson() async {
+    var noteMapList =
+    await recuperardobd_descriminativo(); // Get 'Map List' from database
+    int count =
+        noteMapList.length; // Count the number of map entries in db table
+
+    List<ModeloDiscriminativo> ListaTeste = <ModeloDiscriminativo>[];
+    // For loop to create a 'Note List' from a 'Map List'
+    for (int i = 0; i < count; i++) {
+      ListaTeste.add(ModeloDiscriminativo.fromMapObject(noteMapList[i]));
+    }
+    String json = jsonEncode(ListaTeste)+"\n";
+    return json;
+  }
+
+
+
   Future<int> insertDiscrimnativo(ModeloDiscriminativo teste) async {
     Database db = await Helper_BD().inicializarDB();
     //inserção dando erro no id/autoincremente se tento passar o modelo de classe direto???
@@ -322,10 +339,27 @@ class Helper_BD extends StatefulWidget {
     for (int i = 0; i < count; i++) {
       ListaTeste.add(ModeloAromatico.fromMapObject(noteMapList[i]));
     }
-    String json = jsonEncode(ListaTeste);
-    print(json + "/n");
     return ListaTeste;
   }
+
+
+  Future<String> getModeloAromaticoJson() async {
+    var noteMapList =
+    await recuperardobd_Aroma(); // Get 'Map List' from database
+    int count =
+        noteMapList.length; // Count the number of map entries in db table
+
+    List<ModeloAromatico> ListaTeste = <ModeloAromatico>[];
+    // For loop to create a 'Note List' from a 'Map List'
+    for (int i = 0; i < count; i++) {
+      ListaTeste.add(ModeloAromatico.fromMapObject(noteMapList[i]));
+    }
+    String json = jsonEncode(ListaTeste);
+    return json;
+  }
+
+
+
 
   // PARTE DO CODIGO SOBRE O TESTE COM SLIDERS
 //sliders(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,amostra VARCHAR,valor_slider FLOAT,caracteristica VARCHAR,comentario VARCHAR)";

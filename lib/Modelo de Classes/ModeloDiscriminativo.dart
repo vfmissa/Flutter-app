@@ -95,11 +95,11 @@ class ModeloDiscriminativo{
       "frame1": {
         "campos_fixos": {
           "name": {
-            "caption": _provador,
+            "caption": "PROVADOR",
             "type": "String"
           },
           "date": {
-            "type": _data,
+            "type": "DATA",
             "readonly": "true"
           }
         }

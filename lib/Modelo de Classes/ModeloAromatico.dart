@@ -244,19 +244,19 @@ set Numamostra(String newNumamostra){
         "repeat": "10",
         "description": "Informe o código da amostra e identifique o aroma presente.",
         "sample": {
-          "caption": _Numamostra,
+          "caption": _Numamostra10,
           "type": "Interger"
         },
         "arome": {
-          "caption": _aroma,
+          "caption": _aroma10,
           "type": "String"
         },
-        "sample": {
-          "caption": _Numamostra2,
+        "sample2": {
+          "caption": _Numamostra9,
           "type": "Interger"
         },
-        "arome": {
-          "caption": _aroma2,
+        "arome2": {
+          "caption": _aroma9,
           "type": "String"
         },
 
