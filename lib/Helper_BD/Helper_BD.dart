@@ -17,7 +17,9 @@ class Helper_BD extends StatefulWidget {
 
   _onCreateDB(Database db, int version) async {
     String CreatAvaliativo =
-        "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR)";
+        "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,"+
+            "amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR,amostra5 VARCHAR, nota5 VARCHAR,"+
+            "amostra6 VARCHAR, nota6 VARCHAR,amostra7 VARCHAR, nota7 VARCHAR,amostra8 VARCHAR, nota8 VARCHAR,amostra9 VARCHAR, nota9 VARCHAR,amostra10 VARCHAR, nota10 VARCHAR)";
 
     String CreatDiscriminativo =
         "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
@@ -185,8 +187,9 @@ class Helper_BD extends StatefulWidget {
 
 //TESTES AVALIATIVOS
 
-  // "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,"
-  //         "amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR,)";
+ /* "CREATE TABLE avaliativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR, amostra_controle VARCHAR,"+
+  "amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR,amostra5 VARCHAR, nota5 VARCHAR,"+
+  "amostra6 VARCHAR, nota6 VARCHAR,amostra7 VARCHAR, nota7 VARCHAR,amostra8 VARCHAR, nota8 VARCHAR,amostra9 VARCHAR, nota9 VARCHAR,amostra10 VARCHAR, nota10 VARCHAR)";*/
 
   recuperardobd_Avaliativo() async {
     Database banco = await Helper_BD().inicializarDB();
@@ -206,7 +209,19 @@ class Helper_BD extends StatefulWidget {
         "amostra3",
         "nota3",
         "amostra4",
-        "nota4"
+        "nota4",
+        "amostra5",
+        "nota5",
+        "amostra6",
+        "nota6",
+        "amostra7",
+        "nota7",
+        "amostra8",
+        "nota8",
+        "amostra9",
+        "nota9",
+        "amostra10",
+        "nota10"
       ],
     );
 
@@ -246,6 +261,18 @@ class Helper_BD extends StatefulWidget {
       "nota3": teste.nota3,
       "amostra4": teste.amostra_4,
       "nota4": teste.nota4,
+      "amostra5": teste.amostra_5,
+      "nota5": teste.nota5,
+      "amostra6": teste.amostra_6,
+      "nota6": teste.nota6,
+      "amostra7": teste.amostra_7,
+      "nota7": teste.nota7,
+      "amostra8": teste.amostra_8,
+      "nota8": teste.nota8,
+      "amostra9": teste.amostra_9,
+      "nota9": teste.nota9,
+      "amostra10": teste.amostra_10,
+      "nota10": teste.nota10,
     };
 
     var id = await db.insert("avaliativo", dadostabela);

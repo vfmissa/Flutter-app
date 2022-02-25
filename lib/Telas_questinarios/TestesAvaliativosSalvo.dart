@@ -22,9 +22,15 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
     super.initState();
   }
 
+
+
   Widget build(BuildContext context) {
     var data = DateTime.fromMillisecondsSinceEpoch(teste.data);
     DateTime dia = new DateTime(data.year, data.month, data.day);
+
+
+
+
 
     return Container(
       child: Scaffold(
@@ -32,6 +38,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
           title: Text("Ficha de Avaliação"),
           backgroundColor: Colors.blue,
         ),
+
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
@@ -152,7 +159,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.amostra_1,
+                                initialValue: teste.amostra_10,
                                 readOnly: true,
                                 decoration: InputDecoration(
                                     filled: true,
@@ -170,7 +177,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.nota1,
+                                initialValue: teste.nota10,
                                 readOnly: true,
                                 style: TextStyle(fontSize: 10),
                                 decoration: InputDecoration(
@@ -194,7 +201,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.amostra_2,
+                                initialValue: teste.amostra_9,
                                 readOnly: true,
                                 decoration: InputDecoration(
                                     filled: true,
@@ -212,7 +219,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.nota2,
+                                initialValue: teste.nota9,
                                 readOnly: true,
                                 style: TextStyle(fontSize: 10),
                                 decoration: InputDecoration(
@@ -236,7 +243,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.amostra_3,
+                                initialValue: teste.amostra_8,
                                 readOnly: true,
                                 decoration: InputDecoration(
                                     filled: true,
@@ -254,7 +261,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.nota3,
+                                initialValue: teste.nota8,
                                 readOnly: true,
                                 style: TextStyle(fontSize: 10),
                                 decoration: InputDecoration(
@@ -278,7 +285,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.amostra_4,
+                                initialValue: teste.amostra_7,
                                 readOnly: true,
                                 decoration: InputDecoration(
                                     filled: true,
@@ -296,7 +303,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: teste.nota4,
+                                initialValue: teste.nota7,
                                 readOnly: true,
                                 style: TextStyle(fontSize: 10),
                                 decoration: InputDecoration(
@@ -320,7 +327,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: "amostra5",
+                                initialValue: teste.amostra_6,
                                 readOnly: true,
                                 decoration: InputDecoration(
                                     filled: true,
@@ -338,7 +345,7 @@ class _TestAvaliativoSalvoState extends State<TestAvaliativoSalvo> {
                               padding: const EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
-                                initialValue: "nota 5",
+                                initialValue: teste.nota6,
                                 readOnly: true,
                                 style: TextStyle(fontSize: 10),
                                 decoration: InputDecoration(

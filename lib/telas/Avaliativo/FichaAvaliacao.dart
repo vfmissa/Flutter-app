@@ -11,30 +11,32 @@ import '../main.dart';
 class FichaAvaliacao extends StatefulWidget {
   int num_amostra;
   String provador;
-  String amostra;
-  String amostra2;
-  String amostra3;
+  String controle;
 
-  FichaAvaliacao(this.num_amostra, this.provador, this.amostra, this.amostra2,
-      this.amostra3);
+  FichaAvaliacao(this.num_amostra, this.provador, this.controle);
 
   _FichaAvaliacaoState createState() => _FichaAvaliacaoState();
 }
 
 
 
+_Salvar(int data,String provador,String Controle,String numaAmostra,String nota,String numaAmostra2,String nota2,String numaAmostra3,String nota3,
+String numaAmostra4,String nota4,String numaAmostra5,String nota5,String numaAmostra6,String nota6,
+    String numaAmostra7,String nota7,String numaAmostra8,String nota8,String numaAmostra9,String nota9,String numaAmostra10,String nota10) async {
+
+  print(numaAmostra2);
+  print(numaAmostra2);
 
 
-_salvar(int data, String provador,String controle,
-    String amostra,String nota,String amostra2,String nota2,String amostra3,String nota3,String amostra4,String nota4){
-
-  ModeloAvaliativo teste=ModeloAvaliativo(data, provador, controle, amostra, nota, amostra2, nota2, amostra3, nota3, amostra4, nota4);
+  ModeloAvaliativo teste=ModeloAvaliativo(data, provador, Controle, numaAmostra, nota, numaAmostra2, nota2, numaAmostra3, nota3, numaAmostra4,
+      nota4, numaAmostra5, nota5, numaAmostra6, nota6, numaAmostra7, nota7, numaAmostra8, nota8, numaAmostra9, nota9, numaAmostra10, nota10);
 
   var id = Helper_BD().insertAvaliativo(teste);
 
-  debugPrint(id.toString()+" :id avaliativo \n");
+
 
 }
+
 
 
 
@@ -44,6 +46,7 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
   DateTime now = DateTime.now();
   int num_amostra = 0;
   String provador = "provador";
+  String controle = "controle";
   int total=0;
 
   TextEditingController amostracontroller = TextEditingController();
@@ -56,8 +59,11 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
 
   @override
   void initState() {
+
     num_amostra = widget.num_amostra;
     provador = widget.provador;
+    controle = widget.controle;
+
     super.initState();
   }
 
@@ -65,13 +71,10 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
 
    total=widget.num_amostra;
 
-    debugPrint((total).toString()+" total de amostras\n");
 
     return WillPopScope(
       onWillPop: () async {
-        debugPrint("retorno habilitado");
-
-
+        //debugPrint("retorno habilitado");
 
         return true;
       },
@@ -277,27 +280,22 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                           notas.insert(
                               (total - num_amostra), valorcontroller.text);
 
-                          if (num_amostra == 1) {
 
-                            for(var i=total;4>i;i++){
+
+
+                          if (num_amostra == 1) {
+                            for(var i=total;10>i;i++){
                               amostras.insert((i),"null");
                               notas.insert((i),"null");
-                                debugPrint(i.toString());
+
                             };
 
+
+
+                            _Salvar(now.millisecondsSinceEpoch, provador,controle, amostras[9], notas[9], amostras[8], notas[8],amostras[7], notas[7], amostras[6], notas[6], amostras[5],
+                                notas[5], amostras[4], notas[4], amostras[3], notas[3], amostras[2], notas[2], amostras[1], notas[1], amostras[0], notas[0]);
+
                             //debugPrint(amostras[(total - num_amostra)]+'amostra' + num_amostra.toString());
-                            _salvar(
-                                now.millisecondsSinceEpoch,
-                                provador,
-                                "controle",
-                                amostras[3],
-                                notas[3],
-                                amostras[2],
-                                notas[2],
-                                amostras[1],
-                                notas[1],
-                                amostras[0],
-                                notas[0]);
 
 
                             Navigator.pushAndRemoveUntil(
