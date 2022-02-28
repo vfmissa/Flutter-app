@@ -6,7 +6,7 @@ class ModeloDiferenteIgual{
 
   late int _id;
   late int _data;
-  late String _julgador;
+  late String _provador;
   late String  _amostra0;
   late String _amostra1;
   late String _amostra2;
@@ -15,13 +15,13 @@ class ModeloDiferenteIgual{
 
 
 
-  ModeloDiferenteIgual(this._data,this._julgador,this._amostra0,this._amostra1,
+  ModeloDiferenteIgual(this._data,this._provador,this._amostra0,this._amostra1,
       this._amostra2,this._amostradif,this._comentario);
 
 
   int get id=>_id;
   int get data => _data;
-  String get julgador => _julgador;
+  String get provador => _provador;
   String get amostra0 => _amostra0;
   String get amostra1 => _amostra1;
   String get amostra2 => _amostra2;
@@ -31,8 +31,8 @@ class ModeloDiferenteIgual{
     this.data = newdata;
   }
 
-  set julgador(String newjulgador){
-    this.julgador=newjulgador;
+  set provador(String newjulgador){
+    this.provador=newjulgador;
   }
 
   set amostra0(String newamostra0){
@@ -63,7 +63,7 @@ class ModeloDiferenteIgual{
       map["id"] =_id;
     }
     map['data']=_data;
-    map['julgador']=_julgador;
+    map['provador']=_provador;
     map['amostra0']=_amostra0;
     map['amostra1']=_amostra1;
     map['amostra2']=_amostra2;
@@ -77,7 +77,7 @@ class ModeloDiferenteIgual{
 
       this._id=map["id"];
       this._data=map["data"];
-      this._julgador=map["julgador"];
+      this._provador=map["provador"];
       this._amostra0=map["amostra0"];
       this._amostra1=map["amostra1"];
       this._amostra2=map["amostra2"];

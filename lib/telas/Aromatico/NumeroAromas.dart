@@ -3,6 +3,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_test_app/telas/Aromatico/InicioQuestinario.dart';
 import 'AromaticoMain.dart';
 
 class NumeroAromas extends StatefulWidget {
@@ -43,7 +44,7 @@ class _NumeroAromasState extends State<NumeroAromas> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
+                  /*Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Insira o nome do Provador",style: TextStyle(fontSize: 24),),
@@ -80,13 +81,13 @@ class _NumeroAromasState extends State<NumeroAromas> {
                         ),
                       )
                     ],
-                  ),
+                  ),*/
                   Container(
                     height: 60,
                     decoration: BoxDecoration(
                         border: Border.all(width: 2, color: Colors.blue)),
                     child: AutoSizeText(
-                      "Inserir o número de Amostras a serem Testadas",
+                      "Inserir o número de Amostras por Teste",
                       maxLines: 1,
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 25),
@@ -146,7 +147,7 @@ class _NumeroAromasState extends State<NumeroAromas> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    AromaticoMain(int.parse(num_amostras.text),provadorcontroller.text)));
+                                    InicioQuestionario(int.parse(num_amostras.text))));
                       }
                     },
                     child:

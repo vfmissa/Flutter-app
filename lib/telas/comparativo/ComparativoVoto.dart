@@ -7,7 +7,7 @@ import 'package:food_test_app/telas/GridMain.dart';
 import 'ComparativoAmostra.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../Helper_BD/Helper_BD.dart';
-import '../main.dart';
+import '../../main.dart';
 
 
 //salvar o test descriminativo

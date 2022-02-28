@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
+import 'dart:ffi';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
@@ -19,6 +21,7 @@ Salvar(int data,String provador,String amostra, String caracteristica, double va
 }
 
 class QuestinarioSliders extends StatefulWidget {
+
   String amostracontrole;
   String provador;
   String caracteristica;
@@ -41,6 +44,9 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
   TextEditingController comentcontroller = TextEditingController();
 
   var now = DateTime.now();
+
+  List<String>amostras=<String>[];
+  List<Float>Valor=<Float>[];
 
   @override
   Widget build(BuildContext context) {

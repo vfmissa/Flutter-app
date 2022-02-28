@@ -486,7 +486,7 @@ class Helper_BD extends StatefulWidget {
 
       //"id":teste.id,
       "data": teste.data,
-      "julgador": teste.julgador,
+      "provador": teste.provador,
       "amostra0": teste.amostra0,
       "amostra1": teste.amostra1,
       "amostra2": teste.amostra2,

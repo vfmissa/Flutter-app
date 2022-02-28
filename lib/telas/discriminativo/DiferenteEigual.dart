@@ -19,8 +19,9 @@ class DiferenteEigual extends StatefulWidget {
   late String amostra0;
   late String amostra1;
   late String amostra2;
+  late String Provador;
 
-  DiferenteEigual(this.amostra0, this.amostra1, this.amostra2);
+  DiferenteEigual(this.amostra0, this.amostra1, this.amostra2,this.Provador);
 
   @override
   _DiferenteEigualState createState() => _DiferenteEigualState();
@@ -38,7 +39,8 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
     String amostra0 = widget.amostra0;
     String amostra1 = widget.amostra1;
     String amostra2 = widget.amostra2;
-    String julgador = "provisorio";
+    String provador = widget.Provador;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("FICHA DE ANÁLISE DISCRIMINATIVO"),
@@ -57,7 +59,7 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
               Row(//row de texto
                   children: [
                 Text(
-                  "Julgador: ",
+                  "Provador: $provador",
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 20, fontStyle: FontStyle.italic),
@@ -164,7 +166,7 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
                             },
                           ),
                           title: FittedBox(
-                              child: AutoSizeText("Amostra $amostra0",
+                              child: AutoSizeText("Amostra: $amostra0",
                                   maxFontSize: 12)),
                         ),
                       ),
@@ -180,7 +182,7 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
                             },
                           ),
                           title: FittedBox(
-                              child: AutoSizeText("Amostra $amostra1",
+                              child: AutoSizeText("Amostra: $amostra1",
                                   maxFontSize: 12)),
                         ),
                       ),
@@ -196,7 +198,7 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
                             },
                           ),
                           title: FittedBox(
-                              child: AutoSizeText("Amostra $amostra2",
+                              child: AutoSizeText("Amostra: $amostra2",
                                   maxFontSize: 12)),
                         ),
                       ),
@@ -221,7 +223,7 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
                         filled: true,
                         fillColor: Colors.blue,
                         contentPadding: EdgeInsets.fromLTRB(5, 5, 0, 0),
-                        hintText: "Comentarios:",
+                        hintText: "Comentarios: ",
                         hintStyle: TextStyle(color: Colors.black),
                       ),
                     )),
@@ -231,21 +233,26 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
                 onPressed: () async {
                   //qual amostra foi considerada diferente
                   if (_valorpadrao == "1") {
-                    Salvar(now.millisecondsSinceEpoch, julgador, amostra0,
+                    Salvar(now.millisecondsSinceEpoch, provador, amostra0,
                         amostra1, amostra2, 1, comentariocontroller.text);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => GridMain()));
                   }
                   if (_valorpadrao == "2") {
-                    Salvar(now.millisecondsSinceEpoch, julgador, amostra0,
+                    Salvar(now.millisecondsSinceEpoch, provador, amostra0,
                         amostra1, amostra2, 2, comentariocontroller.text);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => GridMain()));
                   }
                   if (_valorpadrao == "3") {
-                    Salvar(now.millisecondsSinceEpoch, julgador, amostra0,
+                    Salvar(now.millisecondsSinceEpoch, provador, amostra0,
                         amostra1, amostra2, 3, comentariocontroller.text);
-                  }else{
-                    //ERRO?
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => GridMain()));
+                  }if(_valorpadrao == "0"){
+                    _showDialog(context);
                   }
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => GridMain()));
+
                 },
                 child: const Text("Submeter",
                     style: TextStyle(color: Colors.black)),
@@ -256,4 +263,25 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
       ),
     );
   }
+}
+
+
+_showDialog(BuildContext context) async {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: new Text("Escolha uma amostra"),
+        content: new Text(" Vote na amostra que é diferente "),
+        actions: <Widget>[
+          new TextButton(
+            child: new Text("OK"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiscriminativo.dart';
+import 'package:food_test_app/telas/GridMain.dart';
 import 'FichaOrdenacao.dart';
 
 class AnaliseDiscriminativo extends StatefulWidget {
@@ -84,7 +85,7 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                   width: 0,
                 ),
                 Text(
-                  "Você está recebendo 3 amostras codificadas."
+                  "Você está recebendo N amostras codificadas."
                   " Por favor, ordene as amostras em ordem crescente em relação a ${widget.caracteristica}",
                   style: const TextStyle(
                       letterSpacing: 2,
@@ -453,11 +454,11 @@ class _AnaliseDiscriminativoState extends State<AnaliseDiscriminativo> {
                       await Salvar(now.millisecondsSinceEpoch,provador,amostra, sample1Menos.text, sample2Meio.text,
                           sample3Mais.text, comentario.text);
                       //await _recuperardobd();
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  FichaOrdenacao(amostra, provador)));
+                                  GridMain()));
                     } else {
                       _showDialog(context);
                     }

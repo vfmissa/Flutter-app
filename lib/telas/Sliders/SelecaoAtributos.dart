@@ -97,7 +97,7 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                   children: [
                     SizedBox(
                         width: 120,
-                        height: 50,
+                        height: 60,
                         child: TextFormField(
                           keyboardType: TextInputType.text,
                           controller: caracteristicacontroller1,
@@ -122,7 +122,7 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                         )),
                     SizedBox(
                         width: 120,
-                        height: 50,
+                        height: 60,
                         child: TextFormField(
                           keyboardType: TextInputType.number,
                           textCapitalization: TextCapitalization.sentences,

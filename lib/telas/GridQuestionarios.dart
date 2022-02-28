@@ -2,6 +2,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
+import 'discriminativo/AmostrasOrdenação.dart';
 import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
 import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
 import 'package:food_test_app/telas/discriminativo/AnaliseDiscriminativo.dart';
@@ -57,8 +58,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            AmostrasAvaliativo()));
+                        builder: (context) => AmostrasAvaliativo()));
               },
             ),
             GestureDetector(
@@ -89,8 +89,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            SelecaoAtributos()));
+                        builder: (context) => SelecaoAtributos()));
               },
             ),
             GestureDetector(
@@ -152,7 +151,8 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>AnaliseDiscriminativo("temp1", "temp2","caracteristica")));
+                        builder: (context) => AnaliseDiscriminativo(
+                            "temp1", "temp2", "caracteristica")));
               },
             ),
             GestureDetector(
@@ -180,10 +180,40 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                     ],
                   )),
               onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NumeroAromas()));
+              },
+            ),
+            GestureDetector(
+              child: Container(
+                  height: 25,
+                  color: Colors.blue,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            AutoSizeText(
+                              "Questionario Preferencia",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Icon(
+                              Icons.assignment_outlined,
+                              size: 100,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
+              onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => NumeroAromas()));
+                        builder: (context) =>
+                            AmostrasOrdenacao()));
               },
             ),
           ],

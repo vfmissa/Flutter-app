@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/telas/GridMain.dart';
-import 'DrawerWidget.dart';
 import 'package:flutter/widgets.dart';
-import 'discriminativo/AnaliseDiscriminativo.dart';
-import 'Listagemdados2.0.dart';
 import 'package:flutter/services.dart';
 
 

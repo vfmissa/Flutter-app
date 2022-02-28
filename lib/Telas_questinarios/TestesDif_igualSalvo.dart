@@ -48,7 +48,7 @@ class _TestesDif_igualSalvoState extends State<TestesDif_igualSalvo> {
               Row(//row de texto
                   children: [
                     Text(
-                      "Provador:"+teste.julgador,
+                      "Provador:"+teste.provador,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontSize: 20, fontStyle: FontStyle.italic),
@@ -155,7 +155,7 @@ class _TestesDif_igualSalvoState extends State<TestesDif_igualSalvo> {
                             },
                           ),
                           title: FittedBox(
-                              child: AutoSizeText("Amostra"+teste.amostra0, maxFontSize: 12)),
+                              child: AutoSizeText("Amostra: "+teste.amostra0, maxFontSize: 12)),
                         ),
                       ),
                       Expanded(
@@ -170,7 +170,7 @@ class _TestesDif_igualSalvoState extends State<TestesDif_igualSalvo> {
                             },
                           ),
                           title: FittedBox(
-                              child: AutoSizeText("Amostra "+teste.amostra1, maxFontSize: 12)),
+                              child: AutoSizeText("Amostra: "+teste.amostra1, maxFontSize: 12)),
                         ),
                       ),
                       Expanded(
@@ -185,7 +185,7 @@ class _TestesDif_igualSalvoState extends State<TestesDif_igualSalvo> {
                             },
                           ),
                           title: FittedBox(
-                              child: AutoSizeText("Amostra"+teste.amostra2,maxFontSize: 12)),
+                              child: AutoSizeText("Amostra: "+teste.amostra2,maxFontSize: 12)),
                         ),
                       ),
                     ],

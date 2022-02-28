@@ -6,7 +6,7 @@ import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
 import 'package:food_test_app/telas/GridMain.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class FichaAvaliacao extends StatefulWidget {
   int num_amostra;

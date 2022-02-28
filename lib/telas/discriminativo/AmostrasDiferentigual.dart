@@ -12,6 +12,8 @@ class _AmostrasDiferentigualState extends State<AmostrasDiferentigual> {
   TextEditingController amostra0controller = TextEditingController();
   TextEditingController amostra1controller = TextEditingController();
   TextEditingController amostra2controller = TextEditingController();
+  TextEditingController provadorcontroller = TextEditingController();
+
   var now = DateTime.now();
   final _formKey = GlobalKey<FormState>();
 
@@ -32,20 +34,49 @@ class _AmostrasDiferentigualState extends State<AmostrasDiferentigual> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(padding: EdgeInsets.all(25)),
-              Row(//row de texto
-                  children: [
-                Text(
-                  "Provador: ",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 20, fontStyle: FontStyle.italic),
-                ),
-                Text(
-                  "DATA:${now.day}/${now.month}/${now.year}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
-                ),
-              ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Insira o nome do Provador",
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  SizedBox(
+                    width: 180,
+                    height: 60,
+                    child: TextFormField(
+                      style: TextStyle(fontSize: 16),
+                      keyboardType: TextInputType.text,
+                      maxLength: 50,
+                      maxLines: 1,
+                      controller: provadorcontroller,
+                      validator: (value) {
+                        if (value!.trim().isEmpty) {
+                          return "insira provador";
+                        }
+                        return null;
+                      },
+                      // ignore: prefer_const_constructors
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.blue,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        hintText: " ",
+                        contentPadding: EdgeInsets.all(5),
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                        //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                      ),
+                    ),
+                  )
+                ],
+              ),
               const SizedBox(
                 height: 50,
                 width: 0,
@@ -60,85 +91,98 @@ class _AmostrasDiferentigualState extends State<AmostrasDiferentigual> {
               const SizedBox(height: 15),
               Form(
                 key: _formKey,
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          controller: amostra0controller,
-                          maxLength: 3,
-                          validator: (value){
-                            if (value == null || value.trim().isEmpty|| int.parse(value) <= 100|| int.parse(value) >= 1000) {
-                              return "Prencha os campos";
-                            }
-                            return null;
-                          },
-                          // ignore: prefer_const_constructors
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ), //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
-                          ),
-                        )),
-                  ),
-                  Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          controller: amostra1controller,
-                          maxLength: 3,
-                          validator: (value){
-                            if (value == null || value.trim().isEmpty|| int.parse(value) <= 100|| int.parse(value) >= 1000) {
-                              return "Prencha os campos";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.blue,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(3),
-                              )),
-                        )),
-                  ),
-                  Expanded(
-                    child: Padding(
-                        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          controller: amostra2controller,
-                          maxLength: 3,
-                          validator: (value){
-                            if (value == null || value.trim().isEmpty|| int.parse(value) <= 100|| int.parse(value) >= 1000) {
-                              return "Prencha os campos";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                          ),
-                        )),
-                  ),
-                ]),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: amostra0controller,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().isEmpty ||
+                                    int.parse(value) <= 100 ||
+                                    int.parse(value) >= 1000) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              // ignore: prefer_const_constructors
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(3),
+                                ), //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                              ),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: amostra1controller,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().isEmpty ||
+                                    int.parse(value) <= 100 ||
+                                    int.parse(value) >= 1000) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.blue,
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                  )),
+                            )),
+                      ),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                            child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              controller: amostra2controller,
+                              maxLength: 3,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().isEmpty ||
+                                    int.parse(value) <= 100 ||
+                                    int.parse(value) >= 1000) {
+                                  return "Prencha os campos";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.blue,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            )),
+                      ),
+                    ]),
               ),
               ElevatedButton(
                 onPressed: () async {
-                if (_formKey.currentState!.validate()) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DiferenteEigual(
-                              amostra0controller.text,
-                              amostra1controller.text,
-                              amostra2controller.text)));}
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DiferenteEigual(
+                                amostra0controller.text,
+                                amostra1controller.text,
+                                amostra2controller.text,
+                                provadorcontroller.text)));
+                  }
                 },
                 child: const Text("Submeter",
                     style: TextStyle(color: Colors.black)),

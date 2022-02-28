@@ -216,7 +216,7 @@ class _AmostrasAvaliativoState extends State<AmostrasAvaliativo> {
                   ElevatedButton(
                     onPressed: () {
                       if (_valueamostra.currentState!.validate()) {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
