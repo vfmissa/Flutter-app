@@ -137,7 +137,7 @@ class _TesteSlidersSalvoState extends State<TesteSlidersSalvo> {
                           width: 300,
                           child: Slider(
                             value: teste.valor_slider,
-                            max: 100,
+                            max: 90,
                             //label: teste.valor_slider.round().toString(),
                             onChanged: (double value) {
                               setState(() {

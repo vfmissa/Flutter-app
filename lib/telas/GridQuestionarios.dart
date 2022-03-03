@@ -1,11 +1,13 @@
 // ignore_for_file: file_names
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:food_test_app/telas/Aromatico/InicioQuestinario.dart';
 import 'package:food_test_app/telas/Aromatico/NumeroAromas.dart';
+import 'package:food_test_app/telas/Ordena%C3%A7%C3%A3o/InicioQuestinarioOrdenacao.dart';
 import 'discriminativo/AmostrasOrdenação.dart';
 import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
 import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
-import 'package:food_test_app/telas/discriminativo/AnaliseDiscriminativo.dart';
+import 'Ordenação/AnaliseDiscriminativo9amostras.dart';
 import 'package:food_test_app/telas/Avaliativo/AmostrasAvaliativo.dart';
 import 'DrawerWidget.dart';
 
@@ -151,8 +153,7 @@ class _GridQuestionariosState extends State<GridQuestionarios> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => AnaliseDiscriminativo(
-                            "temp1", "temp2", "caracteristica")));
+                        builder: (context) => InicioOrdenacao()));
               },
             ),
             GestureDetector(

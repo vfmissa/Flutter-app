@@ -3,6 +3,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:food_test_app/telas/Sliders/SliderAmostraProvador.dart';
 import 'QuestinarioSliders.dart';
 
 
@@ -34,13 +35,13 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Insira o nome do Provador",
+                  "Teste de Percepção de atributo",
                   style: TextStyle(fontSize: 24),
                 ),
                 SizedBox(
                   width: 30,
                 ),
-                SizedBox(
+                /*SizedBox(
                   width: 180,
                   height: 60,
                   child: TextFormField(
@@ -70,7 +71,7 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                       //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                     ),
                   ),
-                )
+                )*/
               ],
             ),
             Padding(
@@ -79,11 +80,11 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                 height: 60,
                 width: 700,
                 decoration: BoxDecoration(
-                    border: Border.all(width: 3, color: Colors.blue)),
+                    border: Border.all(width: 1, color: Colors.blue)),
                 child: AutoSizeText(
                   "Escolher os atributos a serem analizados \n",
                   maxLines: 15,
-                  textAlign: TextAlign.start,
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 30),
                 ),
               ),
@@ -96,8 +97,8 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                        width: 120,
-                        height: 60,
+                        width: 240,
+                        height: 120,
                         child: TextFormField(
                           keyboardType: TextInputType.text,
                           controller: caracteristicacontroller1,
@@ -120,7 +121,7 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                             ),
                           ),
                         )),
-                    SizedBox(
+                   /* SizedBox(
                         width: 120,
                         height: 60,
                         child: TextFormField(
@@ -147,7 +148,7 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                               borderRadius: BorderRadius.circular(3),
                             ),
                           ),
-                        )),
+                        )),*/
                   ],
                 ),
               ),
@@ -158,10 +159,7 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => QuestinarioSliders(
-                                provadorcontroller.text,
-                                amostracontroller1.text,
-                                caracteristicacontroller1.text)));
+                            builder: (context) => SliderAmostraProvador(caracteristicacontroller1.text)));
                   } //if
                 },
                 child: Text("Iniciar Questionario",

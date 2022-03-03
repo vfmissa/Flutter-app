@@ -3,8 +3,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:food_test_app/telas/Aromatico/InicioQuestinario.dart';
-import 'AromaticoMain.dart';
+import 'InicioQuestinario.dart';
+
 
 class NumeroAromas extends StatefulWidget {
 

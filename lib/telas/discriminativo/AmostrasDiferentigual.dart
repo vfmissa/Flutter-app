@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
 
+import '../GridMain.dart';
+
 class AmostrasDiferentigual extends StatefulWidget {
   @override
   _AmostrasDiferentigualState createState() => _AmostrasDiferentigualState();
@@ -186,6 +188,18 @@ class _AmostrasDiferentigualState extends State<AmostrasDiferentigual> {
                 },
                 child: const Text("Submeter",
                     style: TextStyle(color: Colors.black)),
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton(child: Icon(
+                    Icons.run_circle_outlined, size: 50,
+                    color: Colors.black,),
+                      backgroundColor: Colors.red,
+                      onPressed: () {
+                        _showDialogpassword(context);
+
+                      }),
+                ],
               )
             ],
           ),
@@ -193,4 +207,36 @@ class _AmostrasDiferentigualState extends State<AmostrasDiferentigual> {
       ),
     );
   }
+}
+
+
+_showDialogpassword(BuildContext context) async {
+  TextEditingController passwordcontroller = TextEditingController();
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: new Text("Pausar Testes Aromaticos?"),
+        content: new Text("Para retirar o app do modo de teste insira a senha"),
+        actions: <Widget>[
+          TextFormField(autofocus: true,
+            keyboardType: TextInputType.number,
+            controller: passwordcontroller,
+          ),
+          TextButton(
+            child: new Text("PAUSAR TESTES"),
+            onPressed: () {
+              if (passwordcontroller.text == "123") {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => GridMain()),
+                      (Route<dynamic> route) => false,
+                );
+              }
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

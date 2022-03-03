@@ -4,7 +4,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloDiferenteIgual.dart';
+import '../Aromatico/InicioQuestinario.dart';
 import 'package:food_test_app/telas/GridMain.dart';
+import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
 
 Salvar(int data, String julgador, String amostra0, String amostra1,
     String amostra2, int amostradif, String coment) async {
@@ -256,6 +258,18 @@ class _DiferenteEigualState extends State<DiferenteEigual> {
                 },
                 child: const Text("Submeter",
                     style: TextStyle(color: Colors.black)),
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton(child: Icon(
+                    Icons.run_circle_outlined, size: 50,
+                    color: Colors.black,),
+                      backgroundColor: Colors.red,
+                      onPressed: () {
+                        _showDialog2(context,3);
+
+                      }),
+                ],
               )
             ],
           ),
@@ -278,6 +292,73 @@ _showDialog(BuildContext context) async {
             child: new Text("OK"),
             onPressed: () {
               Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+_showDialog2(BuildContext context, int Namostras) async {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("PARA DESISTIR DO TESTE CLIQUE E SEGURE SAIR"),
+        content: Text("Para continuar clique em ok"),
+        actions: <Widget>[
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("OK")),
+          ElevatedButton(
+            child: Text("SAIR"),
+            onLongPress: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AmostrasDiferentigual()),
+                    (Route<dynamic> route) => false,
+              );
+            },
+            onPressed: () {},
+          ),
+          TextButton(
+            child: Text("PAUSAR TESTES"),
+            onPressed: () {
+              _showDialogpassword(context);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+_showDialogpassword(BuildContext context) async {
+  TextEditingController passwordcontroller = TextEditingController();
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: new Text("Pausar Testes Aromaticos?"),
+        content: new Text("Para retirar o app do modo de teste insira a senha"),
+        actions: <Widget>[
+          TextFormField(autofocus: true,
+            keyboardType: TextInputType.number,
+            controller: passwordcontroller,
+          ),
+          TextButton(
+            child: new Text("PAUSAR TESTES"),
+            onPressed: () {
+              if (passwordcontroller.text == "123") {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => GridMain()),
+                      (Route<dynamic> route) => false,
+                );
+              }
             },
           ),
         ],

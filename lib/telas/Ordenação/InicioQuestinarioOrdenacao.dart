@@ -2,32 +2,33 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:food_test_app/telas/Ordena%C3%A7%C3%A3o/AnaliseDiscriminativo9amostras.dart';
+import 'package:food_test_app/telas/Ordena%C3%A7%C3%A3o/ProvadorOrdenacao.dart';
+
 import '../GridMain.dart';
-import 'AromaticoMain.dart';
 
-class InicioQuestionario extends StatefulWidget {
-  late int numamostras;
+class InicioOrdenacao extends StatefulWidget {
 
-  InicioQuestionario(this.numamostras);
 
   @override
-  _InicioQuestionarioState createState() => _InicioQuestionarioState();
+  _InicioOrdenacaoState createState() => _InicioOrdenacaoState();
 }
 
-class _InicioQuestionarioState extends State<InicioQuestionario> {
+class _InicioOrdenacaoState extends State<InicioOrdenacao> {
+
   final _valueamostra = GlobalKey<FormState>();
-  TextEditingController provadorcontroller = TextEditingController();
+  TextEditingController Carcateristicacontroller = TextEditingController();
+  TextEditingController Numerocontroller = TextEditingController();
   String julgador = "SemNOme";
 
   @override
   Widget build(BuildContext context) {
-    int Namostras = widget.numamostras;
-    String Descricaoaromatico =
-        "Você vai experimentar $Namostras amostras diferentes. Preencha a indentificação acima para prosseguir ";
+    String Descricao =
+        "Insira o numero de amostras que será recebido por cada Provador e a caracteristica parametro";
+
     return WillPopScope(
       onWillPop: () async {
-        return false;
+        return true;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -46,12 +47,23 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.white60)),
+                      child: AutoSizeText(
+                        "$Descricao",
+                        maxLines: 1,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Insira o nome do Provador",
-                          style: TextStyle(fontSize: 24),
+                          "Insira a Caracteristica parametro",
+                          style: TextStyle(fontSize: 22),
                         ),
                         SizedBox(
                           width: 30,
@@ -64,10 +76,53 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                             keyboardType: TextInputType.text,
                             maxLength: 50,
                             maxLines: 1,
-                            controller: provadorcontroller,
+                            controller: Carcateristicacontroller,
                             validator: (value) {
                               if (value!.trim().isEmpty) {
-                                return "insira provador";
+                                return "insira caracteristica";
+                              }
+                              return null;
+                            },
+                            // ignore: prefer_const_constructors
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.blue,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              hintText: " ",
+                              contentPadding: EdgeInsets.all(5),
+                              hintStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                            ),
+                          ),
+                        )
+                      ],
+                    ),Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Amostras por provador",
+                          style: TextStyle(fontSize: 24),
+                        ),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        SizedBox(
+                          width: 180,
+                          height: 60,
+                          child: TextFormField(
+                            style: TextStyle(fontSize: 16),
+                            keyboardType: TextInputType.number,
+                            maxLength: 1,
+                            controller: Numerocontroller,
+                            validator: (value) {
+                              if (value!.trim().isEmpty ||
+                                  int.parse(value) > 10 ||
+                                  int.parse(value) == 0) {
+                                return "Numero de amostras";
                               }
                               return null;
                             },
@@ -89,17 +144,6 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                         )
                       ],
                     ),
-                    Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.white60)),
-                      child: AutoSizeText(
-                        "$Descricaoaromatico",
-                        maxLines: 1,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 25),
-                      ),
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -109,9 +153,7 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => AromaticoMain(
-                                          int.parse(Namostras.toString()),
-                                          provadorcontroller.text)));
+                                      builder: (context) => ProvadorOrdenacao(Carcateristicacontroller.text,int.parse(Numerocontroller.text))));
                             }
                           },
                           child: Text("Iniciar Teste",
@@ -130,7 +172,7 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                             ),
                             backgroundColor: Colors.red,
                             onPressed: () {
-                              _showDialog(context, Namostras);
+                              _showDialogpassword(context);
                             }),
                       ],
                     )
@@ -141,31 +183,6 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
       ),
     );
   }
-}
-
-_showDialog(BuildContext context, int Namostras) async {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Favor informar alguem se deseja sair do teste"),
-        content: Text("Para continuar clique em Continuar"),
-        actions: <Widget>[
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text("CONTINUAR")),
-          TextButton(
-            child: Text("PARAR TESTES"),
-            onPressed: () {
-              _showDialogpassword(context);
-            },
-          ),
-        ],
-      );
-    },
-  );
 }
 
 _showDialogpassword(BuildContext context) async {
@@ -188,7 +205,7 @@ _showDialogpassword(BuildContext context) async {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => GridMain()),
-                  (Route<dynamic> route) => false,
+                      (Route<dynamic> route) => false,
                 );
               } else {
                 Navigator.of(context).pop();
@@ -200,3 +217,5 @@ _showDialogpassword(BuildContext context) async {
     },
   );
 }
+
+

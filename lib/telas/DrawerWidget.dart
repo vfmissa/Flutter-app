@@ -6,7 +6,7 @@ import 'package:food_test_app/telas/Avaliativo/AmostrasAvaliativo.dart';
 import 'package:food_test_app/telas/Sliders/SelecaoAtributos.dart';
 import 'package:food_test_app/telas/discriminativo/AmostrasDiferentigual.dart';
 import 'package:food_test_app/telas/discriminativo/DiferenteEigual.dart';
-import 'discriminativo/AnaliseDiscriminativo.dart';
+import 'Ordenação/AnaliseDiscriminativo9amostras.dart';
 import 'comparativo/ComparativoNumAmostras.dart';
 import 'Avaliativo/FichaAvaliacao.dart';
 
@@ -105,7 +105,7 @@ void selectedItem(BuildContext context, int index,String amostra,String julgador
     case 0:
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) =>
-            AnaliseDiscriminativo(amostra, julgador, "caracteristica"),
+            AnaliseDiscriminativo9amostras(0, julgador, "caracteristica"),
       ));
       break;
     case 1:

@@ -2,36 +2,46 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:food_test_app/telas/Ordena%C3%A7%C3%A3o/AnaliseDiscriminativo9amostras.dart';
+
 import '../GridMain.dart';
-import 'AromaticoMain.dart';
 
-class InicioQuestionario extends StatefulWidget {
-  late int numamostras;
 
-  InicioQuestionario(this.numamostras);
+
+class ProvadorOrdenacao extends StatefulWidget {
+
+  late String caracteristica;
+  late int numAmostras;
+
+  ProvadorOrdenacao(this.caracteristica,this.numAmostras);
+
+
 
   @override
-  _InicioQuestionarioState createState() => _InicioQuestionarioState();
+  _ProvadorOrdenacaoState createState() => _ProvadorOrdenacaoState();
 }
 
-class _InicioQuestionarioState extends State<InicioQuestionario> {
+class _ProvadorOrdenacaoState extends State<ProvadorOrdenacao> {
+
   final _valueamostra = GlobalKey<FormState>();
   TextEditingController provadorcontroller = TextEditingController();
   String julgador = "SemNOme";
 
   @override
   Widget build(BuildContext context) {
-    int Namostras = widget.numamostras;
-    String Descricaoaromatico =
+
+    int Namostras = widget.numAmostras;
+    String Descricao =
         "Você vai experimentar $Namostras amostras diferentes. Preencha a indentificação acima para prosseguir ";
-    return WillPopScope(
+
+
+    return  WillPopScope(
       onWillPop: () async {
         return false;
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Questionario Aromatico"),
+          title: Text("Questionario Ordenação"),
           backgroundColor: Colors.blue,
         ),
         body: SingleChildScrollView(
@@ -94,7 +104,7 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                       decoration: BoxDecoration(
                           border: Border.all(width: 2, color: Colors.white60)),
                       child: AutoSizeText(
-                        "$Descricaoaromatico",
+                        "$Descricao",
                         maxLines: 1,
                         textAlign: TextAlign.start,
                         style: TextStyle(fontSize: 25),
@@ -109,9 +119,7 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => AromaticoMain(
-                                          int.parse(Namostras.toString()),
-                                          provadorcontroller.text)));
+                                      builder: (context) => AnaliseDiscriminativo9amostras(widget.numAmostras, provadorcontroller.text,widget.caracteristica)));
                             }
                           },
                           child: Text("Iniciar Teste",
@@ -188,7 +196,7 @@ _showDialogpassword(BuildContext context) async {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => GridMain()),
-                  (Route<dynamic> route) => false,
+                      (Route<dynamic> route) => false,
                 );
               } else {
                 Navigator.of(context).pop();
@@ -200,3 +208,4 @@ _showDialogpassword(BuildContext context) async {
     },
   );
 }
+

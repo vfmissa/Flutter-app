@@ -214,6 +214,7 @@ class _AromaticoMainState extends State<AromaticoMain> {
                         ],
                       ),
                     ),
+
                     ElevatedButton(
                         onPressed: () async {
                           if (_formkey.currentState!.validate()) {
@@ -319,13 +320,13 @@ _showDialog2(BuildContext context, int Namostras) async {
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text("PARA DESISTIR DO TESTE CLIQUE E SEGURE SAIR"),
-        content: Text("Para continuar clique em ok"),
+        content: Text("Para continuar clique em CONTINUAR"),
         actions: <Widget>[
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("OK")),
+              child: Text("CONTINUAR")),
           ElevatedButton(
             child: Text("SAIR"),
             onLongPress: () {
@@ -359,7 +360,7 @@ _showDialogpassword(BuildContext context) async {
         title: new Text("Pausar Testes Aromaticos?"),
         content: new Text("Para retirar o app do modo de teste insira a senha"),
         actions: <Widget>[
-          TextFormField(
+          TextFormField(autofocus: true,
             keyboardType: TextInputType.number,
             controller: passwordcontroller,
           ),
