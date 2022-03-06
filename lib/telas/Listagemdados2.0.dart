@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAromatico.dart';
@@ -85,7 +85,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
                     icon: Icon(Icons.height),
                     child: Text("Slider"),
                   ), Tab(
-                    icon: Icon(Icons.height),
+                    icon: Icon(Icons.add_road_rounded),
                     child: AutoSizeText("Diferente/Igual"),
                   )
                 ],
@@ -172,11 +172,11 @@ class _ListaComparativoState extends State<ListaComparativo> {
               ),
               title: Text(
                 "Teste Discriminativo " +
-                    this.listartestediscriminativo[position].amostra_controle,
+                    this.listartestediscriminativo[position].provador,
                 style: titleStyle,
               ),
               subtitle: Text(
-                  this.listartestediscriminativo[position].menoscaracteristica),
+                  this.listartestediscriminativo[position].caracteristica),
               trailing: GestureDetector(
                   child: Icon(
                     Icons.delete,

@@ -26,10 +26,23 @@ class _AnaliseDiscriminativo9amostrasState
   String provador = "julgador";
   String caracteristica = "VAR_caracteristica";
 
-  Salvar(int data, String provador, String controle, String menos, String meio,
-      String mais, String comentario) async {
-    ModeloDiscriminativo teste = ModeloDiscriminativo(
-        data, provador, controle, menos, meio, mais, comentario);
+  Salvar(
+      int data,
+      String provador,
+      String numaAmostra,
+      String numaAmostra2,
+      String numaAmostra3,
+      String numaAmostra4,
+      String numaAmostra5,
+      String numaAmostra6,
+      String numaAmostra7,
+      String numaAmostra8,
+      String numaAmostra9,
+      String numaAmostra10,String comentario)async {
+
+
+    ModeloDiscriminativo teste = ModeloDiscriminativo(data, provador, numaAmostra, numaAmostra2, numaAmostra3, numaAmostra4, numaAmostra5,
+        numaAmostra6, numaAmostra7, numaAmostra8, numaAmostra9, numaAmostra10, comentario);
 
     var id = await Helper_BD().insertDiscrimnativo(teste);
 
@@ -44,9 +57,15 @@ class _AnaliseDiscriminativo9amostrasState
     super.initState();
   }
 
-  TextEditingController sample1Menos = TextEditingController();
-  TextEditingController sample2Meio = TextEditingController();
-  TextEditingController sample3Mais = TextEditingController();
+  TextEditingController amostra1 = TextEditingController();
+  TextEditingController amostra2 = TextEditingController();
+  TextEditingController amostra3 = TextEditingController();
+  TextEditingController amostra4 = TextEditingController();
+  TextEditingController amostra5 = TextEditingController();
+  TextEditingController amostra6 = TextEditingController();
+  TextEditingController amostra7 = TextEditingController();
+  TextEditingController amostra8 = TextEditingController();
+  TextEditingController amostra9 = TextEditingController();
   TextEditingController comentario = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -111,7 +130,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample1Menos,
+                                controller: amostra1,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -147,7 +166,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample2Meio,
+                                controller: amostra2,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -175,7 +194,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample3Mais,
+                                controller: amostra3,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -230,7 +249,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample1Menos,
+                                controller: amostra4,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -266,7 +285,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample2Meio,
+                                controller: amostra5,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -294,7 +313,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample3Mais,
+                                controller: amostra6,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -331,7 +350,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample1Menos,
+                                controller: amostra7,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -367,7 +386,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample2Meio,
+                                controller: amostra8,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -395,7 +414,7 @@ class _AnaliseDiscriminativo9amostrasState
                               padding: EdgeInsets.all(5),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: sample3Mais,
+                                controller: amostra9,
                                 maxLength: 3,
                                 validator: (value) {
                                   if ((value == null || value.trim().isEmpty) &&
@@ -471,14 +490,8 @@ class _AnaliseDiscriminativo9amostrasState
                   ElevatedButton(
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        await Salvar(
-                            now.millisecondsSinceEpoch,
-                            provador,
-                            "REMOVER ESSE PARAMETRO",
-                            sample1Menos.text,
-                            sample2Meio.text,
-                            sample3Mais.text,
-                            comentario.text);
+                        await Salvar(now.millisecondsSinceEpoch, provador, amostra1.text, amostra2.text, amostra3.text, amostra4.text, amostra5.text,
+                            amostra6.text, amostra7.text, amostra8.text, amostra9.text, caracteristica, comentario.text);
                         //await _recuperardobd();
                         Navigator.pushReplacement(
                             context,

@@ -21,8 +21,12 @@ class Helper_BD extends StatefulWidget {
             "amostra1 VARCHAR, nota1 VARCHAR,amostra2 VARCHAR, nota2 VARCHAR,amostra3 VARCHAR, nota3 VARCHAR,amostra4 VARCHAR, nota4 VARCHAR,amostra5 VARCHAR, nota5 VARCHAR,"+
             "amostra6 VARCHAR, nota6 VARCHAR,amostra7 VARCHAR, nota7 VARCHAR,amostra8 VARCHAR, nota8 VARCHAR,amostra9 VARCHAR, nota9 VARCHAR,amostra10 VARCHAR, nota10 VARCHAR)";
 
-    String CreatDiscriminativo =
-        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
+    String CreatDiscriminativo9amostras =
+        "CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,num_amostra VARCHAR, num_amostra2 VARCHAR"+
+        ",num_amostra3 VARCHAR,num_amostra4 VARCHAR,num_amostra5 VARCHAR,num_amostra6 VARCHAR"+
+        ",num_amostra7 VARCHAR,num_amostra8 VARCHAR,num_amostra9 VARCHAR,caracteristica VARCHAR,comentario VARCHAR)";
+
+        //"CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
     String CreateComparativo =
         "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada CHAR, nota VARCHAR)";
 
@@ -37,7 +41,7 @@ class Helper_BD extends StatefulWidget {
         "CREATE TABLE diferent(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra0 VARCHAR,amostra1 VARCHAR,amostra2 VARCHAR,amostradif INTEGER,coment VARCCHAR)";
 
     await db.execute(CreatAvaliativo);
-    await db.execute(CreatDiscriminativo);
+    await db.execute(CreatDiscriminativo9amostras);
     await db.execute(CreateComparativo);
     await db.execute(CreateAroma);
     await db.execute(CreateSliders);
@@ -115,10 +119,16 @@ class Helper_BD extends StatefulWidget {
       "id",
       "data",
       "provador",
-      "amostra_controle",
-      "amostra_testada",
-      "amostra2",
-      "amostra3",
+      "num_amostra",
+      "num_amostra2",
+      "num_amostra3",
+      "num_amostra4",
+      "num_amostra5",
+      "num_amostra6",
+      "num_amostra7",
+      "num_amostra8",
+      "num_amostra9",
+      "caracteristica",
       "comentario"
     ]);
 
@@ -170,10 +180,16 @@ class Helper_BD extends StatefulWidget {
     Map<String, dynamic> dadostabela = {
       "data": teste.data,
       "provador": teste.provador,
-      "amostra_controle": teste.amostra_controle,
-      "amostra_testada": teste.menoscaracteristica,
-      "amostra2": teste.mediacaracteristica,
-      "amostra3": teste.maiscaracteristica,
+      "num_amostra": teste.Numamostra,
+      "num_amostra2": teste.Numamostra2,
+      "num_amostra3": teste.Numamostra3,
+      "num_amostra4": teste.Numamostra4,
+      "num_amostra5": teste.Numamostra5,
+      "num_amostra6": teste.Numamostra6,
+      "num_amostra7": teste.Numamostra7,
+      "num_amostra8": teste.Numamostra8,
+      "num_amostra9": teste.Numamostra9,
+      "caracteristica": teste.caracteristica,
       "comentario": teste.comentario,
     };
 

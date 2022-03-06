@@ -25,7 +25,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Teste da amostra: " + teste.amostra_controle),
+        title: Text("Teste da amostra: " + teste.Numamostra),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -42,7 +42,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly, //row de texto
                 children: [
                   Text(
-                    "Amostra: ",
+                    "Caracteristica: "+teste.caracteristica,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: 20, fontStyle: FontStyle.italic),
@@ -92,7 +92,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                       padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        initialValue: teste.menoscaracteristica.toString(),
+                        initialValue: teste.Numamostra.toString(),
                         readOnly: true,
                         //controller: sample1Menos,
                         // ignore: prefer_const_constructors
@@ -116,7 +116,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                       padding: EdgeInsets.all(5),
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        initialValue: teste.mediacaracteristica.toString(),
+                        initialValue: teste.Numamostra2.toString(),
                         readOnly: true,
                         //controller: sample2Meio,
                         decoration: InputDecoration(
@@ -132,7 +132,7 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                       padding: EdgeInsets.all(5),
                       child: TextFormField(
                         keyboardType: TextInputType.text, readOnly: true,
-                        initialValue: teste.maiscaracteristica.toString(),
+                        initialValue: teste.Numamostra3.toString(),
                         //controller: sample3Mais,
                         decoration: InputDecoration(
                           filled: true,
@@ -154,6 +154,122 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
 
                 ],
               ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        initialValue: teste.Numamostra4.toString(),
+                        readOnly: true,
+                        //controller: sample1Menos,
+                        // ignore: prefer_const_constructors
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          hintText: "Menos :",
+                          hintStyle: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                          //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                        ),
+                      )),
+                ),
+                Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        initialValue: teste.Numamostra5.toString(),
+                        readOnly: true,
+                        //controller: sample2Meio,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.blue,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            )),
+                      )),
+                ),
+                Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text, readOnly: true,
+                        initialValue: teste.Numamostra6.toString(),
+                        //controller: sample3Mais,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                        ),
+                      )),
+                ),
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        initialValue: teste.Numamostra7.toString(),
+                        readOnly: true,
+                        //controller: sample1Menos,
+                        // ignore: prefer_const_constructors
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                          hintText: "Menos :",
+                          hintStyle: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.black,
+                          ),
+                          //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                        ),
+                      )),
+                ),
+                Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        initialValue: teste.Numamostra8.toString(),
+                        readOnly: true,
+                        //controller: sample2Meio,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.blue,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(3),
+                            )),
+                      )),
+                ),
+                Expanded(
+                  child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text, readOnly: true,
+                        initialValue: teste.Numamostra9.toString(),
+                        //controller: sample3Mais,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.blue,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                        ),
+                      )),
+                ),
+              ]),
 
               // ignore: prefer_const_constructors
               SizedBox(
