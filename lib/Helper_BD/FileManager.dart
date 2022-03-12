@@ -3,9 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:share_plus/share_plus.dart';
-
-
-
+import 'package:permission_handler/permission_handler.dart';
 
 var data = DateTime.now();
 
@@ -76,9 +74,10 @@ class _FileManagerState extends State<FileManager> {
             ),
             ElevatedButton(
               onPressed: ()async {
+                if (await Permission.storage.request().isGranted) {
+                  debugPrint(await _salvarArquivo());
+                }
 
-
-                debugPrint(await _salvarArquivo());
               },
               child: Text("Gerar json"),
             ),

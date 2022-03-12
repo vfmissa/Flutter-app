@@ -176,7 +176,7 @@ class _ListaComparativoState extends State<ListaComparativo> {
                 style: titleStyle,
               ),
               subtitle: Text(
-                  this.listartestediscriminativo[position].caracteristica),
+                  this.listartestediscriminativo[position].comentario),
               trailing: GestureDetector(
                   child: Icon(
                     Icons.delete,
