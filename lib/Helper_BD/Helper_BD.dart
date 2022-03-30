@@ -28,7 +28,8 @@ class Helper_BD extends StatefulWidget {
 
         //"CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
     String CreateComparativo =
-        "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada CHAR, nota VARCHAR)";
+        "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,"
+        "provador VARCHAR,amostra_controle VARCHAR,amostra_testada CHAR, nota VARCHAR)";
 
     String CreateAroma =
         "CREATE TABLE aroma(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,num_amostra VARCHAR, aroma VARCHAR,num_amostra2 VARCHAR, aroma2 VARCHAR" +

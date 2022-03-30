@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:food_test_app/Helper_BD/Helper_BD.dart';
 import 'package:food_test_app/Modelo%20de%20Classes/ModeloAvaliativo.dart';
+import 'package:food_test_app/telas/Avaliativo/AmostrasAvaliativo.dart';
 import 'package:food_test_app/telas/GridMain.dart';
 
 import '../../main.dart';
@@ -300,7 +301,7 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
 
                             Navigator.pushAndRemoveUntil(
                               context,
-                              MaterialPageRoute(builder: (context) => GridMain()),
+                              MaterialPageRoute(builder: (context) => AmostrasAvaliativo(controle, widget.num_amostra)),
                                   (Route<dynamic> route) => false,
                             );
 
@@ -315,7 +316,21 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
 
 
                       }, child: Text("Submeter",style: TextStyle(color: Colors.black)),
-                    ),
+                    ),Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FloatingActionButton(
+                            child: Icon(
+                              Icons.run_circle_outlined,
+                              size: 50,
+                              color: Colors.black,
+                            ),
+                            backgroundColor: Colors.red,
+                            onPressed: () {
+                              _showDialog2(context,widget.num_amostra,widget.controle);
+                            }),
+                      ],
+                    )
                   ]),
             ),
           ),
@@ -324,3 +339,74 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
     );
   }
 }
+
+_showDialog2(BuildContext context, int Namostras, String controle) async {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("PARA DESISTIR DO TESTE CLIQUE E SEGURE SAIR"),
+        content: Text("Para continuar clique em CONTINUAR"),
+        actions: <Widget>[
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("CONTINUAR")),
+          ElevatedButton(
+            child: Text("SAIR"),
+            onLongPress: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AmostrasAvaliativo(controle,Namostras)),
+                    (Route<dynamic> route) => false,
+              );
+            },
+            onPressed: () {},
+          ),
+          TextButton(
+            child: Text("PAUSAR TESTES"),
+            onPressed: () {
+              _showDialogpassword(context);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+_showDialogpassword(BuildContext context) async {
+  TextEditingController passwordcontroller = TextEditingController();
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: new Text("Parar Testes Aromaticos?"),
+        content: new Text("Para retirar o app do modo de teste insira a senha"),
+        actions: <Widget>[
+          TextFormField(
+            keyboardType: TextInputType.number,
+            controller: passwordcontroller,
+          ),
+          TextButton(
+            child: new Text("PARAR TESTES"),
+            onPressed: () {
+              if (passwordcontroller.text == "123") {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => GridMain()),
+                      (Route<dynamic> route) => false,
+                );
+              } else {
+                Navigator.of(context).pop();
+              }
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
