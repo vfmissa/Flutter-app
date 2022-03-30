@@ -1,6 +1,6 @@
-# food_test_app
+# Aplicação de testes sensoriais com Flutter
 
-teste para eng de alimentos
+App para digitalizar a aplicação dos testes sensoriais utilizados na FANUT - ainda em desenvolvimento
 
 ## Getting Started
 
