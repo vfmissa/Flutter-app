@@ -170,7 +170,6 @@ class _AromaticoMainState extends State<AromaticoMain> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(3),
                                 ),
-                                //contentPadding: const EdgeInsets.all(600),
                                 labelText: "N° Amostra",
                                 floatingLabelBehavior:
                                     FloatingLabelBehavior.always,

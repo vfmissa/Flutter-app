@@ -2,7 +2,6 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:food_test_app/telas/Ordena%C3%A7%C3%A3o/AnaliseDiscriminativo9amostras.dart';
 import 'package:food_test_app/telas/Ordena%C3%A7%C3%A3o/ProvadorOrdenacao.dart';
 
 import '../GridMain.dart';
@@ -95,7 +94,6 @@ class _InicioOrdenacaoState extends State<InicioOrdenacao> {
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
-                              //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                             ),
                           ),
                         )
@@ -138,7 +136,6 @@ class _InicioOrdenacaoState extends State<InicioOrdenacao> {
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
-                              //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                             ),
                           ),
                         )

@@ -73,7 +73,6 @@ class _AmostrasDiferentigualState extends State<AmostrasDiferentigual> {
                         hintStyle: TextStyle(
                           color: Colors.black,
                         ),
-                        //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                       ),
                     ),
                   )
@@ -118,7 +117,7 @@ class _AmostrasDiferentigualState extends State<AmostrasDiferentigual> {
                                 fillColor: Colors.blue,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(3),
-                                ), //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                                ),
                               ),
                             )),
                       ),

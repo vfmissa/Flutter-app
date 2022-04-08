@@ -57,10 +57,6 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
         return false;
       },
       child: Scaffold(
-        /*appBar: AppBar(
-          title: Text("Atributos para Avaliação"),
-          backgroundColor: Colors.blue,
-        ),*/
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(5, 25, 5, 5),
@@ -217,7 +213,6 @@ class _QuestinarioSlidersState extends State<QuestinarioSliders> {
                 ElevatedButton(
                     onPressed: () {
                       debugPrint(_SliderValueDois.toString());
-                      //Salvar(now.millisecondsSinceEpoch, amostra, _SliderValueUm, caracteristica1, comentcontroller.text);
                       Salvar(
                           now.millisecondsSinceEpoch,
                           provador,

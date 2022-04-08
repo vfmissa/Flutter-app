@@ -26,7 +26,6 @@ class Helper_BD extends StatefulWidget {
         ",num_amostra3 VARCHAR,num_amostra4 VARCHAR,num_amostra5 VARCHAR,num_amostra6 VARCHAR"+
         ",num_amostra7 VARCHAR,num_amostra8 VARCHAR,num_amostra9 VARCHAR,caracteristica VARCHAR,comentario VARCHAR)";
 
-        //"CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,provador VARCHAR,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 VARCHAR, amostra3 VARCHAR ,comentario VARCHAR)";
     String CreateComparativo =
         "CREATE TABLE comparativo(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,"
         "provador VARCHAR,amostra_controle VARCHAR,amostra_testada CHAR, nota VARCHAR)";
@@ -96,7 +95,7 @@ class Helper_BD extends StatefulWidget {
 
   InsertComparativo(ModeloComparativo teste) async {
     Database banco = await Helper_BD().inicializarDB();
-    //Database bd = await _Bancoapp();
+
 
     Map<String, dynamic> dadostabela = {
       "data": teste.data,
@@ -173,7 +172,7 @@ class Helper_BD extends StatefulWidget {
 
   Future<int> insertDiscrimnativo(ModeloDiscriminativo teste) async {
     Database db = await Helper_BD().inicializarDB();
-    //inserção dando erro no id/autoincremente se tento passar o modelo de classe direto???
+    //inserção dando erro no id/auto_increment
     //var result = await db.insert("teste_discriminativo", teste.toMap());
 
     //"CREATE TABLE teste_discriminativo(id INTEGER PRIMARY KEY AUTOINCREMENT,amostra_controle VARCHAR,amostra_testada VARCHAR , amostra2 INT, amostra3 INT ,comentario VARCHAR)";
@@ -443,7 +442,6 @@ class Helper_BD extends StatefulWidget {
     //"CREATE TABLE sliders(id INTEGER PRIMARY KEY AUTOINCREMENT,data DATETIME,amostra,valor_slider FLOAT,VARCHAR,caracteristica VARCHAR,comentario VARCHAR)"
 
     Map<String, dynamic> dadostabela = {
-      //"id":teste.id,
       "data": teste.data,
       "provador": teste.provador,
       "amostra": teste.amostra,

@@ -73,7 +73,6 @@ class _AvaliativoNumAmostrasState extends State<AvaliativoNumAmostras> {
                             hintStyle: TextStyle(
                               color: Colors.black,
                             ),
-                            //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                           ),
                         ),
                       )
@@ -131,7 +130,6 @@ class _AvaliativoNumAmostrasState extends State<AvaliativoNumAmostras> {
                                 hintStyle: TextStyle(
                                   color: Colors.black,
                                 ),
-                                //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                               ),
                             )),
                       ),

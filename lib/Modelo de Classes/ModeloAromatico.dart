@@ -35,9 +35,6 @@ class ModeloAromatico{
       ,this._Numamostra4,this._aroma4,this._Numamostra5,this._aroma5,this._Numamostra6,this._aroma6
       ,this._Numamostra7,this._aroma7,this._Numamostra8,this._aroma8,this._Numamostra9,this._aroma9,this._Numamostra10,this._aroma10);
 
-/*ModeloAromatico.withid(this._id,this._Numamostra,this._aroma,this._aroma2,this._Numamostra3,this._aroma3
-  ,this._Numamostra4,this._aroma4,this._Numamostra5,this._aroma5,this._Numamostra6,this._aroma6
-  ,this._Numamostra7,this._aroma7,this._Numamostra8,this._aroma8,this._Numamostra9,this._aroma9,this._Numamostra10,this._aroma10);*/
 
 int get id =>_id;
 int get data=>_data;

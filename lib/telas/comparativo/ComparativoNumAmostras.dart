@@ -65,12 +65,6 @@ class _ComparativoNumAmostraState extends State<ComparativoNumAmostras> {
                     ),
                   ],
                 ),
-                /*SizedBox(
-                  width: 475,
-                  height: 30,
-                  child: Text(
-                      "Você está recebendo uma amostra controle (C) e uma amostras codificada."),
-                ),*/
                 Container(
                   height: 60,
                   decoration: BoxDecoration(
@@ -122,7 +116,6 @@ class _ComparativoNumAmostraState extends State<ComparativoNumAmostras> {
                                 hintStyle: TextStyle(
                                   color: Colors.black,
                                 ),
-                                //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                               ),
                             ),
                           )),

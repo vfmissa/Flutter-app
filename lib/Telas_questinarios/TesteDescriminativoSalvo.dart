@@ -107,7 +107,6 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                             fontSize: 12,
                             color: Colors.black,
                           ),
-                          //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                         ),
                       )),
                 ),
@@ -175,7 +174,6 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                             fontSize: 12,
                             color: Colors.black,
                           ),
-                          //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                         ),
                       )),
                 ),
@@ -233,7 +231,6 @@ class _TestDescriminativoSalvoState extends State<TestDescriminativoSalvo> {
                             fontSize: 12,
                             color: Colors.black,
                           ),
-                          //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                         ),
                       )),
                 ),

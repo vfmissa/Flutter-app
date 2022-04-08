@@ -54,18 +54,6 @@ class _TesteSlidersSalvoState extends State<TesteSlidersSalvo> {
                       const TextStyle(fontSize: 20, fontStyle: FontStyle.italic),
                 ),
               ], mainAxisAlignment: MainAxisAlignment.spaceEvenly),
-              /*Container(
-                height: 60,
-                width: 700,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 3, color: Colors.blue)),
-                child: AutoSizeText(
-                  "Você recebera varias amostras para provar avalie posicionando o Slider na altura que representa oque você percebe do atributo em analise\n",
-                  maxLines: 15,
-                  textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),*/
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 16, 25, 0),
                 child:
@@ -153,58 +141,6 @@ class _TesteSlidersSalvoState extends State<TesteSlidersSalvo> {
                 ),
               ),
               //SEGUNDO ITEM
-              /*Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                        width: 90,
-                        height: 25,
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          initialValue: "$amostra",
-                          readOnly: true,
-                          textCapitalization: TextCapitalization.sentences,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                          ),
-                        )),
-                    SizedBox(
-                        width: 120,
-                        height: 25,
-                        child: TextFormField(
-                          initialValue: "$caracteristica2",
-                          readOnly: true,
-                          textCapitalization: TextCapitalization.sentences,
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                          ),
-                        )),
-                    SizedBox(
-                      width: 300,
-                      child: Slider(
-                        value: _SliderValueDois,
-                        max: 100,
-                        label: _SliderValueDois.round().toString(),
-                        onChanged: (double value) {
-                          setState(() {
-                            _SliderValueDois = value;
-                          });
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              ),*/
               Padding(
                 padding: const EdgeInsets.all(25.0),
                 child: Container(
@@ -230,12 +166,6 @@ class _TesteSlidersSalvoState extends State<TesteSlidersSalvo> {
                       )),
                 ),
               ),
-              /*ElevatedButton(onPressed: ( ){
-
-                debugPrint(teste.valor_slider.toString());
-
-
-              }, child: Text("test", style: TextStyle(color: Colors.black))),*/
             ],
           ),
         ),

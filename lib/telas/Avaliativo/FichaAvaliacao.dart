@@ -75,8 +75,6 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
 
     return WillPopScope(
       onWillPop: () async {
-        //debugPrint("retorno habilitado");
-
         return true;
       },
 
@@ -99,12 +97,6 @@ class _FichaAvaliacaoState extends State<FichaAvaliacao> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        /*Text(
-                          "Amostra:$amostra",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 20, fontStyle: FontStyle.italic),
-                        ),*/
                         Text(
                           "Julgador: ${widget.provador}",
                           textAlign: TextAlign.center,

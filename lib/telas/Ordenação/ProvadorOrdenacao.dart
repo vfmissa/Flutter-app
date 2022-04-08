@@ -93,7 +93,6 @@ class _ProvadorOrdenacaoState extends State<ProvadorOrdenacao> {
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
-                              //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                             ),
                           ),
                         )

@@ -157,7 +157,6 @@ class _AnaliseDiscriminativo9amostrasState
                                     fontSize: 12,
                                     color: Colors.black,
                                   ),
-                                  //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                                 ),
                               )),
                         ),
@@ -276,7 +275,6 @@ class _AnaliseDiscriminativo9amostrasState
                                     fontSize: 12,
                                     color: Colors.black,
                                   ),
-                                  //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                                 ),
                               )),
                         ),
@@ -377,7 +375,6 @@ class _AnaliseDiscriminativo9amostrasState
                                     fontSize: 12,
                                     color: Colors.black,
                                   ),
-                                  //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                                 ),
                               )),
                         ),

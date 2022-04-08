@@ -59,12 +59,6 @@ class _ComparativoState extends State<Comparativo> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      /*Text(
-                        "Amostra:$amostra",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20, fontStyle: FontStyle.italic),
-                      ),*/
                       Text(
                         "Julgador: ${widget.julgador}",
                         textAlign: TextAlign.center,
@@ -79,12 +73,6 @@ class _ComparativoState extends State<Comparativo> {
                       ),
                     ],
                   ),
-                  /*SizedBox(
-                    width: 475,
-                    height: 30,
-                    child: Text(
-                        "Você está recebendo uma amostra controle (C) e uma amostras codificada."),
-                  ),*/
                   Container(
                     height: 200,
                     decoration: BoxDecoration(
@@ -100,21 +88,6 @@ class _ComparativoState extends State<Comparativo> {
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
-                  /*Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                          width: 80, height: 50, child: Text("1: Nenhuma")),
-                      SizedBox(
-                          width: 80, height: 50, child: Text("2: Ligeira")),
-                      SizedBox(
-                          width: 80, height: 50, child: Text("3: Moderada")),
-                      SizedBox(width: 80, height: 50, child: Text("4: Muita")),
-                      SizedBox(
-                          width: 80, height: 50, child: Text("5: Extrema")),
-                    ],
-                  ),*/
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -154,7 +127,6 @@ class _ComparativoState extends State<Comparativo> {
                                   hintStyle: TextStyle(
                                     color: Colors.black,
                                   ),
-                                  //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                                 ),
                               ),
                             )),

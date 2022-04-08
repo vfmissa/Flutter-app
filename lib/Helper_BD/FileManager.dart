@@ -12,8 +12,7 @@ DateTime dia = new DateTime(data.year, data.month, data.day);
 _salvarArquivo()async {
 
  String folder ="/storage/emulated/0/Download/";
-  //final diretorio = await getApplicationDocumentsDirectory();
- //String path=diretorio.path;
+
   var arquivo = File("$folder/${dia.year}${dia.month}${dia.day}QuestionariosTeste.json");
   String Json=await Helper_BD().getModeloDecriminativoJson()+"\n"+await Helper_BD().getModeloAromaticoJson();
   String BD = await (Helper_BD().getModeloAromaticoJson());

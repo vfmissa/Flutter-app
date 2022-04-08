@@ -1,10 +1,9 @@
-// ignore_for_file: file_names
-
+// ignore_for_file: file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_test_app/telas/Sliders/SliderAmostraProvador.dart';
-import 'QuestinarioSliders.dart';
+
 
 
 class SelecaoAtributos extends StatefulWidget {
@@ -41,37 +40,6 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                 SizedBox(
                   width: 30,
                 ),
-                /*SizedBox(
-                  width: 180,
-                  height: 60,
-                  child: TextFormField(
-                    style: TextStyle(fontSize: 16),
-                    keyboardType: TextInputType.text,
-                    maxLength: 50,
-                    maxLines: 1,
-                    controller: provadorcontroller,
-                    validator: (value) {
-                      if (value!.trim().isEmpty) {
-                        return "insira provador";
-                      }
-                      return null;
-                    },
-                    // ignore: prefer_const_constructors
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.blue,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      hintText: " ",
-                      contentPadding: EdgeInsets.all(5),
-                      hintStyle: TextStyle(
-                        color: Colors.black,
-                      ),
-                      //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
-                    ),
-                  ),
-                )*/
               ],
             ),
             Padding(
@@ -121,34 +89,6 @@ class _SelecaoAtributosState extends State<SelecaoAtributos> {
                             ),
                           ),
                         )),
-                   /* SizedBox(
-                        width: 120,
-                        height: 60,
-                        child: TextFormField(
-                          keyboardType: TextInputType.number,
-                          textCapitalization: TextCapitalization.sentences,
-                          controller: amostracontroller1,
-                          maxLength: 3,
-                          validator: (value) {
-                            if (value == null ||
-                                value.trim().isEmpty ||
-                                int.parse(value) <= 100 ||
-                                int.parse(value) >= 1000) {
-                              return "Prencha os campos";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            helperText: "Amostra",
-                            helperStyle:
-                                TextStyle(color: Colors.black, fontSize: 10),
-                            filled: true,
-                            fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                          ),
-                        )),*/
                   ],
                 ),
               ),

@@ -83,7 +83,6 @@ class _AmostrasAvaliativoState extends State<AmostrasAvaliativo> {
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
-                              //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                             ),
                           ),
                         )

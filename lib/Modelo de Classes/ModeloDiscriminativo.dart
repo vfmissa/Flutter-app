@@ -135,16 +135,6 @@ class ModeloDiscriminativo{
     this._comentario=map['comentario'];
   }
 
-
-  //json
- /* ModeloDiscriminativo.fromJson(Map<String,dynamic>json)
-    :_id = json['id'],
-        _amostra_controle = json['amostra Controle'],
-    _menoscaracteristica =json['amostra 1'],
-    _mediacaracteristica=json['amostra2'],
-    _maiscaracteristica=json['amostra3'],
-    _comentario=json['coment'];*/
-
   Map<String,dynamic>toJson(){
     return{
       "frame1": {

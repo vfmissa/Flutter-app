@@ -44,44 +44,6 @@ class _NumeroAromasState extends State<NumeroAromas> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  /*Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Insira o nome do Provador",style: TextStyle(fontSize: 24),),
-                      SizedBox(width: 30,),
-                      SizedBox(
-                        width: 180,
-                        height: 60,
-                        child: TextFormField(
-                          style: TextStyle(fontSize: 16),
-                          keyboardType: TextInputType.text,
-                          maxLength: 50,
-                          maxLines: 1,
-                          controller: provadorcontroller,
-                          validator: (value) {
-                            if (value!.trim().isEmpty) {
-                              return "insira provador";
-                            }
-                            return null;
-                          },
-                          // ignore: prefer_const_constructors
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.blue,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            hintText: " ",
-                            contentPadding: EdgeInsets.all(5),
-                            hintStyle: TextStyle(
-                              color: Colors.black,
-                            ),
-                            //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
-                          ),
-                        ),
-                      )
-                    ],
-                  ),*/
                   Container(
                     height: 60,
                     decoration: BoxDecoration(
@@ -134,7 +96,6 @@ class _NumeroAromasState extends State<NumeroAromas> {
                                 hintStyle: TextStyle(
                                   color: Colors.black,
                                 ),
-                                //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                               ),
                             )),
                       ),

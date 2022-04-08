@@ -83,7 +83,6 @@ class _InicioQuestionarioState extends State<InicioQuestionario> {
                               hintStyle: TextStyle(
                                 color: Colors.black,
                               ),
-                              //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                             ),
                           ),
                         )

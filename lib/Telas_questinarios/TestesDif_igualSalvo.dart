@@ -85,7 +85,7 @@ class _TestesDif_igualSalvoState extends State<TestesDif_igualSalvo> {
                           fillColor: Colors.blue,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(3),
-                          ), //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
+                          ),
                         ),
                       )),
                 ),

@@ -144,7 +144,6 @@ class _FichaOrdenacaoState extends State<FichaOrdenacao> {
                                 hintStyle: TextStyle(
                                   color: Colors.black,
                                 ),
-                                //border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.zero))
                               ),
                             )),
                       ),
